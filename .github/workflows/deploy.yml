@@ -1,0 +1,60 @@
+name: deploy
+
+# Build and deploy the math-coding site to GitHub Pages.
+# 1. Sync markdown from the main math-coding repository
+# 2. Build with mdBook
+# 3. Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install mdBook
+        run: |
+          curl -sL -o /tmp/mdbook.tar.gz \
+            https://github.com/rust-lang/mdBook/releases/download/v0.4.40/mdbook-v0.4.40-x86_64-unknown-linux-gnu.tar.gz
+          tar xzf /tmp/mdbook.tar.gz
+          sudo mv mdbook /usr/local/bin/
+          mdbook --version
+
+      - name: Sync content from main repository
+        run: sh scripts/sync-from-main.sh
+
+      - name: Build with mdBook
+        run: mdbook build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: book
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,15 @@
+# Generated
+/book/
+/public/
+
+# Editor
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# mdbook
+*.pdb
+mdbook-linkcheck/

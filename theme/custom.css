@@ -1,0 +1,307 @@
+/* math-coding-site — custom CSS overlay for mdBook
+ * Style: academic-monospace
+ * Goal: formal, mathematical, restrained.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+    --mc-accent: #c7472b;
+    --mc-accent-soft: #e8a48b;
+    --mc-fg: #1a1a1a;
+    --mc-fg-soft: #4a4a4a;
+    --mc-fg-mute: #8a8a8a;
+    --mc-bg: #fafaf7;
+    --mc-bg-elev: #ffffff;
+    --mc-bg-soft: #f3f3ee;
+    --mc-border: #e5e5dd;
+    --mc-border-soft: #efefea;
+}
+
+html.rust .content,
+html.rust .content code,
+html.rust .content pre,
+html.rust .content blockquote,
+html.rust .content table,
+html.rust .nav-chapters,
+html.rust .sidebar,
+html.rust .page {
+    --fg: var(--mc-fg);
+    --bg: var(--mc-bg);
+    --bg-pop: var(--mc-bg-elev);
+}
+
+html.rust {
+    --fg: var(--mc-fg);
+    --bg: var(--mc-bg);
+    --sidebar-bg: var(--mc-bg-soft);
+    --sidebar-fg: var(--mc-fg);
+    --sidebar-non-existant: var(--mc-fg-mute);
+    --sidebar-active: var(--mc-accent);
+    --sidebar-spacer: var(--mc-fg-mute);
+    --icons: var(--mc-fg-soft);
+    --icons-hover: var(--mc-accent);
+    --links: var(--mc-accent);
+    --inline-link-color: var(--mc-accent);
+    --theme-popup-bg: var(--mc-bg-elev);
+    --theme-popup-border: var(--mc-border);
+    --theme-hover: var(--mc-bg-soft);
+    --quote-bg: var(--mc-bg-soft);
+    --quote-border: var(--mc-accent);
+    --table-border-color: var(--mc-border);
+    --table-header-bg: var(--mc-bg-soft);
+    --table-header-fg: var(--mc-fg);
+    --table-row-odd-bg: var(--mc-bg-elev);
+    --searchbar-bg: var(--mc-bg-elev);
+    --searchbar-fg: var(--mc-fg);
+    --searchbar-border-color: var(--mc-border);
+    --searchresults-bg: var(--mc-bg-elev);
+    --searchresults-border-color: var(--mc-border);
+    --searchresults-li-bg: var(--mc-bg-elev);
+    --search-mark-bg: var(--mc-accent-soft);
+    --content-max-width: 820px;
+}
+
+html.rust .content {
+    font-family: 'IBM Plex Serif', 'Iowan Old Style', Charter, Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--mc-fg);
+}
+
+html.rust .content h1,
+html.rust .content h2,
+html.rust .content h3,
+html.rust .content h4,
+html.rust .content h5,
+html.rust .content h6 {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--mc-fg);
+}
+
+html.rust .content h1 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid var(--mc-accent);
+    padding-bottom: 0.4em;
+    margin-bottom: 0.6em;
+}
+
+html.rust .content h2 {
+    font-size: 1.6rem;
+    border-bottom: 1px solid var(--mc-border);
+    padding-bottom: 0.2em;
+    margin-top: 2.2em;
+}
+
+html.rust .content h3 {
+    font-size: 1.15rem;
+    color: var(--mc-fg-soft);
+    margin-top: 1.8em;
+}
+
+html.rust .content a,
+html.rust .chapter li.chapter-item a,
+html.rust .nav-chapters a {
+    color: var(--mc-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+}
+
+html.rust .content a:hover {
+    border-bottom-color: var(--mc-accent);
+}
+
+html.rust .content blockquote {
+    border-left: 3px solid var(--mc-accent);
+    background: var(--mc-bg-soft);
+    color: var(--mc-fg-soft);
+    font-style: italic;
+    padding: 0.5em 1em;
+    margin: 1.5em 0;
+}
+
+html.rust .content code,
+html.rust .content pre {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-size: 0.875em;
+}
+
+html.rust .content :not(pre) > code {
+    background: var(--mc-bg-soft);
+    border: 1px solid var(--mc-border-soft);
+    color: var(--mc-fg);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+html.rust .content pre {
+    background: var(--mc-bg-elev);
+    border: 1px solid var(--mc-border);
+    border-radius: 6px;
+    padding: 1.1em 1.3em;
+    line-height: 1.55;
+}
+
+html.rust .content table {
+    border-collapse: collapse;
+    border: 1px solid var(--mc-border);
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 0.95em;
+    margin: 1.6em 0;
+}
+
+html.rust .content table thead {
+    background: var(--mc-bg-soft);
+    border-bottom: 2px solid var(--mc-border);
+}
+
+html.rust .content table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--mc-fg-soft);
+}
+
+html.rust .content table td,
+html.rust .content table th {
+    padding: 0.6em 0.9em;
+    border-bottom: 1px solid var(--mc-border-soft);
+}
+
+html.rust .content table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+html.rust .content table tbody tr:hover {
+    background: var(--mc-bg-soft);
+}
+
+/* MathJax display math: add a small terracotta line above */
+html.rust .content mjx-container[display="true"] {
+    margin: 1.6em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+html.rust .content mjx-container[display="true"]:before {
+    content: '';
+    display: block;
+    width: 2.5em;
+    height: 1px;
+    background: var(--mc-accent);
+    margin: 0 auto 0.5em;
+    opacity: 0.4;
+}
+
+/* Sidebar refinements */
+html.rust .sidebar {
+    background: var(--mc-bg-soft);
+    border-right: 1px solid var(--mc-border);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+html.rust .sidebar .chapter li a {
+    color: var(--mc-fg-soft);
+    font-size: 0.85rem;
+}
+
+html.rust .sidebar .chapter li a:hover {
+    color: var(--mc-accent);
+}
+
+html.rust .sidebar .chapter li.part-title {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--mc-fg-mute);
+    padding: 1em 0 0.3em;
+    border-bottom: 1px solid var(--mc-border-soft);
+    margin: 0.5em 0;
+}
+
+html.rust .sidebar .chapter li.chapter-item a.current {
+    color: var(--mc-accent);
+}
+
+/* Top bar */
+html.rust .menu-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--mc-fg);
+}
+
+html.rust .menu-title a {
+    color: var(--mc-fg);
+    border: 0;
+}
+
+html.rust .menu-title a:hover {
+    color: var(--mc-accent);
+    border: 0;
+}
+
+/* Footer */
+html.rust .nav-footer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--mc-fg-mute);
+    border-top: 1px solid var(--mc-border);
+}
+
+/* Search results */
+html.rust #searchresults a,
+html.rust #searchresults .teasers li {
+    color: var(--mc-fg);
+}
+
+html.rust #searchresults .teasers li:hover,
+html.rust #searchresults .teasers a:hover {
+    background: var(--mc-bg-soft);
+}
+
+/* Print */
+@media print {
+    html.rust .sidebar,
+    html.rust .menu-bar,
+    html.rust .nav-chapters,
+    html.rust .nav-footer {
+        display: none;
+    }
+    html.rust .content {
+        max-width: 100%;
+    }
+}
+
+/* Dark mode override (mdBook handles via .nav-yew) */
+html.rust.nav-yew,
+html.rust.nav-yew .sidebar,
+html.rust.nav-yew .content {
+    --fg: #e8e6df;
+    --bg: #1a1a1a;
+    --bg-pop: #232220;
+    --sidebar-bg: #1f1e1d;
+    --sidebar-fg: #b8b6af;
+    --sidebar-active: #e8a48b;
+    --icons: #b8b6af;
+    --links: #e8a48b;
+    --inline-link-color: #e8a48b;
+    --quote-bg: #232220;
+    --quote-border: #5a3530;
+    --table-border-color: #2e2d2c;
+    --table-header-bg: #232220;
+    --table-row-odd-bg: #1f1e1d;
+    --searchbar-bg: #232220;
+    --searchbar-fg: #e8e6df;
+    --searchresults-bg: #232220;
+    --searchresults-border-color: #2e2d2c;
+    --searchresults-li-bg: #232220;
+    --search-mark-bg: #5a3530;
+}
