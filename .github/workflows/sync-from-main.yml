@@ -1,0 +1,87 @@
+name: sync-from-main
+
+# Listen for repository_dispatch events from math-coding and sync
+# content into this site's src/ directory. Triggered by:
+#   - push to math-coding@main (via the dispatch workflow)
+#   - manual workflow_dispatch
+#
+# After sync, the deploy workflow (deploy.yml) runs to build and
+# publish the site.
+
+on:
+  repository_dispatch:
+    types: [math-coding-updated]
+  workflow_dispatch:
+  schedule:
+    # Daily safety-net sync in case the dispatch event was missed
+    - cron: '0 6 * * *'
+
+concurrency:
+  group: site-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+        with:
+          path: site
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show dispatch payload (for debugging)
+        env:
+          EVENT_TYPE: ${{ github.event.client_payload.source_sha }}
+        run: |
+          echo "Source SHA: ${EVENT_TYPE:-manual}"
+          echo "Source repo: ${{ github.event.client_payload.source_repo }}"
+          echo "Source branch: ${{ github.event.client_payload.source_branch }}"
+
+      - name: Run sync-from-main.sh
+        working-directory: site
+        run: |
+          chmod +x scripts/sync-from-main.sh
+          # sync-from-main.sh clones math-coding@main by default
+          sh scripts/sync-from-main.sh
+
+      - name: Check for changes
+        id: check
+        working-directory: site
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Files changed:"
+            git status --short | head -20
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No content changes detected."
+          fi
+
+      - name: Commit and push
+        if: steps.check.outputs.changed == 'true'
+        working-directory: site
+        run: |
+          SOURCE_SHA="${{ github.event.client_payload.source_sha }}"
+          SOURCE_MSG="$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            "https://api.github.com/repos/${{ github.event.client_payload.source_repo }}/commits/${SOURCE_SHA}" \
+            | grep -oE '"message":\s*"[^"]+"' | head -1 | sed 's/"message":\s*"//;s/"$//')"
+          SOURCE_MSG="${SOURCE_MSG:-auto-sync from math-coding}"
+
+          git config user.name "math-coding-bot"
+          git config user.email "math-coding-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "auto-sync from math-coding@${SOURCE_SHA:0:7}: ${SOURCE_MSG}
+
+            [skip ci]
+            Triggered by repository_dispatch from math-coding@main"
+          git push origin main
+
+      - name: Skip if no changes
+        if: steps.check.outputs.changed == 'false'
+        run: |
+          echo "Site already up-to-date with math-coding@main."
