@@ -88,7 +88,7 @@ echo "=== Packets (one page per packet) ==="
 # Order packets so the origin (math-coding-birth) is first, then
 # packets in dependency order. Fall back to glob order if birth
 # is not found.
-PKG_ORDER="math-coding-birth core-as-packet agents-md-as-packet theory-predicate-as-packet"
+PKG_ORDER="math-coding-birth core-as-packet agents-md-as-packet theory-predicate-as-packet theory-fsm-as-packet theory-ltl-as-packet theory-refinement-as-packet theory-assumption-as-packet theory-verdict-as-packet theory-epistemic-as-packet theory-deprecation-as-packet theory-curry-howard-as-packet theory-modal-as-packet theory-confidence-as-packet verifier-as-packet recursive-check-as-packet coverage-as-packet init-packet-as-packet"
 
 PKG_NUM=0
 for pkg_name in $PKG_ORDER; do
