@@ -1,20 +1,24 @@
 name: sync-from-main
 
-# Listen for repository_dispatch events from math-coding and sync
-# content into this site's src/ directory. Triggered by:
-#   - push to math-coding@main (via the dispatch workflow)
-#   - manual workflow_dispatch
+# Poll math-coding@main periodically and sync content into this
+# site's src/ directory. Then deploy via deploy.yml.
 #
-# After sync, the deploy workflow (deploy.yml) runs to build and
-# publish the site.
+# Triggers:
+#   - push to this repo's main (manual sync after changes here)
+#   - schedule: every 10 minutes (poll math-coding@main)
+#   - workflow_dispatch (manual trigger)
+#
+# Why polling instead of repository_dispatch:
+#   - GITHUB_TOKEN is scoped to same repo only; cross-repo
+#     repository_dispatch needs a PAT secret
+#   - Polling via API + git ls-remote works without secrets
 
 on:
-  repository_dispatch:
-    types: [math-coding-updated]
+  push:
+    branches: [main]
   workflow_dispatch:
   schedule:
-    # Daily safety-net sync in case the dispatch event was missed
-    - cron: '0 6 * * *'
+    - cron: '*/10 * * * *'
 
 concurrency:
   group: site-sync
@@ -34,42 +38,65 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Show dispatch payload (for debugging)
-        env:
-          EVENT_TYPE: ${{ github.event.client_payload.source_sha }}
+      - name: Detect latest commit on math-coding@main
+        id: detect
         run: |
-          echo "Source SHA: ${EVENT_TYPE:-manual}"
-          echo "Source repo: ${{ github.event.client_payload.source_repo }}"
-          echo "Source branch: ${{ github.event.client_payload.source_branch }}"
+          echo "Fetching latest SHA from math-coding@main..."
+          LATEST_SHA=$(git ls-remote https://github.com/11111000000/math-coding.git main | awk '{print $1}')
+          echo "latest_sha=$LATEST_SHA" >> $GITHUB_OUTPUT
+          echo "Latest SHA: $LATEST_SHA"
 
-      - name: Run sync-from-main.sh
-        working-directory: site
+      - name: Show last-synced SHA
         run: |
-          chmod +x scripts/sync-from-main.sh
-          # sync-from-main.sh clones math-coding@main by default
-          sh scripts/sync-from-main.sh
-
-      - name: Check for changes
-        id: check
-        working-directory: site
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "Files changed:"
-            git status --short | head -20
+          LAST_FILE=".last-synced-sha"
+          if [ -f "$LAST_FILE" ]; then
+            echo "Last synced SHA: $(cat $LAST_FILE)"
           else
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "No content changes detected."
+            echo "No last-synced SHA recorded (first run)."
           fi
 
-      - name: Commit and push
+      - name: Skip if no change
+        id: check
+        run: |
+          LAST_FILE=".last-synced-sha"
+          LATEST_SHA="${{ steps.detect.outputs.latest_sha }}"
+          if [ -f "$LAST_FILE" ] && [ "$(cat $LAST_FILE)" = "$LATEST_SHA" ]; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Already up-to-date at $LATEST_SHA."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Need to sync to $LATEST_SHA."
+          fi
+
+      - name: Run sync-from-main.sh
         if: steps.check.outputs.changed == 'true'
         working-directory: site
         run: |
-          SOURCE_SHA="${{ github.event.client_payload.source_sha }}"
+          chmod +x scripts/sync-from-main.sh
+          sh scripts/sync-from-main.sh
+
+      - name: Check for content changes
+        if: steps.check.outputs.changed == 'true'
+        id: content_check
+        working-directory: site
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_content=true" >> $GITHUB_OUTPUT
+            echo "Files changed:"
+            git status --short | head -20
+          else
+            echo "has_content=false" >> $GITHUB_OUTPUT
+            echo "Sync ran but no file changes (script output unchanged)."
+          fi
+
+      - name: Commit, push, and record SHA
+        if: steps.check.outputs.changed == 'true' && steps.content_check.outputs.has_content == 'true'
+        working-directory: site
+        run: |
+          SOURCE_SHA="${{ steps.detect.outputs.latest_sha }}"
           SOURCE_MSG="$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-            "https://api.github.com/repos/${{ github.event.client_payload.source_repo }}/commits/${SOURCE_SHA}" \
-            | grep -oE '"message":\s*"[^"]+"' | head -1 | sed 's/"message":\s*"//;s/"$//')"
+            "https://api.github.com/repos/11111000000/math-coding/commits/${SOURCE_SHA}" \
+            | grep -oE '"message":\s*"[^"]+"' | head -1 | sed 's/"message":\s*"//;s/"$//' || true)"
           SOURCE_MSG="${SOURCE_MSG:-auto-sync from math-coding}"
 
           git config user.name "math-coding-bot"
@@ -77,11 +104,18 @@ jobs:
           git add -A
           git commit -m "auto-sync from math-coding@${SOURCE_SHA:0:7}: ${SOURCE_MSG}
 
-            [skip ci]
-            Triggered by repository_dispatch from math-coding@main"
+            Triggered by schedule poll detecting new SHA."
           git push origin main
+          echo "$SOURCE_SHA" > ../.last-synced-sha
+          echo "Pushed. SHA recorded: $SOURCE_SHA"
 
-      - name: Skip if no changes
+      - name: Record SHA even if no content changed
+        if: steps.check.outputs.changed == 'true' && steps.content_check.outputs.has_content != 'true'
+        run: |
+          echo "${{ steps.detect.outputs.latest_sha }}" > .last-synced-sha
+          echo "No content diff, but SHA recorded to avoid re-checking."
+
+      - name: Skip if no change
         if: steps.check.outputs.changed == 'false'
         run: |
           echo "Site already up-to-date with math-coding@main."
