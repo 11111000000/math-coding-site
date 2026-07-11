@@ -1,21 +1,22 @@
-# Verdict
+# Theory: Verdict
 
-**Rigor level:** any
+**Rigor:** any
 
-A verdict is the result of `Spec ⊨ P` (Spec satisfies Property).
+A verdict is the result of verification: Spec ⊨ P?
 Five outcomes:
 
-| Verdict | Meaning | When |
-|---------|---------|------|
-| `VERIFIED` | Spec ⊨ P proved | verifier proved it |
-| `NEEDS_REVISION` | Spec ⊭ P (counterexample) | verifier found violation |
-| `UNVERIFIABLE:TOOL_MISSING` | tool unavailable | TLC, jqwik not installed |
-| `UNVERIFIABLE:OUT_OF_SCOPE` | not mechanically checkable | human review needed |
-| `UNVERIFIABLE:DEFERRED` | data not available | re-attempt when data arrives |
+- VERIFIED — Spec ⊨ P proved
+- NEEDS_REVISION — Spec ⊭ P (counterexample)
+- UNVERIFIABLE:TOOL_MISSING — tool unavailable
+- UNVERIFIABLE:OUT_OF_SCOPE — human review required
+- UNVERIFIABLE:DEFERRED — data not yet available
 
-There is **no** `UNVERIFIABLE:REJECTED`. Reframe as smaller
-verifiable task.
+There is no UNVERIFIABLE:REJECTED. Reframe as smaller task.
 
-**Used in:** `verifier-output.yaml:verdict`. The packet's
-`verifier: {command, verdict_file}` field specifies how to
-produce this.
+**Used in:** verifier-output.yaml:verdict. The packet's
+verifier: {command, verdict_file} specifies how to produce it.
+
+**Example:** packet TLA-rate-limiter has Model.tla. Without
+TLC, verdict is UNVERIFIABLE:TOOL_MISSING with exit 0. With
+TLC, verdict is VERIFIED if invariants hold, NEEDS_REVISION
+otherwise.

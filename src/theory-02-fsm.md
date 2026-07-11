@@ -1,6 +1,6 @@
-# Finite State Machine (FSM)
+# Theory: Finite State Machine
 
-**Rigor level:** any
+**Rigor:** any
 
 A FSM is a tuple M = ⟨S, s₀, A, →, I⟩ where:
 - S is a finite set of states
@@ -9,9 +9,12 @@ A FSM is a tuple M = ⟨S, s₀, A, →, I⟩ where:
 - → ⊆ S × A × S is the transition relation
 - I: S → B is the invariant
 
-**Used in:** `packet.yaml:lifecycle` is an FSM with states
-`{sketch, working, verified, deprecated, archived}`.
+**Used in:** packet.yaml:lifecycle (6 states, transitions
+between them). See refinement.md of any packet for the
+specific transitions.
 
-**Example:** webhook handler with states `{idle, processing,
-done, error}` and transition `process → done` or
-`process → error`.
+**Example:** packet lifecycle has states {sketch, working,
+verified, deprecated, archived} with transitions:
+- sketch → working (when code exists)
+- working → verified (when verifier returns VERIFIED)
+- verified → deprecated (when superseded by another packet)

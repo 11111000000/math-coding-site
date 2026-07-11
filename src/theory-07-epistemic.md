@@ -1,26 +1,23 @@
-# Epistemic State
+# Theory: Epistemic State
 
-**Rigor level:** any
+**Rigor:** any
 
-A belief state is B: Prop × Agent → [0,1]:
-- B(P, a) = 1.0: agent a fully believes P
-- B(P, a) = 0.5: agent a is uncertain
-- B(P, a) = 0.0: agent a has no belief
+Belief state B: Prop × Agent → [0,1]:
+- B(P, a) = 1.0 — agent a fully believes P
+- B(P, a) = 0.5 — agent a is uncertain
+- B(P, a) = 0.0 — agent a has no belief
 
-Each `assumptions.yaml` entry maps to:
+**Used in:** assumptions.yaml:epistemology. The marker drives
+the action protocol (see agents.md).
 
 | Marker | Belief interval | Action |
 |--------|------------------|--------|
-| `fact` | B = 1.0 | verify if possible |
-| `hypothesis` | B ∈ (0, 1) | search for evidence |
-| `judgment` | B ∈ {0, 1} | respect, don't challenge |
-| `unknown` | B = 0 | ask user |
+| fact | 1.0 | verify if possible |
+| hypothesis | (0, 1) | search for evidence |
+| judgment | {0, 1} | respect, do not challenge |
+| unknown | 0 | ask user, do not proceed |
 
-**Action protocol:**
-- `judgment` → respect, don't challenge
-- `unknown` → ask user, don't proceed
-- `fact` → verify if possible
-- `hypothesis` → search for evidence
-
-**Used in:** `assumptions.yaml:epistemology`. The protocol is
-machine-readable: an agent reading an entry applies the action.
+**Example:** "POSIX sh is universally available" is fact
+(verified). "5 files is right minimum" is hypothesis
+(needs evidence). "Use plain text" is judgment (design).
+"What about TLA+?" is unknown (needs user).

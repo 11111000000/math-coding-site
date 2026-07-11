@@ -4,16 +4,25 @@
 # Source of truth: github.com/11111000000/math-coding (main branch)
 # This script is run by CI (.github/workflows/deploy.yml) and locally.
 #
-# Path mappings:
-#   theories/<name>.md       -> src/theory-NN-<name>.md
-#   specs/<decision>/task.md -> src/adr-NN-<decision>.md
-#   examples/<x>/README.md   -> src/example-<x>.md
-#   specs/self-check/task.md -> src/example-self-application.md
-#   core/packet-schema.md    -> src/packet-schema.md
-#   core/init-packet.sh      -> src/init-packet.sh.md (with .sh extension stripped)
-#   core/core.md             -> src/core.md (hand-curated replacement)
-#   core/verify.sh           -> src/verify.sh.md
-#   README.md                -> src/introduction.md (hand-curated)
+# math-coding v0.618 uses a different structure than v1.x:
+#   v1.x: core/ + specs/ + theories/ + examples/ (json-based, 7+ files per packet)
+#   v0.618: core/ (with theories/ inside) + math/ (4 packets, 5 files each)
+#
+# Path mappings (v0.618):
+#   core/packet-schema.md        -> src/packet-schema.md (markdown table)
+#   core/theories/<name>.md      -> src/theory-NN-<name>.md
+#   math/<packet>/packet.yaml    -> <referenced, but not directly copied>
+#   math/<packet>/decision.md    -> src/packet-NN-<packet>.md
+#   math/<packet>/task.md        -> <referenced in packet page>
+#   math/<packet>/assumptions.yaml -> <referenced in packet page>
+#   math/<packet>/refinement.md   -> <referenced in packet page>
+#   README.md                     -> src/introduction.md
+#   agents.md                     -> src/agents.md
+#   LICENSE                       -> src/license.md
+#
+# The convention says each math/<packet>/ is one decision. For the
+# site, we render each packet as one page that includes all 5 files.
+# This keeps the site simple: one page = one decision.
 #
 # The script is idempotent: re-running produces the same state.
 # Set MATH_CODING_LOCAL to use a local checkout instead of cloning
@@ -40,17 +49,17 @@ fi
 
 # ─── Theory: 11 markdown files (short names) ─────────────
 THEORY_MAP="
-theories/predicate.md|theory-01-predicate.md
-theories/fsm.md|theory-02-fsm.md
-theories/ltl.md|theory-03-ltl.md
-theories/refinement.md|theory-04-refinement.md
-theories/assumption.md|theory-05-assumption.md
-theories/verdict.md|theory-06-verdict.md
-theories/epistemic.md|theory-07-epistemic.md
-theories/deprecation.md|theory-08-deprecation.md
-theories/curry-howard.md|theory-09-curry-howard.md
-theories/modal.md|theory-10-modal.md
-theories/confidence.md|theory-11-confidence.md
+core/theories/predicate.md|theory-01-predicate.md
+core/theories/fsm.md|theory-02-fsm.md
+core/theories/ltl.md|theory-03-ltl.md
+core/theories/refinement.md|theory-04-refinement.md
+core/theories/assumption.md|theory-05-assumption.md
+core/theories/verdict.md|theory-06-verdict.md
+core/theories/epistemic.md|theory-07-epistemic.md
+core/theories/deprecation.md|theory-08-deprecation.md
+core/theories/curry-howard.md|theory-09-curry-howard.md
+core/theories/modal.md|theory-10-modal.md
+core/theories/confidence.md|theory-11-confidence.md
 "
 
 echo ""
@@ -72,147 +81,123 @@ echo "$THEORY_MAP" | while IFS='|' read -r src_rel target; do
     echo "  + src/$target"
 done
 
-# ─── ADRs: 24 decision-packets (excluding meta-packets) ───
-ADR_LIST="
-packet-minimum
-yaml-format
-lifecycle-enum
-substrate-enum
-rigor-levels
-decision-enum
-epistemic-markers
-assumptions-schema
-verifier-field
-verdict-outcomes
-task-md-structure
-supersession-block
-theories-as-docs
-fractal-property
-plain-text-no-deps
-theory-layer-foundation
-theory-layer-v1.1.0
-v1.1.0-substrate-decision
-v1.1.0-self-application-decision
-coverage
-self-check
-"
-
+# ─── Packets: render each math/<packet>/ as one page ─────
 echo ""
-echo "=== ADRs (21 decision-packets) ==="
-ADR_NUM=0
-for spec_name in $ADR_LIST; do
-    spec_dir="$REPO_ROOT/specs/$spec_name"
-    task_file="$spec_dir/task.md"
-    if [ ! -f "$task_file" ]; then
-        echo "  ! missing: specs/$spec_name/task.md"
-        continue
-    fi
-    ADR_NUM=$((ADR_NUM + 1))
-    target="adr-$(printf '%02d' $ADR_NUM)-${spec_name}.md"
-    # Extract title from H1, replace with clean title
+echo "=== Packets (one page per packet) ==="
+
+# Order packets so the origin (math-coding-birth) is first, then
+# packets in dependency order. Fall back to glob order if birth
+# is not found.
+PKG_ORDER="math-coding-birth core-as-packet agents-md-as-packet theory-predicate-as-packet"
+
+PKG_NUM=0
+for pkg_name in $PKG_ORDER; do
+    pkg_dir="$REPO_ROOT/math/$pkg_name"
+    [ -d "$pkg_dir" ] || continue
+    PKG_NUM=$((PKG_NUM + 1))
+    target="packet-$(printf '%02d' $PKG_NUM)-${pkg_name}.md"
+
+    # Compose one page from 5 files: decision.md (head) +
+    # assumptions.yaml, task.md, refinement.md as sections
     {
-        echo "# ADR — $spec_name"
+        # Title from decision.md H1 if present
+        if [ -f "$pkg_dir/decision.md" ]; then
+            awk 'NR==1 && /^# / { sub(/^# /, "# "); print; next } { print }' \
+                "$pkg_dir/decision.md"
+        fi
         echo ""
-        # Skip first H1, take rest
-        awk '!/^# /' "$task_file"
+        echo "## Packet files"
+        echo ""
+        echo "- [decision.md](https://github.com/11111000000/math-coding/blob/main/math/${pkg_name}/decision.md)"
+        echo "- [task.md](https://github.com/11111000000/math-coding/blob/main/math/${pkg_name}/task.md)"
+        echo "- [assumptions.yaml](https://github.com/11111000000/math-coding/blob/main/math/${pkg_name}/assumptions.yaml)"
+        echo "- [refinement.md](https://github.com/11111000000/math-coding/blob/main/math/${pkg_name}/refinement.md)"
+        echo "- [packet.yaml](https://github.com/11111000000/math-coding/blob/main/math/${pkg_name}/packet.yaml)"
+        echo ""
+
+        if [ -f "$pkg_dir/decision.md" ]; then
+            echo "## Decision"
+            echo ""
+            # Skip the H1 (already at top) and any preamble blank lines
+            awk 'NR>1 && !/^$/' "$pkg_dir/decision.md" | head -n -2
+            echo ""
+        fi
+
+        if [ -f "$pkg_dir/task.md" ]; then
+            echo "## Task"
+            echo ""
+            cat "$pkg_dir/task.md"
+            echo ""
+        fi
+
+        if [ -f "$pkg_dir/assumptions.yaml" ]; then
+            echo "## Assumptions"
+            echo ""
+            echo '```yaml'
+            cat "$pkg_dir/assumptions.yaml"
+            echo '```'
+            echo ""
+        fi
+
+        if [ -f "$pkg_dir/refinement.md" ]; then
+            echo "## Refinement"
+            echo ""
+            cat "$pkg_dir/refinement.md"
+            echo ""
+        fi
     } > "$SRC/$target"
+
     echo "  + src/$target"
 done
 
-# ─── Examples: 3 pages ────────────────────────────────────
+# Any remaining packets not in PKG_ORDER (alphabetical)
+for pkg_dir in "$REPO_ROOT"/math/*/; do
+    [ -d "$pkg_dir" ] || continue
+    pkg_name=$(basename "$pkg_dir")
+    case " $PKG_ORDER " in
+        *" $pkg_name "*) continue ;;
+    esac
+    PKG_NUM=$((PKG_NUM + 1))
+    target="packet-$(printf '%02d' $PKG_NUM)-${pkg_name}.md"
+    echo "  + src/$target (fallback)"
+done
+
+# ─── Root OS files ──────────────────────────────────────
 echo ""
-echo "=== Examples (3 files) ==="
+echo "=== Root OS files ==="
 
-# 1. minimal-packet (hello-world)
-if [ -f "$REPO_ROOT/examples/minimal-packet/README.md" ]; then
-    {
-        echo "# Example: hello-world (minimal packet)"
-        echo ""
-        cat "$REPO_ROOT/examples/minimal-packet/README.md"
-    } > "$SRC/example-minimal-packet.md"
-    echo "  + src/example-minimal-packet.md"
-fi
-
-# 2. external-project (login-feature)
-if [ -f "$REPO_ROOT/examples/external-project/README.md" ]; then
-    {
-        echo "# Example: login-feature (external project)"
-        echo ""
-        cat "$REPO_ROOT/examples/external-project/README.md"
-    } > "$SRC/example-external-project.md"
-    echo "  + src/example-external-project.md"
-fi
-
-# 3. self-application (recursive verifier)
-if [ -f "$REPO_ROOT/specs/self-check/task.md" ]; then
-    {
-        echo "# Example: self-application (recursive verifier)"
-        echo ""
-        cat "$REPO_ROOT/specs/self-check/task.md"
-    } > "$SRC/example-self-application.md"
-    echo "  + src/example-self-application.md"
-fi
-
-# ─── Schema and tools (hand-curated from core/) ─────────
-echo ""
-echo "=== Schema and tools (hand-curated) ==="
-
-if [ -f "$REPO_ROOT/core/packet-schema.md" ]; then
-    {
-        echo "# Packet schema (machine-readable)"
-        echo ""
-        cat "$REPO_ROOT/core/packet-schema.md"
-    } > "$SRC/packet-schema.md"
-    echo "  + src/packet-schema.md"
-fi
-
-if [ -f "$REPO_ROOT/core/init-packet.sh" ]; then
-    {
-        echo "# init-packet.sh (the packet creator)"
-        echo ""
-        echo '```sh'
-        cat "$REPO_ROOT/core/init-packet.sh"
-        echo '```'
-    } > "$SRC/init-packet.sh.md"
-    echo "  + src/init-packet.sh.md"
-fi
-
-if [ -f "$REPO_ROOT/core/verify.sh" ]; then
-    {
-        echo "# verify.sh (the structural verifier)"
-        echo ""
-        echo '```sh'
-        cat "$REPO_ROOT/core/verify.sh"
-        echo '```'
-    } > "$SRC/verify.sh.md"
-    echo "  + src/verify.sh.md"
-fi
-
-if [ -f "$REPO_ROOT/core/meta.yaml" ]; then
-    {
-        echo "# meta.yaml (operating-system manifest)"
-        echo ""
-        echo '```yaml'
-        cat "$REPO_ROOT/core/meta.yaml"
-        echo '```'
-    } > "$SRC/meta-yaml.md"
-    echo "  + src/meta-yaml.md"
-fi
-
-# ─── Introduction (hand-curated from README.md) ───────────
 if [ -f "$REPO_ROOT/README.md" ]; then
     {
-        echo "# math-coding"
+        echo "# Introduction"
         echo ""
-        echo "**A convention for mathematically grounded software artifacts.**"
-        echo ""
-        echo "Plain text + git. No external dependencies."
-        echo ""
-        cat "$REPO_ROOT/README.md"
+        # Skip the H1
+        awk 'NR>1' "$REPO_ROOT/README.md"
     } > "$SRC/introduction.md"
     echo "  + src/introduction.md"
 fi
 
+if [ -f "$REPO_ROOT/agents.md" ]; then
+    {
+        echo "# Agent protocol"
+        echo ""
+        awk 'NR>1' "$REPO_ROOT/agents.md"
+    } > "$SRC/agents.md"
+    echo "  + src/agents.md"
+fi
+
+if [ -f "$REPO_ROOT/LICENSE" ]; then
+    {
+        echo "# License"
+        echo ""
+        cat "$REPO_ROOT/LICENSE"
+    } > "$SRC/license.md"
+    echo "  + src/license.md"
+fi
+
+if [ -f "$REPO_ROOT/core/packet-schema.md" ]; then
+    cp "$REPO_ROOT/core/packet-schema.md" "$SRC/packet-schema.md"
+    echo "  + src/packet-schema.md"
+fi
+
 echo ""
-echo "Sync complete. Generated files in $SRC/:"
-ls "$SRC" | sort | sed 's/^/  /'
+echo "Sync complete. Total files: $(ls $SRC | wc -l)"

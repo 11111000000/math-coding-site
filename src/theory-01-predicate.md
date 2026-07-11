@@ -1,16 +1,16 @@
-# Predicate
+# Theory: Predicate and Invariant
 
-**Rigor level:** any (foundational, used in every packet)
+**Rigor:** any (foundational)
 
 A predicate over a state space S is a function:
-I: S → B
+  I: S → B
 
 A state s satisfies I iff I(s) = true.
 
-**Used in:** every `assumptions.yaml` entry is a proposition
-about state. Use `epistemology: hypothesis` for conjectures,
-`epistemology: fact` for verified claims.
+**Used in:** packet.yaml:lifecycle (the lifecycle is a
+predicate over the packet state — sketch, working,
+verified, deprecated, archived, superseded).
 
-**Example:**
-- `I(s) = (s.user.role = "admin")` — predicate on user state
-- `I(s) = (s.balance >= 0)` — invariant on account state
+**Example:** I(packet) = (packet.yaml exists /\ task.md
+exists /\ assumptions.yaml exists). A packet passes
+the structural check iff this predicate holds.

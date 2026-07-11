@@ -29,4 +29,4 @@ The design reflects the convention's ethos: formalism, restraint, mathematical c
 
 - Repository: [github.com/11111000000/math-coding](https://github.com/11111000000/math-coding)
 - This site: [github.com/11111000000/math-coding-site](https://github.com/11111000000/math-coding-site)
-- License: CC-BY-SA 4.0
+- License: [License for the Benefit of All Living Beings](./license.html) — free for the benefit of all living beings, attribution to Petr Kosov <11111000000@email.com>

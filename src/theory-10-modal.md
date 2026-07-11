@@ -1,26 +1,23 @@
-# Modal Logic for FSM Lifecycles
+# Theory: Modal Logic for FSM Lifecycles
 
-**Rigor level:** temporal+ (not used for light)
+**Rigor:** temporal+
 
 Modal operators:
-- □P — "necessarily P" (P in every reachable lifecycle state)
-- ◇P — "possibly P" (P in some reachable lifecycle state)
-- P ~> Q — "P leads to Q" (whenever P, then Q eventually)
+- □P — necessarily P (P in every reachable state)
+- ◇P — possibly P (P in some reachable state)
+- P ~> Q — P leads to Q (whenever P, Q eventually)
 
 A packet lifecycle FSM (sketch → working → verified →
-deprecated → archived) has **safety** and **liveness**
-properties:
+deprecated → archived → superseded) has safety and liveness:
 
 | Property | Formula | Type |
 |----------|---------|------|
 | No skipping | ¬(sketch → verified) | safety |
-| Verified persists | □(verified ⇒ ◇working) | liveness |
-| Deprecated reaches archived | deprecated ~> archived | liveness |
+| Verified persists | □(verified → ◇deprecated) | liveness |
 
-**Used in:** `refinement.md` of packets with non-trivial
+**Used in:** refinement.md of packets with non-trivial
 lifecycle. For simple CRUD packets, skip.
 
-**Example:** webhook handler packet must guarantee that
-"every `working` state eventually reaches `verified` or
-`sketch`" — write this as `working ~> verified ∨ sketch` in
-`refinement.md:§Liveness`.
+**Example:** packet-historical-replacement must guarantee
+"every superseded packet is eventually archived". Write this
+as superseded ~> archived in refinement.md:§Liveness.
