@@ -143,7 +143,7 @@ assumptions:
     epistemology: judgment
     evidence: |
       math-coding-birth/decision.md says convention is grounded
-      in math. The 11 theories are the explicit grounding.
+      in math. The 12 theories are the explicit grounding.
       See: packet:math-coding-birth/decision.md#synthesis
 
   - id: A4
@@ -187,7 +187,7 @@ assumptions:
 
 ## Invariant
 
-- core/ has exactly 12 OS files (1 schema + 11 theories)
+- core/ has exactly 12 OS files (1 schema + 12 theories)
 - This packet is in math/, not core/
 - This packet has 5 files (matching convention)
 - This packet has depends_on: [math-coding-birth] (recursive)

@@ -58,7 +58,7 @@ This packet records the ordering and the trigger conditions.
 
 ## What this packet does NOT commit to
 
-- Web UI (Phase F+)
+- Web UI (deferred post phase-e)
 - Multi-agent protocol (Phase G+)
 - LLM-as-filler (out of scope — filler is passive deployer)
 
@@ -114,7 +114,7 @@ This packet records the ordering and the trigger conditions.
 - Trigger conditions per axis
 - Each axis becomes its own packet when triggered
 ## What this packet does NOT commit to
-- Web UI (Phase F+)
+- Web UI (deferred post phase-e)
 
 ## Task
 

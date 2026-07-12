@@ -96,7 +96,7 @@ completeness check, structural verifier). It says:
 #convention
 ## Problem
 
-math-coding claims to be grounded in 11 mathematical theories
+math-coding claims to be grounded in 12 mathematical theories
 (math-coding-birth/decision.md). But the theories in
 core/theories/ are abstract reference docs. They don't say HOW
 math-coding uses them. The Predicate theory is the most

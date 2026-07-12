@@ -30,14 +30,20 @@ Three ways to fix:
 ## Synthesis
 
 Choice: renumber. The newer duplicates (lines 327–347 in
-HEAD) become D55 (project-config), D56 (excludes), D57
-(fill-many), D58 (append-application), D59 (Coq substrate
+HEAD) become D60 (project-config), D61 (excludes), D62
+(fill-many), D63 (append-application), D64 (Coq substrate
 reformulation). The block-comment above the renumbered block
 gets a one-line note that these are friction-packet refinements
 of earlier D-ids. `core/verify.sh` continues to count checks
 unchanged because coverage.yaml is not parsed for ids — only
 human-readable. The de-duplication is a fix without schema
 change.
+
+Note (post-commit): D55/D56 originally meant project-config
+and excludes; after the OpenCode skill packet shipped they
+were reassigned to skill-packaging artefacts. The renumbering
+in this packet now moves the friction-packet block to D60–D64
+so D55/D56 unambiguously mean skill-packaging.
 
 What this packet commits to:
 - core/coverage.yaml has 0 duplicate ids after this commit.
@@ -90,14 +96,19 @@ Three ways to fix:
   contexts, fixes the citation problem.
 ## Synthesis
 Choice: renumber. The newer duplicates (lines 327–347 in
-HEAD) become D55 (project-config), D56 (excludes), D57
-(fill-many), D58 (append-application), D59 (Coq substrate
+HEAD) become D60 (project-config), D61 (excludes), D62
+(fill-many), D63 (append-application), D64 (Coq substrate
 reformulation). The block-comment above the renumbered block
 gets a one-line note that these are friction-packet refinements
 of earlier D-ids. `core/verify.sh` continues to count checks
 unchanged because coverage.yaml is not parsed for ids — only
 human-readable. The de-duplication is a fix without schema
 change.
+Note (post-commit): D55/D56 originally meant project-config
+and excludes; after the OpenCode skill packet shipped they
+were reassigned to skill-packaging artefacts. The renumbering
+in this packet now moves the friction-packet block to D60–D64
+so D55/D56 unambiguously mean skill-packaging.
 What this packet commits to:
 - core/coverage.yaml has 0 duplicate ids after this commit.
 - All renumbered entries preserve packet, location, severity,
@@ -156,13 +167,13 @@ the convention's own use of coverage as a stable
 
 1. Identify the duplicate block (lines 327–347 in HEAD).
 2. Renumber entries in that block:
-   - D50 → D55 (project-config)
-   - D51 → D56 (excludes)
-   - D52 → D57 (fill-many)
-   - D53 → D58 (append-application)
-   - D40 → D59 (Coq substrate reformulation)
+   - D50 → D60 (project-config)
+   - D51 → D61 (excludes)
+   - D52 → D62 (fill-many)
+   - D53 → D63 (append-application)
+   - D40 → D64 (Coq substrate reformulation)
 3. Add a section header above them: `# ─── friction-packet
-   refinements (D55-D59) ───────`.
+   refinements (D60-D64) ───────`.
 4. Re-derive `summary.by_severity` and `summary.by_packet`.
 5. Run `sh core/verify.sh`.
 
@@ -231,14 +242,18 @@ assumptions:
       See: core/coverage.yaml#summary
 
   - id: A6
-    statement: "D55-D59 are available (none of them currently used in the file)"
+    statement: "D60-D64 are available (none of them currently used in the file)"
     status: agent-inferred
     epistemology: fact
     confidence: 1.0
     evidence: |
       grep on core/coverage.yaml returns no id matching
-      ^\s*- id: D5[5-9]\s*$ before the renumber.
+      ^\s*- id: D6[0-4]\s*$ before the renumber. The original
+      renumber targeted D55–D59, but those slots were later
+      reassigned to skill-packaging after the OpenCode skill
+      packet shipped; this packet's final renumber is D60–D64.
       See: core/coverage.yaml
+      See: math/coverage-dedup/decision.md#synthesis
 ```
 
 ## Refinement
@@ -254,21 +269,21 @@ assumptions:
   append-block (D50/D51/D52/D53 duplicates + D40 reformulation)
   co-exist without coordination.
 - **post**: All ids in `coverage.yaml` are unique. The
-  friction-packet refinements are renumbered D55–D59 and
+  friction-packet refinements are renumbered D60–D64 and
   sit in their own section at the tail of the file. Phase D
   block (D38–D42) and Phase E+ block (D43–D54) are unchanged.
 
 ## Operation
 
 - Renumber in `core/coverage.yaml`:
-  - duplicate block line ~327 `D50` → `D55` (`project-config`)
-  - duplicate block line ~332 `D51` → `D56` (`friction-excludes`)
-  - duplicate block line ~337 `D52` → `D57` (`friction-fill-many`)
-  - duplicate block line ~342 `D53` → `D58` (`friction-append-application`)
-  - duplicate block line ~347 `D40` → `D59` (Coq substrate
+  - duplicate block line ~327 `D50` → `D60` (`project-config`)
+  - duplicate block line ~332 `D51` → `D61` (`friction-excludes`)
+  - duplicate block line ~337 `D52` → `D62` (`friction-fill-many`)
+  - duplicate block line ~342 `D53` → `D63` (`friction-append-application`)
+  - duplicate block line ~347 `D40` → `D64` (Coq substrate
     reformulation)
-- Insert section header above them: 
-  `# ─── Friction-packet refinements (D55-D59) ───────────`.
+- Insert section header above them:
+  `# ─── Friction-packet refinements (D60-D64) ───────────`.
 - Re-derive `summary.by_severity` counts (5 entries moved
   between sections, severity unchanged; counts unchanged
   except totals).

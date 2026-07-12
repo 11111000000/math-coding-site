@@ -7,7 +7,7 @@ math-coding v0.618 carries 22 unstaged edits from prior
 exploration. The edits cover `core/theories/*.md` and
 `math/*/assumptions.yaml`, but they introduce cosmetic
 duplication rather than enforceable structure. The convention
-declares 11 mathematical theories ground it, yet the link
+declares 12 mathematical theories ground it, yet the link
 between theory and applying packet is informal. Any agent or
 human reading the repo must reconstruct the relationship
 between `core/theories/fsm.md` and
@@ -48,7 +48,7 @@ Phase C makes the theory⇄packet relationship *formal* and
 ## What this packet commits to
 
 - 22 prior edits are rolled back; a clean tree moves forward
-- 11 theories become compact runtime specifications for an LLM
+- 12 theories become compact runtime specifications for an LLM
 - 11 theory-packet `assumptions.yaml` use plain `See:` references
 - 11 theory-packet `refinement.md` carry the model + a
   cross-reference line back to the theory file
@@ -92,7 +92,7 @@ math-coding v0.618 carries 22 unstaged edits from prior
 exploration. The edits cover `core/theories/*.md` and
 `math/*/assumptions.yaml`, but they introduce cosmetic
 duplication rather than enforceable structure. The convention
-declares 11 mathematical theories ground it, yet the link
+declares 12 mathematical theories ground it, yet the link
 between theory and applying packet is informal. Any agent or
 human reading the repo must reconstruct the relationship
 between `core/theories/fsm.md` and
@@ -126,7 +126,7 @@ Phase C makes the theory⇄packet relationship *formal* and
    protocol.
 ## What this packet commits to
 - 22 prior edits are rolled back; a clean tree moves forward
-- 11 theories become compact runtime specifications for an LLM
+- 12 theories become compact runtime specifications for an LLM
 - 11 theory-packet `assumptions.yaml` use plain `See:` references
 - 11 theory-packet `refinement.md` carry the model + a
   cross-reference line back to the theory file
@@ -312,7 +312,7 @@ assumptions:
 - `AGENTS.md` line count stays ≤ 50 (birth-packet invariant)
 - `core/verify.sh` returns 0 errors and ≥ 500 checks
 - 18 existing packets keep lifecycle values
-- 11 theories preserve their names, intended rigor, and
+- 12 theories preserve their names, intended rigor, and
   cross-reference IDs (`core/theories/predicate.md` etc.)
 - `core/theories/*.md` no longer contains
   `**Grounded by:**` or "this packet grounds" prose
