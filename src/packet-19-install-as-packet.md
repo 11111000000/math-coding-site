@@ -55,11 +55,11 @@ to every install).
 
 ## What this packet does NOT commit to
 
-- A package manager wrapper (apt, brew, npm) — deferred
-- Online update channels — deferred
-- Per-user templates in `~/.math-coding/` — deferred
+- A package manager wrapper (apt, brew, npm) — Phase F+
+- Online update channels — Phase F+
+- Per-user templates in `~/.math-coding/` — Phase F+
 - Brownfield auto-detection (which existing files are
-  architectural decisions worth packaging) — deferred
+  architectural decisions worth packaging) — Phase F+
 
 ## Packet files
 
@@ -113,9 +113,9 @@ to every install).
 - `.mathrc` generated with vault_name from target basename
 - Verify on freshly-installed target returns 0 errors
 ## What this packet does NOT commit to
-- A package manager wrapper (apt, brew, npm) — deferred
-- Online update channels — deferred
-- Per-user templates in `~/.math-coding/` — deferred
+- A package manager wrapper (apt, brew, npm) — Phase F+
+- Online update channels — Phase F+
+- Per-user templates in `~/.math-coding/` — Phase F+
 
 ## Task
 
