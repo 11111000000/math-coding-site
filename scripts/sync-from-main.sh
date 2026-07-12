@@ -37,6 +37,17 @@ SRC="$SITE_DIR/src"
 TMP="$(mktemp -d)"
 trap "rm -rf $TMP" EXIT
 
+# ─── Theory display names (slug → human) ───────────────────
+# SUMMARY.md uses these for the Mathematical foundation section.
+# Add new entries here as new theories are added.
+THEORY_DISPLAY="
+fsm|Finite State Machine
+ltl|Temporal Logic (LTL)
+epistemic|Epistemic State
+curry-howard|Curry-Howard
+modal|Modal Logic for FSM Lifecycles
+"
+
 # ─── Fetch source ─────────────────────────────────────────
 if [ -d "${MATH_CODING_LOCAL:-}" ] && [ -d "${MATH_CODING_LOCAL}/.git" ]; then
     echo "Using local checkout: $MATH_CODING_LOCAL"
@@ -85,10 +96,32 @@ done
 echo ""
 echo "=== Packets (one page per packet) ==="
 
+# Clean stale src/packet-*.md files from previous syncs. This
+# ensures renames and removals in math-coding propagate. Without
+# this step, renamed packets leave orphan files in src/.
+for stale in "$SRC"/packet-*.md; do
+    [ -f "$stale" ] || continue
+    rm -f "$stale"
+done
+
 # Order packets so the origin (math-coding-birth) is first, then
-# packets in dependency order. Fall back to glob order if birth
-# is not found.
-PKG_ORDER="math-coding-birth core-as-packet agents-md-as-packet theory-predicate-as-packet theory-fsm-as-packet theory-ltl-as-packet theory-refinement-as-packet theory-assumption-as-packet theory-verdict-as-packet theory-epistemic-as-packet theory-deprecation-as-packet theory-curry-howard-as-packet theory-modal-as-packet theory-confidence-as-packet verifier-as-packet recursive-check-as-packet coverage-as-packet init-packet-as-packet"
+# packets in alphabetical order. Derived dynamically from ls so
+# new packets propagate without editing this script.
+#
+# Excludes:
+#   - *.canvas, *.md files in math/ (dag.canvas, README.md)
+#   - README-as-*-as-packet (any README-* in math/)
+#   - dag.canvas is a file, not a packet dir
+#   - this site-sync-as-packet dir contains both packet AND
+#     .opencode subdirs; we filter to dirs only via [ -d ] check
+
+PKG_ORDER=$(ls -1 "$REPO_ROOT/math/" 2>/dev/null | \
+    grep -vE '\.(canvas|md)$|^README-as|^[A-Z][A-Z0-9_-]*\.[a-z]+$' | sort -u)
+
+# Special-case: math-coding-birth first if present
+if echo "$PKG_ORDER" | grep -q '^math-coding-birth$'; then
+    PKG_ORDER=$(printf 'math-coding-birth\n%s\n' "$(echo "$PKG_ORDER" | grep -v '^math-coding-birth$')")
+fi
 
 PKG_NUM=0
 for pkg_name in $PKG_ORDER; do
@@ -198,6 +231,58 @@ if [ -f "$REPO_ROOT/core/packet-schema.md" ]; then
     cp "$REPO_ROOT/core/packet-schema.md" "$SRC/packet-schema.md"
     echo "  + src/packet-schema.md"
 fi
+
+# ─── Auto-generate SUMMARY.md ────────────────────────────
+# Generated from src/ contents so every packet page is reachable
+# from the site navigation. Replaces the previously hardcoded
+# src/SUMMARY.md.
+
+echo ""
+echo "=== SUMMARY.md ==="
+{
+    echo "# Summary"
+    echo ""
+    echo "[Introduction](./introduction.md)"
+    echo ""
+    echo "---"
+    echo ""
+    echo "# The convention"
+    echo ""
+    echo "- [Packet schema](./packet-schema.md)"
+    echo "- [Agent protocol](./agents.md)"
+    echo "- [License](./license.md)"
+    echo ""
+    echo "# Mathematical foundation"
+    echo ""
+    # Theory pages (NN-name)
+    for f in $(ls "$SRC"/theory-*.md 2>/dev/null | sort); do
+        name=$(basename "$f" .md)
+        # Parse "theory-NN-name" → "Theory NN — Name"
+        nn=$(echo "$name" | sed -nE 's/^theory-([0-9]+)-.*/\1/p')
+        slug=$(echo "$name" | sed -nE 's/^theory-[0-9]+-(.*)$/\1/p')
+        # Look up display name from THEORY_DISPLAY; fallback to
+        # Title-Case the slug.
+        display=$(echo "$THEORY_DISPLAY" | awk -F'|' -v s="$slug" \
+            '$1==s { gsub(/^ +| +$/,"",$2); print $2; found=1; exit } END { if (!found) { } }')
+        if [ -z "$display" ]; then
+            display=$(echo "$slug" | awk -F- '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS=-)
+        fi
+        printf -- "- [Theory %s — %s](./%s)\n" "$nn" "$display" "$name.md"
+    done
+    echo ""
+    echo "# Decision packets"
+    echo ""
+    # Packet pages (packet-NN-name)
+    for f in $(ls "$SRC"/packet-*.md 2>/dev/null | sort); do
+        name=$(basename "$f" .md)
+        # Parse "packet-NN-name" → "Packet NN — Name"
+        nn=$(echo "$name" | sed -nE 's/^packet-([0-9]+)-.*/\1/p')
+        slug=$(echo "$name" | sed -nE 's/^packet-[0-9]+-(.*)$/\1/p')
+        display=$(echo "$slug" | awk -F- '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS=-)
+        printf -- "- [Packet %s — %s](./%s)\n" "$nn" "$display" "$name.md"
+    done
+} > "$SRC/SUMMARY.md"
+echo "  + src/SUMMARY.md (auto-generated, $(grep -c '^- \[' $SRC/SUMMARY.md) entries)"
 
 echo ""
 echo "Sync complete. Total files: $(ls $SRC | wc -l)"
