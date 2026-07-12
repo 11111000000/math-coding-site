@@ -290,7 +290,7 @@ Future: JSON Schema at `core/schemas/`, authorized by a packet.
 
 ### 13. Mathematical theories (11 OS files)
 
-Convention grounded in 11 mathematical theories documented in
+Convention grounded in 12 mathematical theories documented in
 `core/theories/`: predicate, fsm, ltl, refinement, assumption,
 verdict, epistemic, deprecation, curry-howard, modal, confidence.
 Each theory is an OS file authorized by the convention as

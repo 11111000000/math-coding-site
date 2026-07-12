@@ -1,12 +1,14 @@
-# theory-epistemic — 4 markers as action protocol
+# theory-epistemic — 5 markers as action protocol
 
 #convention
 ## Thesis
 
 math-coding-birth declares 4 epistemic markers (fact/hypothesis/
-judgment/unknown) for assumptions. But markers without action
-are decoration. Convention needs each marker to drive a
-specific agent behavior.
+judgment/unknown) for assumptions, plus a 5th marker (`proven`,
+added in convention-spec-as-packet via core/theories/epistemic.md)
+for claims whose evidence chain closes through convention's own
+verifier. Markers without action are decoration. Convention
+needs each marker to drive a specific agent behavior.
 
 ## Antithesis
 
@@ -22,21 +24,35 @@ Apply epistemic markers as a convention rule:
 - hypothesis: agent searches for evidence, upgrades or downgrades
 - judgment: agent respects, does not challenge
 - unknown: agent asks user, does not proceed
+- proven: agent trusts until convention's own probe reports
+  failure; demotes on real-world counterexample, not opinion
 
 These are NOT formal logic. They are convention rules that
-agents should follow.
+agents should follow. The `proven` marker is reserved for
+claims whose evidence chain closes through convention's own
+machinery (e.g. axiom A4 in math-coding-birth, where
+`sh core/probe.sh` exit 0 against the convention's own
+repository is the evidence).
 
 ## What this packet commits to
 
-- 4 epistemic markers with explicit agent actions
+- 5 epistemic markers (fact, hypothesis, judgment, unknown,
+  proven) with explicit agent actions
 - Convention requires agents to apply these actions
 - markers in assumptions.yaml drive agent behavior
+- the `proven` marker is symmetric with `fact`: it
+  carries `confidence: 1.0` and `status: user-confirmed`,
+  and the agent's verification job is to *observe* the
+  convention's verifier exit 0 rather than to re-derive
+  the evidence
 
 ## What this packet does NOT commit to
 
 - A formal belief-state update logic
 - A belief-state storage format
 - Auto-verification of marker correctness
+- Claims that `proven` is permanent — it can be demoted
+  to `fact` if the end-to-end check becomes partial
 
 ## Packet files
 
@@ -51,9 +67,11 @@ agents should follow.
 #convention
 ## Thesis
 math-coding-birth declares 4 epistemic markers (fact/hypothesis/
-judgment/unknown) for assumptions. But markers without action
-are decoration. Convention needs each marker to drive a
-specific agent behavior.
+judgment/unknown) for assumptions, plus a 5th marker (`proven`,
+added in convention-spec-as-packet via core/theories/epistemic.md)
+for claims whose evidence chain closes through convention's own
+verifier. Markers without action are decoration. Convention
+needs each marker to drive a specific agent behavior.
 ## Antithesis
 A formal belief logic (Fagin-Halpern) is too heavy. Convention
 authors shouldn't write epistemic formulas. But the **action
@@ -65,14 +83,28 @@ Apply epistemic markers as a convention rule:
 - hypothesis: agent searches for evidence, upgrades or downgrades
 - judgment: agent respects, does not challenge
 - unknown: agent asks user, does not proceed
+- proven: agent trusts until convention's own probe reports
+  failure; demotes on real-world counterexample, not opinion
 These are NOT formal logic. They are convention rules that
-agents should follow.
+agents should follow. The `proven` marker is reserved for
+claims whose evidence chain closes through convention's own
+machinery (e.g. axiom A4 in math-coding-birth, where
+`sh core/probe.sh` exit 0 against the convention's own
+repository is the evidence).
 ## What this packet commits to
-- 4 epistemic markers with explicit agent actions
+- 5 epistemic markers (fact, hypothesis, judgment, unknown,
+  proven) with explicit agent actions
 - Convention requires agents to apply these actions
 - markers in assumptions.yaml drive agent behavior
+- the `proven` marker is symmetric with `fact`: it
+  carries `confidence: 1.0` and `status: user-confirmed`,
+  and the agent's verification job is to *observe* the
+  convention's verifier exit 0 rather than to re-derive
+  the evidence
 ## What this packet does NOT commit to
 - A formal belief-state update logic
+- A belief-state storage format
+- Auto-verification of marker correctness
 
 ## Task
 
@@ -160,8 +192,11 @@ assumptions:
 ## State
 
 - belief: B(Prop × Agent) → [0, 1]
-- marker: fact | hypothesis | judgment | unknown
+- marker: fact | hypothesis | judgment | unknown | proven
 - convention threshold: confidence ≥ 0.95 = fact
+- `proven` is the verifier-validated subset of `fact`:
+  the evidence chain closes through convention's own
+  machinery (`sh core/probe.sh` exit 0)
 
 ## Operations
 
@@ -177,6 +212,7 @@ assumptions:
 | hypothesis | B ∈ (0.5, 0.95) | Search for evidence. If found, upgrade to fact with high confidence. If contradicted, downgrade to unknown. |
 | judgment | B ∈ {0, 1} | Respect. Do not propose alternatives without explicit user request. |
 | unknown | B = 0 | Ask user. Mark status: open if not already. Do not proceed. |
+| proven | claim verified end-to-end by convention's own tools | Trust the claim. Demote on real-world counterexample, not on opinion. |
 
 ## Mapping (confidence values)
 
@@ -184,33 +220,48 @@ assumptions:
 - 0.5 < B < 0.95: hypothesis
 - B ∈ {0, 1}: judgment (confidence omitted)
 - B = 0: unknown (confidence omitted)
+- B = 1.0 (verifier exit 0): proven (confidence 1.0)
 
 ## Invariant preservation
 
 - Every assumption has exactly one marker
-- confidence is present iff marker is fact or hypothesis
+- confidence is present iff marker is fact, hypothesis,
+  or proven (judgment and unknown carry no confidence)
 - status: open means marker is unknown or under review
+- `proven` is **demotable**: a proven claim that later
+  fails the end-to-end check becomes fact → hypothesis
 
 ## Mapping to convention axes
 
 - **Axis 3 (Epistemics):** this packet IS the formalization
   of axis 3.
 - **Axis 4 (Verdicts):** verdict generation uses epistemic
-  markers (e.g., fact → trust, hypothesis → verify).
+  markers (e.g., fact → trust, hypothesis → verify,
+  proven → cite-and-move-on).
 
 ## Test obligation
 
 - convention author: read every marker's status + epistemology
 - convention author: apply agent action when reviewing
+- convention author: when a marker's evidence chain relies
+  on `sh core/probe.sh`, document the verdict file path
+  in `See:` (see math-coding-birth A4 for canonical example)
 
 ## Runtime check
 
-- None yet (verifier-as-packet deferred)
-- Manual check: each assumption's marker matches its meaning
+- `core/verify.sh` drift-check 4: matches the SPEC_EPISTEMIC_MARKERS
+  set in `core/convention-spec.yaml`. Adding a new marker
+  is a single-line spec edit; this packet and `verify.sh`
+  follow automatically.
+- Manual: each assumption's marker matches its meaning.
 
 ## Cross-reference
 
 Canonical spec: `core/theories/epistemic.md` (B: Prop × Agent
-→ [0,1] and 4 markers). This file maps markers to agent
-actions. Drift between the two is detected by `core/verify.sh`.
+→ [0,1] and 5 markers: fact, hypothesis, judgment, unknown,
+proven). This file maps markers to agent actions. The marker
+list is sourced from `core/convention-spec.yaml`
+(`SPEC_EPISTEMIC_MARKERS`) and consumed by `core/verify.sh`
+drift-check 4. Drift between theory, packet, and convention-spec
+is detected by `core/verify.sh`.
 
