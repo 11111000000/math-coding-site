@@ -157,7 +157,7 @@ assumptions:
     confidence: 1.0
     evidence: |
       wc -l agents.md returns 73. The cap is updated to
-      ≤75 since phase-e (2026-07-12) because .mathrc documentation section
+      ≤75 in Phase F+ because .mathrc documentation section
       was added to the runtime protocol.
       See: agents.md (the file itself)
       See: math/agents-md-as-packet/refinement.md (line 18, cap=75)
@@ -183,7 +183,7 @@ assumptions:
 
 - AGENTS.md exists at repo root
 - AGENTS.md line count ≤ 75 (Phase C cap raised from 50 to 60
-  after Phase D; raised to 75 since phase-e to accommodate the
+  after Phase D; raised to 75 in Phase F+ to accommodate the
   .mathrc documentation section)
 - This packet has 5 files (matching convention)
 - AGENTS.md is OS, not in math/, not in core/
