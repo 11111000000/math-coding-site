@@ -1,5 +1,6 @@
 # core-as-packet — core/ is operating-system
 
+#convention
 ## Thesis
 
 math-coding has multiple OS-level foundations that are NOT
@@ -51,6 +52,7 @@ exist) but the files it authorizes are not packets.
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding has multiple OS-level foundations that are NOT
 decisions themselves: the packet schema (field types and
@@ -84,6 +86,7 @@ exist) but the files it authorizes are not packets.
 
 # core-as-packet — task
 
+#convention
 ## Problem
 
 The `core/` directory contains 12 OS files (1 schema + 11
@@ -169,6 +172,7 @@ assumptions:
 
 # Refinement: core-as-packet
 
+#convention
 ## State
 
 - **pre**: math-coding has 12 OS files in core/ but no packet

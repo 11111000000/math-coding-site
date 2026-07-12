@@ -1,5 +1,6 @@
 # recursive-check-as-packet — convention verifies itself
 
+#convention
 ## Thesis
 
 Recursive observability (axiom A4 in math-coding-birth) says
@@ -50,6 +51,7 @@ The recursive-check-as-packet's OWN verifier checks itself:
 
 ## Decision
 
+#convention
 ## Thesis
 Recursive observability (axiom A4 in math-coding-birth) says
 convention verifies itself. Without concrete implementation,
@@ -82,6 +84,7 @@ The recursive-check-as-packet's OWN verifier checks itself:
 
 # recursive-check-as-packet — task
 
+#convention
 ## Problem
 
 convention declares axiom A4 (recursive observability) but
@@ -161,6 +164,7 @@ assumptions:
 
 # Refinement: recursive-check-as-packet
 
+#convention
 ## State
 
 - convention repo at this commit

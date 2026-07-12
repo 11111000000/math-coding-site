@@ -2,15 +2,31 @@
 
 **Rigor:** temporal+
 
-LTL operators:
-- □P — "always P" (P holds in every state)
+LTL operators over state sequences:
+
+- □P — "always P" (P holds in every state of every run)
 - ◇P — "eventually P" (P holds in some future state)
 - P ~> Q — "P leads to Q" (whenever P holds, Q eventually holds)
 
-**Used in:** refinement.md when stating properties of packet
-lifecycle. For liveness, write P ~> Q in refinement.
+## math-coding instance
 
-**Example:** □(lifecycle=verified → ◇lifecycle=deprecated).
-"Every verified packet is eventually deprecated." This
-guarantees packets don't stay verified forever; they must
-eventually be superseded when convention evolves.
+math-coding declares two safety and three liveness properties
+over packet lifecycle, authoritative in
+[[math/theory-ltl-as-packet/refinement.md|the LTL refinement]]. The convention
+treats them as run-time obligations of the verifier Phase B
+extended in Phase D with semantic checks.
+
+## Diagram (Mermaid: lifecycle trajectory)
+
+```mermaid
+sequenceDiagram
+    participant S as verified
+    participant D as archived
+    Note over S,D: □(verified → ◇archived)
+    S->>S: stays verified
+    S->>S: regress to working
+    S->>S: supersede
+    Note right of S: deprecated OR archived path
+    S->>D: deprecate → archive
+    D->>D: stays archived (□archived)
+```

@@ -1,20 +1,25 @@
 # Theory: Curry-Howard Correspondence
 
-**Rigor:** proof+ (not for light/property/temporal)
+**Rigor:** proof
 
-A packet is a proof-term in the Curry-Howard sense:
-- assumptions.yaml = context Γ
-- task.md:§Constraints = proposition P (what we must satisfy)
-- refinement.md = derivation π (how we satisfy P)
-- verifier-output.yaml:verdict = proof result
+Curry-Howard says: types are propositions, programs are
+proofs. More precisely:
 
-A packet proves: Γ ⊢ P.
+    Type ⇔ Proposition
+    Program ⇔ Proof term
+    Program type-checks ⇔ Proof is valid
 
-**Used in:** rigor: proof+ packets. Formal verification of
-intent. The packet IS the proof, the code is the implementation.
+## math-coding instance
 
-**Example:** packet for user-auth has:
-- Γ: { user is authenticated, request has valid body }
-- P: response is 200 OK with user data
-- π: refinement.md maps spec states to impl states
-- verdict: VERIFIED (proved) or NEEDS_REVISION (disproved)
+In math-coding:
+
+- the proposition (P) is the claim of `decision.md`
+- the context (Γ) is `assumptions.yaml`
+- the proof term is the packet itself
+- type-checking is the verifier run
+- a "proof accepted" outcome is lifecycle: verified with
+  verdict: VERIFIED
+
+[[math/math-coding-birth/refinement.md#axiom-A4|the math-coding-birth axiom A4]] frames the
+correspondence as the convention's recursive-observability
+guarantee: every packet is its own evidence.

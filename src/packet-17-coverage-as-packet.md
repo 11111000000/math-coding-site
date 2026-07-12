@@ -1,5 +1,6 @@
 # coverage-as-packet — convention decisions inventory
 
+#convention
 ## Thesis
 
 math-coding has 14 axes declared in birth-packet. But how do we
@@ -42,6 +43,7 @@ is in coverage.
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding has 14 axes declared in birth-packet. But how do we
 know which axes have packets? Without a coverage inventory,
@@ -67,6 +69,7 @@ is in coverage.
 
 # coverage-as-packet — task
 
+#convention
 ## Problem
 
 14 axes are declared but how do we measure recursive observability?
@@ -146,6 +149,7 @@ assumptions:
 
 # Refinement: coverage-as-packet
 
+#convention
 ## State
 
 - convention repo at this commit

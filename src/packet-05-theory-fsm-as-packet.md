@@ -1,5 +1,6 @@
 # theory-fsm — FSM applied to packet lifecycle
 
+#convention
 ## Thesis
 
 math-coding declares 6 lifecycle states (sketch → working →
@@ -50,6 +51,7 @@ This packet makes the FSM concrete:
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding declares 6 lifecycle states (sketch → working →
 verified → deprecated → archived) plus superseded. But declaring
@@ -83,6 +85,7 @@ This packet makes the FSM concrete:
 
 # theory-fsm — task
 
+#convention
 ## Problem
 
 math-coding-birth declares 6 lifecycle states but doesn't
@@ -158,12 +161,14 @@ assumptions:
       5 files per packet. FSM invariant: every state in S
       has all 5 files present.
       See: packet:math-coding-birth/refinement.md#invariant
+      See: core/theories/README.md (theory catalog)
 ```
 
 ## Refinement
 
 # Refinement: theory-fsm
 
+#convention
 ## State
 
 - **S** = {sketch, working, verified, deprecated, archived, superseded}
@@ -231,4 +236,11 @@ For every state s ∈ S, invariant I(s) holds:
 
 - None yet (verifier-as-packet is deferred to Phase B)
 - Until then, transitions are validated manually by convention authors
+
+## Cross-reference
+
+Canonical spec: `core/theories/fsm.md` (FSM tuple ⟨S, s₀, A, →, I⟩).
+This file is the authoritative instance: states, actions,
+transitions, forbidden transitions, invariant I(s). Drift
+between the two is detected by `core/verify.sh`.
 

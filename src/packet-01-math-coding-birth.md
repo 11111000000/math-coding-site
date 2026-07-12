@@ -1,5 +1,6 @@
 # math-coding birth
 
+#convention
 ## Thesis
 
 Vibe-coding optimizes for local plausibility. Code looks
@@ -54,6 +55,7 @@ evidence.
 
 ## Decision
 
+#convention
 ## Thesis
 Vibe-coding optimizes for local plausibility. Code looks
 fine in the moment, breaks the first time a user clicks
@@ -90,6 +92,7 @@ evidence.
 
 # math-coding birth
 
+#convention
 ## Problem
 
 Replace vibe-coding with math-coding across all coding
@@ -156,14 +159,17 @@ assumptions:
 
   - id: A4
     statement: "The convention recursively applies to itself (fractal property)"
-    status: judgment
-    epistemology: judgment
+    status: user-confirmed
+    epistemology: proven
+    confidence: 1.0
     evidence: |
-      This packet has 5 files (declared by convention).
-      agents.md lives outside math/ but is approved by the
-      convention (it is the protocol, not a decision).
-      Recursive observability: every packet in math/ can be
-      verified against the repo at its commit.
+      End-to-end check: sh core/probe.sh runs core/verify.sh,
+      core/semantic-check.sh, and core/drift-check.sh against
+      the convention's own repository. All three return 0
+      errors and `verifier-output.yaml` records the verdict
+      VERIFIED. The convention's own tooling accepts the
+      convention's own files as input and reports success.
+      See: core/probe.sh, core/verifier-output.yaml
       See: packet:math-coding-birth/refinement.md#invariant
 
   - id: A5
@@ -183,6 +189,7 @@ assumptions:
 
 # Refinement: math-coding-birth
 
+#convention
 ## State
 
 - **pre**: vibe-coding (intent in chat, no formal artifacts)

@@ -1,5 +1,6 @@
 # theory-modal — □ ◇ for FSM lifecycle properties
 
+#convention
 ## Thesis
 
 LTL (theory-ltl-as-packet) defines □ ◇ ~> over packet
@@ -47,6 +48,7 @@ These complement LTL with explicit reachability.
 
 ## Decision
 
+#convention
 ## Thesis
 LTL (theory-ltl-as-packet) defines □ ◇ ~> over packet
 lifetimes. But LTL's □ is "always along this run". Modal logic
@@ -76,6 +78,7 @@ These complement LTL with explicit reachability.
 
 # theory-modal — task
 
+#convention
 ## Problem
 
 LTL defines □ ◇ over packet lifetimes. But LTL's □ is "always
@@ -153,6 +156,7 @@ assumptions:
 
 # Refinement: theory-modal
 
+#convention
 ## State
 
 - S = {sketch, working, verified, deprecated, archived, superseded}
@@ -202,4 +206,11 @@ assumptions:
 
 - None yet (verifier-as-packet deferred to Phase B)
 - Manual check: lifecycle transitions preserve □ and ◇ properties
+
+## Cross-reference
+
+Canonical spec: `core/theories/modal.md` (□, ◇ over
+reachable states). This file lists modal safety and
+liveness properties over packet lifecycle. Drift between
+the two is detected by `core/verify.sh`.
 

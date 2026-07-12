@@ -1,5 +1,6 @@
 # theory-curry-howard — packet as proof-term
 
+#convention
 ## Thesis
 
 Curry-Howard says: types are propositions, programs are proofs.
@@ -47,6 +48,7 @@ helps convention authors understand structure.
 
 ## Decision
 
+#convention
 ## Thesis
 Curry-Howard says: types are propositions, programs are proofs.
 In convention: packets are proof-terms. assumptions.yaml = Γ,
@@ -76,6 +78,7 @@ helps convention authors understand structure.
 
 # theory-curry-howard — task
 
+#convention
 ## Problem
 
 math-coding-birth doesn't formalize the relationship between
@@ -156,6 +159,7 @@ assumptions:
 
 # Refinement: theory-curry-howard
 
+#convention
 ## State
 
 - Γ: assumptions (proof context)
@@ -206,4 +210,11 @@ assumptions:
 
 - None yet (verifier-as-packet deferred to Phase B)
 - Manual: convention author writes assumptions that justify claims
+
+## Cross-reference
+
+Canonical spec: `core/theories/curry-howard.md` (types ↔
+propositions, programs ↔ proofs). This file applies CH to
+the convention's packet shape (P, Γ, π, verdict). Drift
+between the two is detected by `core/verify.sh`.
 

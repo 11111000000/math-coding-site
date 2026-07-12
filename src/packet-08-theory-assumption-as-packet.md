@@ -1,5 +1,6 @@
 # theory-assumption — Hoare logic applied to convention
 
+#convention
 ## Thesis
 
 math-coding has 5 fields per assumption (id, statement, status,
@@ -48,6 +49,7 @@ fields without requiring formal proofs.
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding has 5 fields per assumption (id, statement, status,
 epistemology, confidence, evidence). These are convention rules,
@@ -78,6 +80,7 @@ fields without requiring formal proofs.
 
 # theory-assumption — task
 
+#convention
 ## Problem
 
 math-coding-birth declares 5 fields per assumption but
@@ -157,6 +160,7 @@ assumptions:
 
 # Refinement: theory-assumption
 
+#convention
 ## State
 
 - S = (Pre, Post) pair (spec state)
@@ -204,4 +208,11 @@ assumptions:
 
 - None yet (verifier-as-packet deferred)
 - Manual check: every Spec claim has Σ backing
+
+## Cross-reference
+
+Canonical spec: `core/theories/assumption.md` ({Pre} C {Post}
++ Σ ⊢ Spec). This file applies Hoare-style assumption logic
+to math-coding's `assumptions.yaml` (Γ) and `decision.md`
+(Spec). Drift between the two is detected by `core/verify.sh`.
 

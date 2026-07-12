@@ -1,20 +1,31 @@
-# Theory: Assumption Set (Hoare Logic)
+# Theory: Assumption Set (Hoare)
 
-**Rigor:** any
+**Rigor:** property
 
-A specification is a pair (Pre, Post) where Pre is the
-precondition and Post is the postcondition. A program P
-satisfies Spec under assumptions Σ iff:
+Hoare logic reasons about partial correctness of programs:
 
-  ∀s: Pre(s) ⇒ (∧_{a∈Σ} a(s)) ⇒ Post(P(s))
+    {Pre} C {Post}
 
-Written: Σ ⊢ Spec.
+reads: if `Pre` holds before executing `C`, then `Post`
+holds after. The assertion logic extends naturally to a
+context-sequent reading:
 
-**Used in:** assumptions.yaml. Each entry is an assumption in Σ.
-The packet's task.md:§Constraints is the Pre; the
-task.md:§Desired outcome is the Post.
+    Σ ⊢ Spec
 
-**Example:** Σ = {packet structurally complete}, Pre =
-{packet directory exists}, Post = {all 5 files present}.
-Program P: creates 5 files. Verification: iff structural
-completeness holds, postcondition holds.
+where Σ is a set of assumption statements and Spec is the
+claim they support.
+
+## math-coding instance
+
+In math-coding, the `assumptions.yaml` file lists Σ (with
+status, epistemology, confidence, evidence per entry).
+`decision.md` declares Spec. The reading "Σ ⊢ Spec" is the
+convention's load-bearing sentence: a packet is justified
+exactly when its assumption set justifies its claim.
+
+Used in math-coding:
+
+- [[theory-assumption-as-packet|assumption-as-packet]] — applies
+  Σ ⊢ Spec to every packet's claim
+- [[theory-verdict-as-packet|verdict-as-packet]] — verdict = result
+  of resolving Spec against the assumption set

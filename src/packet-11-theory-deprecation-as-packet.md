@@ -1,5 +1,6 @@
 # theory-deprecation — packet DAG and supersession
 
+#convention
 ## Thesis
 
 math-coding-birth declares that packet.yaml:lifecycle may
@@ -45,6 +46,7 @@ Apply deprecation theory to convention:
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding-birth declares that packet.yaml:lifecycle may
 take value superseded with a supersession block. But what
@@ -73,6 +75,7 @@ Apply deprecation theory to convention:
 
 # theory-deprecation — task
 
+#convention
 ## Problem
 
 Convention has lifecycle: superseded and supersession block
@@ -156,6 +159,7 @@ assumptions:
 
 # Refinement: theory-deprecation
 
+#convention
 ## State
 
 - P_old, P_new: packets
@@ -202,4 +206,11 @@ assumptions:
 
 - None yet (verifier-as-packet deferred to Phase B)
 - Manual: when creating supersession, check antisymmetry
+
+## Cross-reference
+
+Canonical spec: `core/theories/deprecation.md` (strict
+partial order: irreflexive, asymmetric, transitive). This
+file applies the 3 properties to math-coding supersession.
+Drift between the two is detected by `core/verify.sh`.
 

@@ -1,5 +1,6 @@
 # theory-confidence — entropy and readiness signal
 
+#convention
 ## Thesis
 
 math-coding's epistemic markers include confidence values
@@ -47,6 +48,7 @@ Convention uses this as readiness signal:
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding's epistemic markers include confidence values
 (0-1) for fact and hypothesis. But what does confidence mean
@@ -76,6 +78,7 @@ Convention uses this as readiness signal:
 
 # theory-confidence — task
 
+#convention
 ## Problem
 
 convention has confidence: 0.0-1.0 in assumptions.yaml
@@ -160,6 +163,7 @@ assumptions:
 
 # Refinement: theory-confidence
 
+#convention
 ## State
 
 - c ∈ [0, 1]: confidence value per assumption
@@ -213,4 +217,11 @@ assumptions:
 - None yet (verifier-as-packet deferred)
 - Manual check: when packet has hypothesis entries,
   total_I should be considered before verification
+
+## Cross-reference
+
+Canonical spec: `core/theories/confidence.md` (Shannon
+entropy I(c)). This file applies I(c) as the readiness
+signal with the 2-bit threshold. Drift between the two is
+detected by `core/verify.sh`.
 

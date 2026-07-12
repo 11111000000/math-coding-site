@@ -1,5 +1,6 @@
 # agents-md-as-packet — protocol for AI agents
 
+#convention
 ## Thesis
 
 AI coding agents (Claude, GPT-4, opencode) routinely read and
@@ -48,6 +49,7 @@ supersedes this one.
 
 ## Decision
 
+#convention
 ## Thesis
 AI coding agents (Claude, GPT-4, opencode) routinely read and
 write files. math-coding must have a contract for how agents
@@ -79,6 +81,7 @@ supersedes this one.
 
 # agents-md-as-packet — task
 
+#convention
 ## Problem
 
 AI coding agents need a contract to interact consistently with
@@ -148,13 +151,14 @@ assumptions:
       See: packet:math-coding-birth/refinement.md#edit-protocol
 
   - id: A5
-    statement: "agents.md is currently 44 lines (well under 50-line invariant)"
+    statement: "agents.md is currently 73 lines (under the Phase-F+ 75-line cap, up from 56)"
     status: agent-inferred
     epistemology: fact
     confidence: 1.0
     evidence: |
-      wc -l agents.md returns 44. The invariant in
-      math-coding-birth/refinement.md requires ≤ 50.
+      wc -l agents.md returns 73. The cap is updated to
+      ≤75 in Phase F+ because .mathrc documentation section
+      was added to the runtime protocol.
       See: agents.md (the file itself)
 ```
 
@@ -162,6 +166,7 @@ assumptions:
 
 # Refinement: agents-md-as-packet
 
+#convention
 ## State
 
 - **pre**: agents.md exists at root but no packet authorizes it
@@ -176,7 +181,9 @@ assumptions:
 ## Invariant
 
 - agents.md exists at repo root
-- agents.md line count ≤ 50 (math-coding-birth invariant)
+- agents.md line count ≤ 75 (Phase C cap raised from 50 to 60
+  after Phase D; raised to 75 in Phase F+ to accommodate the
+  .mathrc documentation section)
 - This packet has 5 files (matching convention)
 - agents.md is OS, not in math/, not in core/
 
@@ -188,6 +195,12 @@ assumptions:
 - **Edit protocol (refinement.md §15):** agents.md
   states when direct edits are OK vs when supersession
   is required.
+- **Think Principle (Phase C, D28):** agents.md tells the
+  agent to read `core/think-before-do.md` and to track every
+  non-trivial commit in `applications[]`.
+- **Modes (Phase C, D30 + D31):** agents.md names the four
+  decision modes and the role-aware defaults; full matrix
+  in `core/decision-modes.md`.
 
 ## OS files authorized (1)
 

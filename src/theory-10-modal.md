@@ -1,23 +1,31 @@
-# Theory: Modal Logic for FSM Lifecycles
+# Theory: Modal Logic
 
 **Rigor:** temporal+
 
-Modal operators:
-- □P — necessarily P (P in every reachable state)
-- ◇P — possibly P (P in some reachable state)
-- P ~> Q — P leads to Q (whenever P, Q eventually)
+The two modal operators over reachable states:
 
-A packet lifecycle FSM (sketch → working → verified →
-deprecated → archived → superseded) has safety and liveness:
+- □P — necessarily P (P holds in every reachable state)
+- ◇P — possibly P (P holds in some reachable state)
 
-| Property | Formula | Type |
-|----------|---------|------|
-| No skipping | ¬(sketch → verified) | safety |
-| Verified persists | □(verified → ◇deprecated) | liveness |
+Unlike LTL's operators, □ and ◇ quantify over the branching
+tree of futures, not over a single linear run.
 
-**Used in:** refinement.md of packets with non-trivial
-lifecycle. For simple CRUD packets, skip.
+## math-coding instance
 
-**Example:** packet-historical-replacement must guarantee
-"every superseded packet is eventually archived". Write this
-as superseded ~> archived in refinement.md:§Liveness.
+In math-coding, □ and ◇ express packet-lifecycle properties
+the FSM alone cannot: "no reachable state escapes archived"
+(□archived after verified → archived) and "archived is
+reachable from verified" (◇archived). See
+[[math/theory-modal-as-packet/refinement.md|the modal property table]] for the
+property table.
+
+## Diagram (Mermaid: modal reachability)
+
+```mermaid
+flowchart LR
+    verified -->|□ archived| archived
+    verified -->|◇ archived| archived
+    working -->|□ verified| verified
+    working -->|◇ working| working
+    note[□ = necessary (all reachable states)<br/>◇ = possible (some reachable state)]
+```

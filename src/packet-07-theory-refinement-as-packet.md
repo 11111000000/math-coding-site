@@ -1,5 +1,6 @@
 # theory-refinement — packet as spec, code as implementation
 
+#convention
 ## Thesis
 
 math-coding declares packets as the "intent before code".
@@ -54,6 +55,7 @@ The 5 sections of refinement.md ARE the refinement pattern.
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding declares packets as the "intent before code".
 But what does that mean structurally? How does a packet (intent)
@@ -89,6 +91,7 @@ The 5 sections of refinement.md ARE the refinement pattern.
 
 # theory-refinement — task
 
+#convention
 ## Problem
 
 math-coding-birth declares packets as "intent before code" but
@@ -173,6 +176,7 @@ assumptions:
 
 # Refinement: theory-refinement
 
+#convention
 ## State
 
 - S_spec = packet state space (lifecycle + structural claims)
@@ -232,4 +236,11 @@ When code exists:
 
 - None yet (verifier-as-packet deferred to Phase B)
 - Manual convention-author review of refinement sections
+
+## Cross-reference
+
+Canonical spec: `core/theories/refinement.md` (R: S_impl → S_spec).
+This file applies the refinement pattern to math-coding
+packets (5 sections of refinement.md). Drift between the
+two is detected by `core/verify.sh`.
 

@@ -1,22 +1,21 @@
-# Theory: Confidence as Information
+# Theory: Confidence (Shannon)
 
-**Rigor:** any (relevant for hypothesis and judgment)
+**Rigor:** any
 
-Each assumptions.yaml entry has confidence: c ∈ [0, 1].
-The information content of an assumption is:
+For a Bernoulli belief with confidence c ∈ [0, 1], the
+information content in bits is:
 
-  I(c) = -c·log₂(c) - (1-c)·log₂(1-c)  (bits)
+    I(c) = -c·log₂(c) - (1-c)·log₂(1-c)
 
-- c = 0.5: I = 1.0 bit (max uncertainty)
-- c = 0.9: I = 0.469 bits
-- c = 0.99: I = 0.080 bits
-- c = 0 or 1: I = 0 bits (resolved)
+I(c) reaches its maximum of 1 bit at c = 0.5 and is 0 at
+c ∈ {0, 1}.
 
-**Used in:** assumptions.yaml with epistemology: hypothesis.
-Total uncertainty of a packet: sum of I(c) over all hypothesis
-entries. Used as readiness signal: total > 2 bits means
-"this packet has too much uncertainty to be verified".
+## math-coding instance
 
-**Example:** packet with 4 hypothesis assumptions at
-confidence 0.7, 0.6, 0.8, 0.5. Total I = 0.881 + 0.971 + 0.722 +
-1.0 = 3.574 bits. Above 2 → packet not ready for verified status.
+math-coding uses I(c) as the *readiness signal* of a packet.
+`Total_I = Σ I(c)` over the assumption set is compared to
+the threshold of 2 bits — a packet is ready for verification
+when Total_I ≤ 2.
+
+The threshold and the four-marker reading are decided in
+[[math/math-coding-birth/decision.md#synthesis|the math-coding-birth synthesis]].

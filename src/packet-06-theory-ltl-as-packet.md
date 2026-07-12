@@ -1,5 +1,6 @@
 # theory-ltl — temporal properties of packet lifecycle
 
+#convention
 ## Thesis
 
 The FSM packet (theory-fsm-as-packet) defines states and
@@ -50,6 +51,7 @@ checked or by future verifier).
 
 ## Decision
 
+#convention
 ## Thesis
 The FSM packet (theory-fsm-as-packet) defines states and
 transitions but says nothing about liveness. Liveness answers:
@@ -82,6 +84,7 @@ checked or by future verifier).
 
 # theory-ltl — task
 
+#convention
 ## Problem
 
 theory-fsm-as-packet defines states and transitions but says
@@ -163,6 +166,7 @@ assumptions:
 
 # Refinement: theory-ltl
 
+#convention
 ## State
 
 - S, s₀, → from theory-fsm-as-packet
@@ -206,4 +210,11 @@ assumptions:
 
 - None yet (verifier-as-packet deferred to Phase B)
 - Convention authors self-check liveness when archiving
+
+## Cross-reference
+
+Canonical spec: `core/theories/ltl.md` (□, ◇, ~>). This file
+is the authoritative list of math-coding liveness and safety
+properties over packet lifecycle. Drift between the two is
+detected by `core/verify.sh`.
 

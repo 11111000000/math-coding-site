@@ -1,5 +1,6 @@
 # theory-verdict — 5 outcomes of verification
 
+#convention
 ## Thesis
 
 math-coding-birth declares 5 verdict outcomes (VERIFIED,
@@ -49,6 +50,7 @@ These map to FSM transitions (from theory-fsm-as-packet):
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding-birth declares 5 verdict outcomes (VERIFIED,
 NEEDS_REVISION, UNVERIFIABLE:TOOL_MISSING, UNVERIFIABLE:OUT_OF_SCOPE,
@@ -80,6 +82,7 @@ These map to FSM transitions (from theory-fsm-as-packet):
 
 # theory-verdict — task
 
+#convention
 ## Problem
 
 math-coding-birth declares 5 verdict outcomes but doesn't
@@ -162,6 +165,7 @@ assumptions:
 
 # Refinement: theory-verdict
 
+#convention
 ## State
 
 - Verdict state: V ∈ {VERIFIED, NEEDS_REVISION, UNVERIFIABLE:*}
@@ -215,4 +219,10 @@ assumptions:
 
 - None yet (verifier-as-packet deferred)
 - convention author manually ensures verdict matches reality
+
+## Cross-reference
+
+Canonical spec: `core/theories/verdict.md` (Spec ⊨ P, 5
+outcomes). This file maps verdicts to FSM transitions.
+Drift between the two is detected by `core/verify.sh`.
 

@@ -1,22 +1,26 @@
 # Theory: Verdict
 
-**Rigor:** any
+**Rigor:** any (foundational)
 
-A verdict is the result of verification: Spec ⊨ P?
-Five outcomes:
+A verification verdict is the outcome of evaluating the
+proof obligation:
 
-- VERIFIED — Spec ⊨ P proved
-- NEEDS_REVISION — Spec ⊭ P (counterexample)
-- UNVERIFIABLE:TOOL_MISSING — tool unavailable
-- UNVERIFIABLE:OUT_OF_SCOPE — human review required
-- UNVERIFIABLE:DEFERRED — data not yet available
+    Spec ⊨ P
 
-There is no UNVERIFIABLE:REJECTED. Reframe as smaller task.
+The standard convention outcomes are:
 
-**Used in:** verifier-output.yaml:verdict. The packet's
-verifier: {command, verdict_file} specifies how to produce it.
+    VERIFIED                 — proof holds under test
+    NEEDS_REVISION           — counterexample found
+    UNVERIFIABLE:TOOL_MISSING     — tool unavailable
+    UNVERIFIABLE:OUT_OF_SCOPE     — human review required
+    UNVERIFIABLE:DEFERRED         — data not yet available
 
-**Example:** packet TLA-rate-limiter has Model.tla. Without
-TLC, verdict is UNVERIFIABLE:TOOL_MISSING with exit 0. With
-TLC, verdict is VERIFIED if invariants hold, NEEDS_REVISION
-otherwise.
+## math-coding instance
+
+In math-coding, the structural verifier
+`core/verify.sh` produces one of these verdicts at the repo
+level. Per-packet verdicts are recorded in
+`packet.yaml:verifier` and back to `lifecycle`.
+
+See [[math/theory-verdict-as-packet/refinement.md|the verdict→FSM-transition mapping]] for the
+verdict→FSM-transition mapping.

@@ -1,5 +1,6 @@
 # theory-predicate — Predicate and Invariant in math-coding
 
+#convention
 ## Thesis
 
 math-coding claims to be "grounded in mathematics". This claim
@@ -54,6 +55,7 @@ completeness check, structural verifier). It says:
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding claims to be "grounded in mathematics". This claim
 is vacuous unless each mathematical theory is concretely applied
@@ -91,6 +93,7 @@ completeness check, structural verifier). It says:
 
 # theory-predicate — task
 
+#convention
 ## Problem
 
 math-coding claims to be grounded in 11 mathematical theories
@@ -183,6 +186,7 @@ assumptions:
 
 # Refinement: theory-predicate
 
+#convention
 ## State
 
 - **pre**: math-coding claims to be grounded in math, but
@@ -232,4 +236,11 @@ assumptions:
 ## Runtime check
 
 - None required yet (informal application of theory)
+
+## Cross-reference
+
+Canonical spec: `core/theories/predicate.md` (I: S → B).
+This file applies the predicate to math-coding invariants
+(5-file structure, recursive observability, lifecycle).
+Drift between the two is detected by `core/verify.sh`.
 

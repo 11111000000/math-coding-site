@@ -1,5 +1,6 @@
 # theory-epistemic — 4 markers as action protocol
 
+#convention
 ## Thesis
 
 math-coding-birth declares 4 epistemic markers (fact/hypothesis/
@@ -47,6 +48,7 @@ agents should follow.
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding-birth declares 4 epistemic markers (fact/hypothesis/
 judgment/unknown) for assumptions. But markers without action
@@ -76,6 +78,7 @@ agents should follow.
 
 # theory-epistemic — task
 
+#convention
 ## Problem
 
 Epistemic markers in assumptions.yaml need clear agent action
@@ -153,6 +156,7 @@ assumptions:
 
 # Refinement: theory-epistemic
 
+#convention
 ## State
 
 - belief: B(Prop × Agent) → [0, 1]
@@ -203,4 +207,10 @@ assumptions:
 
 - None yet (verifier-as-packet deferred)
 - Manual check: each assumption's marker matches its meaning
+
+## Cross-reference
+
+Canonical spec: `core/theories/epistemic.md` (B: Prop × Agent
+→ [0,1] and 4 markers). This file maps markers to agent
+actions. Drift between the two is detected by `core/verify.sh`.
 

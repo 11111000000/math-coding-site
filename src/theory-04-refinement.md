@@ -1,18 +1,27 @@
 # Theory: Refinement
 
-**Rigor:** any
+**Rigor:** property
 
-A refinement is a function R: S_impl → S_spec such that for
-every implementation transition, there exists a sequence of
-spec transitions matching it.
+A refinement is a relation R ⊆ S_impl × S_spec such that every
+implementation behaviour has a matching (possibly stuttering)
+specification behaviour:
 
-**Used in:** refinement.md (every packet describes how its
-implementation maps to its specification). The State/Operation/
-Invariant/Test/Runtime sections of refinement.md follow this
-pattern.
+    R: S_impl → S_spec
 
-**Example:** packet-lifecycle_impl has 6 states
-(sketch, working, verified, deprecated, archived, superseded).
-Packet_spec has 5 states (sketch, working, verified, deprecated,
-archived). R maps superseded → deprecated, then to archived.
-The lifecycle FSM implements this refinement.
+`S_impl ⊨ R(S_spec)` means the implementation refines the spec.
+
+## math-coding instance
+
+In math-coding, the *packet* is the specification and the
+*code* (or absent code) is the implementation. The
+`refinement.md` of every packet must declare a State mapping,
+an Operation mapping, an Invariant preservation, a Test
+obligation, and a Runtime check — these five sections are
+the refinement relation written out.
+
+Used in math-coding:
+
+- [[theory-refinement-as-packet|refinement-as-packet]] — 5-section
+  pattern enforced across all packets
+- [[theory-fsm-as-packet|fsm-as-packet]] — FSM is the spec half,
+  packet is the implementation half of R

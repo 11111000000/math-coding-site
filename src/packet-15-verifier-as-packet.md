@@ -1,5 +1,6 @@
 # verifier-as-packet — convention mechanically checks itself
 
+#convention
 ## Thesis
 
 math-coding is "grounded in mathematics" but until now the
@@ -47,6 +48,7 @@ This packet authorizes core/verify.sh as convention OS.
 
 ## Decision
 
+#convention
 ## Thesis
 math-coding is "grounded in mathematics" but until now the
 checks are manual. Convention authors read packets, ensure
@@ -76,6 +78,7 @@ This packet authorizes core/verify.sh as convention OS.
 
 # verifier-as-packet — task
 
+#convention
 ## Problem
 
 Convention checks are manual. Drift can occur: lifecycle field
@@ -154,6 +157,7 @@ assumptions:
 
 # Refinement: verifier-as-packet
 
+#convention
 ## State
 
 - Convention repo at current commit

@@ -1,5 +1,6 @@
 # init-packet-as-packet — convention's packet creation tool
 
+#convention
 ## Thesis
 
 Every convention requires a way to create new packets. Without
@@ -47,6 +48,7 @@ provide content.
 
 ## Decision
 
+#convention
 ## Thesis
 Every convention requires a way to create new packets. Without
 init-packet.sh, convention authors must manually write 5 files
@@ -76,6 +78,7 @@ provide content.
 
 # init-packet-as-packet — task
 
+#convention
 ## Problem
 
 Convention authors must manually create 5 files per packet,
@@ -150,6 +153,7 @@ assumptions:
 
 # Refinement: init-packet-as-packet
 
+#convention
 ## State
 
 - Convention repo at this commit
