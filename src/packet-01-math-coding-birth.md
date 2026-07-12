@@ -35,7 +35,7 @@ evidence.
 ## What this packet commits to
 
 - A 5-file packet structure (this packet follows it).
-- An agents.md protocol for future packets.
+- An AGENTS.md protocol for future packets.
 - A `math/` directory where every future key decision
   about the convention lives as a packet.
 
@@ -82,7 +82,7 @@ NOT claimed here — it is an assumption (A4) with its own
 evidence.
 ## What this packet commits to
 - A 5-file packet structure (this packet follows it).
-- An agents.md protocol for future packets.
+- An AGENTS.md protocol for future packets.
 - A `math/` directory where every future key decision
   about the convention lives as a packet.
 ## What this packet does NOT commit to
@@ -198,14 +198,14 @@ assumptions:
 ## Operation
 
 - Declare the convention's first decision as a packet.
-- Install agents.md at repo root as the agent contract.
+- Install AGENTS.md at repo root as the agent contract.
 - 5 files per packet, mandatory from commit 1.
 - 11 theory docs in core/theories/ as foundation.
 
 ## Invariant
 
 - Every directory in `math/` has exactly 5 files.
-- `agents.md` exists and is ≤ 50 lines.
+- `AGENTS.md` exists and is ≤ 50 lines.
 - Each assumption has 4 fields (status, epistemology, confidence,
   evidence).
 - **Recursive observability**: every packet in `math/` can be
@@ -284,7 +284,7 @@ Future: JSON Schema at `core/schemas/`, authorized by a packet.
 ### 12. Rendering (human-facing)
 
 - `README.md` — entry point
-- `agents.md` — protocol for agents
+- `AGENTS.md` — protocol for agents
 - Each packet's `decision.md` — human-readable explanation
 - No external renderer required; git + plaintext is enough
 
@@ -302,7 +302,7 @@ Outside `math/`, files are OS. They support convention but do
 not declare decisions.
 
 OS files in commit 1:
-- `README.md`, `agents.md`, `.gitignore` (root)
+- `README.md`, `AGENTS.md`, `.gitignore` (root)
 - `core/packet-schema.md` (schema table)
 - `core/theories/*.md` (11 theory docs)
 

@@ -21,17 +21,17 @@ spend their time interpreting the protocol rather than working.
 ## Synthesis
 
 A short protocol (< 50 lines) at the repo root, named
-agents.md. The protocol tells the agent what to read, what to
+AGENTS.md. The protocol tells the agent what to read, what to
 write, and what never to edit. The protocol grows only when
 needed — adding a rule requires a decision-packet that
 supersedes this one.
 
 ## What this packet commits to
 
-- agents.md exists at repo root with < 50 lines
+- AGENTS.md exists at repo root with < 50 lines
 - It documents: read order, write protocol, brownfield mode,
   assumption fields, edit rules
-- This packet authorizes agents.md as convention-OS
+- This packet authorizes AGENTS.md as convention-OS
 
 ## What this packet does NOT commit to
 
@@ -65,15 +65,15 @@ property. The opposite failure mode: too rigid, agents
 spend their time interpreting the protocol rather than working.
 ## Synthesis
 A short protocol (< 50 lines) at the repo root, named
-agents.md. The protocol tells the agent what to read, what to
+AGENTS.md. The protocol tells the agent what to read, what to
 write, and what never to edit. The protocol grows only when
 needed — adding a rule requires a decision-packet that
 supersedes this one.
 ## What this packet commits to
-- agents.md exists at repo root with < 50 lines
+- AGENTS.md exists at repo root with < 50 lines
 - It documents: read order, write protocol, brownfield mode,
   assumption fields, edit rules
-- This packet authorizes agents.md as convention-OS
+- This packet authorizes AGENTS.md as convention-OS
 ## What this packet does NOT commit to
 - A long agent manual (this is not a handbook)
 
@@ -100,8 +100,8 @@ fields to fill in, (5) what NOT to modify.
 
 - Plain text, no scripts in the protocol itself
 - Protocol grows only when needed (new rules → supersession)
-- agents.md lives at repo root (not in math/, not in core/)
-- This packet authorizes agents.md as convention-OS
+- AGENTS.md lives at repo root (not in math/, not in core/)
+- This packet authorizes AGENTS.md as convention-OS
 
 ## Assumptions
 
@@ -160,6 +160,7 @@ assumptions:
       ≤75 in Phase F+ because .mathrc documentation section
       was added to the runtime protocol.
       See: agents.md (the file itself)
+      See: math/agents-md-as-packet/refinement.md (line 18, cap=75)
 ```
 
 ## Refinement
@@ -169,46 +170,46 @@ assumptions:
 #convention
 ## State
 
-- **pre**: agents.md exists at root but no packet authorizes it
-- **post**: agents.md is authorized as convention-OS by this packet
+- **pre**: AGENTS.md exists at root but no packet authorizes it
+- **post**: AGENTS.md is authorized as convention-OS by this packet
 
 ## Operation
 
-- This packet records the decision to have an agents.md
-- It does NOT modify agents.md
+- This packet records the decision to have an AGENTS.md
+- It does NOT modify AGENTS.md
 - It references core-as-packet (which authorizes core/)
 
 ## Invariant
 
-- agents.md exists at repo root
-- agents.md line count ≤ 75 (Phase C cap raised from 50 to 60
+- AGENTS.md exists at repo root
+- AGENTS.md line count ≤ 75 (Phase C cap raised from 50 to 60
   after Phase D; raised to 75 in Phase F+ to accommodate the
   .mathrc documentation section)
 - This packet has 5 files (matching convention)
-- agents.md is OS, not in math/, not in core/
+- AGENTS.md is OS, not in math/, not in core/
 
 ## Convention axes affected
 
-- **Brownfield mode (refinement.md §14):** agents.md
+- **Brownfield mode (refinement.md §14):** AGENTS.md
   establishes what agents do in projects where most files
   are OS, not packets.
-- **Edit protocol (refinement.md §15):** agents.md
+- **Edit protocol (refinement.md §15):** AGENTS.md
   states when direct edits are OK vs when supersession
   is required.
-- **Think Principle (Phase C, D28):** agents.md tells the
+- **Think Principle (Phase C, D28):** AGENTS.md tells the
   agent to read `core/think-before-do.md` and to track every
   non-trivial commit in `applications[]`.
-- **Modes (Phase C, D30 + D31):** agents.md names the four
+- **Modes (Phase C, D30 + D31):** AGENTS.md names the four
   decision modes and the role-aware defaults; full matrix
   in `core/decision-modes.md`.
 
 ## OS files authorized (1)
 
-1. `agents.md` at repo root — agent protocol
+1. `AGENTS.md` at repo root — agent protocol
 
 ## Test obligation
 
-- `wc -l agents.md` ≤ 50
+- `wc -l AGENTS.md` ≤ 50
 - This packet is in math/agents-md-as-packet/ with 5 files
 - `git log --oneline | head` shows birth → core-as-packet → agents-md-as-packet
 

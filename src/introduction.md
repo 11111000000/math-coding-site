@@ -27,7 +27,7 @@ exactly 5 files:
 ## How
 
 Read `math/math-coding-birth/` to see the first packet. Then
-read `agents.md` for the protocol. After commit 2, every key
+read `AGENTS.md` for the protocol. After commit 2, every key
 decision about the convention lives as its own packet in
 `math/`.
 
@@ -35,6 +35,4 @@ decision about the convention lives as its own packet in
 
 This is not a framework. There is no library to install,
 no API to call, no runtime to embed. The convention is the
-set of rules; the artifacts are the substance. The recursive
-property ("the convention applies to itself") is an assumption
-with evidence (A4 in `math-coding-birth`), not an axiom.
+set of rules; the artifacts are the substance.
