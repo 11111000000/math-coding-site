@@ -1,38 +1,88 @@
 # Introduction
 
 
-A convention for mathematically grounded software artifacts.
-Plain text + git. No external dependencies. No frameworks.
+> Curry-Howard convention for AI coding agents.
+> Plain-text. git. POSIX. Seven axioms. axiom Self-Application.
 
-## Why
+## What this is
 
-Vibe-coding optimizes for local plausibility. The code looks
-fine in the moment, breaks the first time a user clicks
-twice, a request arrives out of order, or a deployment
-scales past one node. math-coding replaces this: every
-decision becomes a packet, every packet is mechanically
-verifiable, the chat is not the spec, the code is not
-the first artifact.
+A convention where every non-trivial decision is a **packet**
+— a directory with exactly five files. The packet is the
+proposition; the verifier is the type-check; the convention
+applies to itself (axiom Self-Application).
 
-## What
+## Seven axioms
 
-Every directory in `math/` is a packet. Each packet has
-exactly 5 files:
-- `packet.yaml` — manifest (task_id, lifecycle, decision: made)
-- `decision.md` — thesis / antithesis / synthesis
-- `task.md` — problem / desired outcome / constraints
-- `assumptions.yaml` — explicit assumptions with epistemic markers
-- `refinement.md` — how the convention extends or supersedes itself
+  A0. Difference       A4. Process
+  A1. Care             A5. Accounting
+  A2. Curry-Howard     A6. Self-Application
+  A3. Material Basis
 
-## How
+Read `docs/axioms.md` for the full statement.
 
-Read `math/math-coding-birth/` to see the first packet. Then
-read `AGENTS.md` for the protocol. After commit 2, every key
-decision about the convention lives as its own packet in
-`math/`.
+## Five-file packet
 
-## What this is NOT
+  packet.yaml       manifest + lifecycle + applications[]
+  decision.md       proposition (thesis / antithesis / synthesis)
+  task.md           intent (problem / outcome / constraints)
+  assumptions.yaml  epistemic context (5 markers)
+  refinement.md     state / operation / invariant / test / runtime
 
-This is not a framework. There is no library to install,
-no API to call, no runtime to embed. The convention is the
-set of rules; the artifacts are the substance.
+Each packet lives under `math/<name>/`.
+
+## Three modes
+
+  light    commit message only
+  standard full 5-file packet
+  strict   packet + theory link + applications[] + surface impact
+
+## Six lifecycle states
+
+  sketch → working → verified → deprecated → archived
+                                            ↑
+                                            superseded
+
+Forbidden: `sketch → verified`.
+
+## Five epistemic markers
+
+  fact / hypothesis / judgment / unknown / proven
+
+`proven` is reserved for axiom Self-Application.
+
+## Five verdict outcomes
+
+  VERIFIED, NEEDS_REVISION, UNVERIFIABLE:{TOOL_MISSING,
+  DEFERRED, OUT_OF_SCOPE}.
+
+## Commands
+
+  sh math-coding init <name>     scaffold a 5-file packet
+  sh math-coding verify          structural check
+  sh math-coding drift-check     applications[] SHA vs HEAD
+  sh math-coding probe           axiom Self-Application
+  sh math-coding install <path>  install into a brownfield project
+  sh math-coding upgrade <path>  upgrade an existing install
+  sh math-coding uninstall <path>
+
+## Quick start
+
+  git clone math-coding-v0.854
+  cd math-coding-v0.854
+  sh math-coding probe         # axiom Self-Application
+  sh math-coding init my-feature
+  # fill the five files under math/my-feature/
+  git add math/my-feature
+  git commit -m "my-feature: first commit"
+  sh math-coding verify
+  # move to verified when ready (see AGENTS.md)
+
+## Install in an existing project
+
+  sh /path/to/math-coding/math-coding install /path/to/project
+  cd /path/to/project
+  sh ./.math-coding/math-coding probe
+
+## License
+
+Living Beings License — see LICENSE.
