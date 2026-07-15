@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-theory">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/theories/">Theories</a><span class="sep">/</span><a href="/theories/agent.html">agent</a></nav>
+  <article class="page">
+    
+    <div class="page-body"><header><h1>agent</h1><p class="axiom-link">grounded in A6</p></header><h1 id="agent-axiom-self-application" tabindex="-1"><a class="header-anchor" href="#agent-axiom-self-application">#</a> Agent (axiom Self-Application)</h1>
+<p>An AI coding agent is a function over a state space:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>S = (chat_history, files_read, files_written, mode, role)</span></span></code></pre></p>
+<p>The agent reads and writes files, proposes actions, and may
+ask clarifying questions. Its actions form a trace:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>trace = [(read, file), (propose, mode), (write, file), ...]</span></span></code></pre></p>
+<h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
+<p>In math-coding:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>agent mode   ∈ { skip, light, standard, strict }</span></span>
+<span class="line"><span>agent role   ∈ { developer, designer, product-manager,</span></span>
+<span class="line"><span>                researcher, tech-writer }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>agent reads  AGENTS.md, docs/axioms.md, theories/*.md,</span></span>
+<span class="line"><span>             math/&#x3C;packet>/</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>agent writes math/&#x3C;packet>/&#x3C;file>.md, optionally with</span></span>
+<span class="line"><span>             packet.yaml:applications[] entries</span></span></code></pre></p>
+<p>axiom Self-Application is the convention closing the
+loop: an agent runs the convention on the convention.</p>
+<h2 id="modes-and-roles" tabindex="-1"><a class="header-anchor" href="#modes-and-roles">#</a> Modes and roles</h2>
+<p><strong>Modes</strong> govern how much ceremony a change requires:</p>
+<p>skip      — no record (rare; deprecated)
+light     — commit message only
+standard  — full 5-file packet (most changes)
+strict    — packet + theory link + applications[]</p>
+<p>Default by role:
+developer          →  standard
+designer           →  light
+product-manager    →  light
+researcher         →  strict
+tech-writer        →  skip (or light)</p>
+<h2 id="what-an-agent-does" tabindex="-1"><a class="header-anchor" href="#what-an-agent-does">#</a> What an agent does</h2>
+<p>The agent's trace is its proof term. The convention treats
+the trace as an executable. The verifier evaluates the
+<strong>result</strong> of the trace (the files written, the packets
+created), not the trace itself.</p>
+<p>The agent's type-checker is <code>core/check/verify.sh</code> and
+(in axiom Self-Application) <code>core/self/probe.sh</code>. The trace is correct
+iff the verifier exits 0 on the resulting state.</p>
+<h2 id="why-it-matters" tabindex="-1"><a class="header-anchor" href="#why-it-matters">#</a> Why it matters</h2>
+<p>An agent that operates without a convention is a writer
+without a style guide. It produces plausible output; the
+output does not fit into the convention's structure; the
+verifier rejects it; the agent retries with no progress.</p>
+<p>A convention-aware agent produces output that fits the
+structure from the first try. The agent's first commit is
+already a packet. The agent's first review is already a
+verifier run.</p>
+<p>axiom Self-Application makes this explicit: the agent <strong>is</strong> the
+convention's interpreter. The convention's structure is the
+agent's instruction set. The agent's output is the
+convention's content.</p>
+<h2 id="where-this-lives" tabindex="-1"><a class="header-anchor" href="#where-this-lives">#</a> Where this lives</h2>
+<p><code>math/06-self-application/</code> — the axiom that defines
+what the agent is.
+<code>theories/agent.md</code> — this file.
+<code>AGENTS.md</code> — runtime hint for any agent.
+<code>extensions/agents/opencode/SKILL.md</code> — OpenCode skill.</p>
+</div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

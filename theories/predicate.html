@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>predicate — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-theory">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/theories/">Theories</a><span class="sep">/</span><a href="/theories/predicate.html">predicate</a></nav>
+  <article class="page">
+    
+    <div class="page-body"><header><h1>predicate</h1><p class="axiom-link">grounded in A4</p></header><h1 id="predicate-and-invariant-axiom-process" tabindex="-1"><a class="header-anchor" href="#predicate-and-invariant-axiom-process">#</a> Predicate and Invariant (axiom Process)</h1>
+<p>A predicate over a state space S is a function:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>I : S → Bool</span></span></code></pre></p>
+<p>A state <code>s</code> satisfies <code>I</code> iff <code>I(s) = true</code>.</p>
+<h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
+<p>In math-coding, every check reduces to a predicate:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>I_packet    = (5 files exist) ∧ (lifecycle ∈ enum)</span></span>
+<span class="line"><span>            ∧ (substrate ∈ enum) ∧ (rigor ∈ enum)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>I_axioms    = (|A| = 7) ∧ (names match)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>I_witness   = ∀ sha ∈ applications[]:</span></span>
+<span class="line"><span>                git cat-file -e sha succeeds</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>I_drift     = ∀ sha, file:</span></span>
+<span class="line"><span>                git diff sha..HEAD -- file = ∅</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>I_self      = (axiom Self-Application proven)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>I_fsm       = ∀ packet p with lifecycle = verified:</span></span>
+<span class="line"><span>                applications[] contains at least one SHA</span></span></code></pre></p>
+<p><code>core/check/verify.sh</code> evaluates <code>I_packet ∧ I_axioms ∧ I_theories</code>. <code>core/self/probe.sh</code> evaluates <code>I_self</code>,
+which is the conjunction of all six checks.</p>
+<h2 id="why-it-matters" tabindex="-1"><a class="header-anchor" href="#why-it-matters">#</a> Why it matters</h2>
+<p>If every check is a predicate, the verifier is a <strong>predicate
+evaluator</strong>. The exit code is <code>true</code> (exit 0) or <code>false</code>
+(exit non-zero). The shell script becomes a <strong>decision
+procedure</strong> over a conjunction of decidable predicates.</p>
+<p>This is what makes math-coding verifiable: each check is a
+finite computation over a finite state. The shell script
+runs in milliseconds. The convention scales to thousands of
+packets without slowdown.</p>
+<p>See <code>math/04-process/</code> for the axiom packet that uses
+predicate logic to define the lifecycle FSM.</p>
+<h2 id="connection-to-fsm" tabindex="-1"><a class="header-anchor" href="#connection-to-fsm">#</a> Connection to FSM</h2>
+<p>A FSM is a special case of a predicate:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>I_fsm(s) = predicate over the FSM state s</span></span></code></pre></p>
+<p>axiom Process uses predicates to define invariants for each FSM
+state. See <code>theories/fsm.md</code>.</p>
+</div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

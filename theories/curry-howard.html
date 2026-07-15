@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>curry-howard — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-theory">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/theories/">Theories</a><span class="sep">/</span><a href="/theories/curry-howard.html">curry-howard</a></nav>
+  <article class="page">
+    
+    <div class="page-body"><header><h1>curry-howard</h1><p class="axiom-link">grounded in A2</p></header><h1 id="curry-howard-correspondence-axiom-curry-howard" tabindex="-1"><a class="header-anchor" href="#curry-howard-correspondence-axiom-curry-howard">#</a> Curry-Howard Correspondence (axiom Curry-Howard)</h1>
+<p>A proposition is a type. A proof is a program. A
+type-check is the verification that a program inhabits its
+type.</p>
+<h2 id="formal-statement" tabindex="-1"><a class="header-anchor" href="#formal-statement">#</a> Formal statement</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Types        ⇔  Propositions</span></span>
+<span class="line"><span>Programs     ⇔  Proofs</span></span>
+<span class="line"><span>Type-check   ⇔  Proof verification</span></span></code></pre></p>
+<p>In mathematical notation, the correspondence is between:</p>
+<p>simply-typed lambda calculus  ⇔  intuitionistic propositional logic
+System F                     ⇔  second-order propositional logic
+Calculus of constructions     ⇔  higher-order intuitionistic logic</p>
+<h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
+<p>In math-coding:</p>
+<p>packet      ⇔  proof term
+verifier    ⇔  type-checker
+exit 0      ⇔  proof accepted
+exit ≠ 0    ⇔  proof rejected</p>
+<p>The five files of a packet are the canonical projection of
+a typed lambda-term:</p>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>lambda-term part</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>packet.yaml</td>
+<td>type signature</td>
+</tr>
+<tr>
+<td><a href="http://decision.md">decision.md</a></td>
+<td>the proposition</td>
+</tr>
+<tr>
+<td><a href="http://task.md">task.md</a></td>
+<td>the goal</td>
+</tr>
+<tr>
+<td>assumptions.yaml</td>
+<td>context Γ</td>
+</tr>
+<tr>
+<td><a href="http://refinement.md">refinement.md</a></td>
+<td>the elaboration</td>
+</tr>
+</tbody>
+</table>
+<p>Remove any one file and the proof is incomplete. The
+verifier checks all five. axiom Self-Application
+verifies that the convention's own packets satisfy this
+structure — the proof checks its own proof.</p>
+<h2 id="worked-example" tabindex="-1"><a class="header-anchor" href="#worked-example">#</a> Worked example</h2>
+<p><code>math/02-curry-howard/</code> is itself an axiom packet. Its five
+files implement the Curry-Howard correspondence by being
+Curry-Howard terms:</p>
+<p>packet.yaml      — manifest: id=02-curry-howard, lifecycle=working
+<a href="http://decision.md">decision.md</a>      — proposition: &quot;A packet is a proof term&quot;
+<a href="http://task.md">task.md</a>          — goal: &quot;fix the 5-file structure&quot;
+assumptions.yaml — context: A0 (Difference), A6 (Self-Application)
+<a href="http://refinement.md">refinement.md</a>    — elaboration: 5-file → typed lambda-term</p>
+<p>This packet is the proof that a packet is a proof term.
+The proof checks itself: <code>sh math-coding probe</code> exits 0.</p>
+<h2 id="why-it-matters" tabindex="-1"><a class="header-anchor" href="#why-it-matters">#</a> Why it matters</h2>
+<p>A packet as mere documentation cannot be enforced. The five
+files become a tax: developers fill them with placeholder
+text, then ignore them. The verifier cannot distinguish
+signal from noise.</p>
+<p>axiom Curry-Howard forbids this conflation. The proposition lives in
+<code>decision.md</code>; the implementation lives in <code>src/</code>. The
+verifier checks the relationship between them, not one or
+the other. The relationship is the proof.</p>
+<p>See <code>math/02-curry-howard/</code> for the axiom packet that
+realises this correspondence.</p>
+</div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

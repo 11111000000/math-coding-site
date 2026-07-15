@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Axioms — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-axioms">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/axioms/">Axioms</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+    <header><h1>Seven axioms</h1></header>
+    <section class="axioms-table">
+      <table>
+        <thead>
+          <tr><th>axiom</th><th>statement</th><th>packet</th><th>verified</th></tr>
+        </thead>
+        <tbody><tr>
+        <td><a href="#a0" class="axiom-link"><code>A0</code></a></td>
+        <td>A proposition differs from its implementation.</td>
+        <td><a href="/math//">math/00-difference/</a></td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+      </tr><tr>
+        <td><a href="#a1" class="axiom-link"><code>A1</code></a></td>
+        <td>A developer cares whether the code does what</td>
+        <td><a href="/math//">math/01-care/</a></td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+      </tr><tr>
+        <td><a href="#a2" class="axiom-link"><code>A2</code></a></td>
+        <td>A packet is a proof term. A verifier is a</td>
+        <td><a href="/math//">math/02-curry-howard/</a></td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+      </tr><tr>
+        <td><a href="#a3" class="axiom-link"><code>A3</code></a></td>
+        <td>The convention lives in plain text, in git,</td>
+        <td><a href="/math//">math/03-material/</a></td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+      </tr><tr>
+        <td><a href="#a4" class="axiom-link"><code>A4</code></a></td>
+        <td>Process precedes code. The lifecycle of a</td>
+        <td><a href="/math//">math/04-process/</a></td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+      </tr><tr>
+        <td><a href="#a5" class="axiom-link"><code>A5</code></a></td>
+        <td>Knowledge must be marked. Verdicts must be</td>
+        <td><a href="/math//">math/05-accounting/</a></td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+      </tr><tr>
+        <td><a href="#a6" class="axiom-link"><code>A6</code></a></td>
+        <td>The convention applies to itself. Every</td>
+        <td><a href="/math//">math/06-self-application/</a></td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+      </tr></tbody>
+      </table>
+    </section>
+    <section class="axioms-full">
+      <h1 id="seven-axioms-math-coding-v0854" tabindex="-1"><a class="header-anchor" href="#seven-axioms-math-coding-v0854">#</a> Seven Axioms (math-coding v0.854)</h1>
+<p>math-coding is grounded on seven axioms. Each axiom is a
+packet under <code>math/&lt;NN-axiom&gt;/</code>. The axiom lives in the
+proposition it states; the packet lives in the proof.</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
+<span class="line"><span>  lifecycle AS "lifecycle",</span></span>
+<span class="line"><span>  substrate AS "substrate",</span></span>
+<span class="line"><span>  decision AS "decision"</span></span>
+<span class="line"><span>FROM "math"</span></span>
+<span class="line"><span>WHERE file.name >= "00" AND file.name &#x3C; "10"</span></span>
+<span class="line"><span>SORT file.name ASC</span></span></code></pre></p>
+<h2 id="a0-difference-ontological" tabindex="-1"><a class="header-anchor" href="#a0-difference-ontological">#</a> A0. Difference (ontological)</h2>
+<p><strong>Statement</strong>: A proposition differs from its implementation.
+Without this gap, no convention is needed.</p>
+<p><strong>Formal</strong>: Let P be the set of propositions and I the set of
+implementations. The convention requires a non-empty gap
+<code>G = P × I \ {(p, p)}</code>. Without G, the bridge has nothing
+to bridge.</p>
+<p><strong>Why it matters</strong>: code does not explain itself. <code>def add(a, b)</code>
+is correct in arithmetic and wrong in string concatenation.
+The proposition must come from somewhere — and that somewhere
+is <code>decision.md</code>, separate from the code.</p>
+<p><strong>Packet</strong>: <code>math/00-difference/</code></p>
+<h2 id="a1-care-motivational" tabindex="-1"><a class="header-anchor" href="#a1-care-motivational">#</a> A1. Care (motivational)</h2>
+<p><strong>Statement</strong>: A developer cares whether the code does what
+it claims. That care is what makes convention useful.</p>
+<p><strong>Formal</strong>: convention is the discipline of care. Without
+care, no amount of structure helps — the verifier passes on
+placeholder text and the code does nothing useful.</p>
+<p><strong>Why it matters</strong>: &quot;looks fine&quot; is the failure mode
+axiom Care forbids. A developer who asks &quot;what does this code
+do when the input is null?&quot; is the developer axiom Care
+describes.</p>
+<p><strong>Packet</strong>: <code>math/01-care/</code></p>
+<h2 id="a2-curry-howard-structural" tabindex="-1"><a class="header-anchor" href="#a2-curry-howard-structural">#</a> A2. Curry-Howard (structural)</h2>
+<p><strong>Statement</strong>: A packet is a proof term. A verifier is a
+type-check.</p>
+<p><strong>Formal</strong>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Types        ⇔  Propositions</span></span>
+<span class="line"><span>Programs     ⇔  Proofs</span></span>
+<span class="line"><span>Type-check   ⇔  Proof verification</span></span></code></pre></p>
+<p><strong>Why it matters</strong>: the five files of a packet are the
+five parts of a proof:</p>
+<p>packet.yaml      →  type signature
+<a href="http://decision.md">decision.md</a>      →  the proposition
+<a href="http://task.md">task.md</a>          →  the goal
+assumptions.yaml →  the context Γ
+<a href="http://refinement.md">refinement.md</a>    →  the elaboration</p>
+<p>The verifier checks the <strong>relationship</strong> between proposition
+and proof, not one or the other. Without axiom Curry-Howard, the
+five files collapse to one.</p>
+<p><strong>Packet</strong>: <code>math/02-curry-howard/</code></p>
+<h2 id="a3-material-basis-substrate" tabindex="-1"><a class="header-anchor" href="#a3-material-basis-substrate">#</a> A3. Material Basis (substrate)</h2>
+<p><strong>Statement</strong>: The convention lives in plain text, in git,
+and runs on a POSIX shell.</p>
+<p><strong>Why it matters</strong>: a convention that depends on a
+language, framework, IDE, or vendor dies when that substrate
+dies. Plain text (1960s), git (2005), POSIX (1988) are
+older than the convention itself. They will outlive it.</p>
+<p><strong>Packet</strong>: <code>math/03-material/</code></p>
+<h2 id="a4-process-temporal" tabindex="-1"><a class="header-anchor" href="#a4-process-temporal">#</a> A4. Process (temporal)</h2>
+<p><strong>Statement</strong>: Process precedes code. The lifecycle of a
+packet is finite and ordered.</p>
+<p><strong>Formal</strong>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>M = ⟨ S, s₀, A, →, I ⟩</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>S = { sketch, working, verified, deprecated, archived,</span></span>
+<span class="line"><span>      superseded }</span></span>
+<span class="line"><span>s₀ = sketch</span></span>
+<span class="line"><span>→ ⊆ S × A × S (with forbidden sketch → verified)</span></span>
+<span class="line"><span>I(s) = invariant for state s</span></span></code></pre></p>
+<p><strong>Why it matters</strong>: a packet that has never been elaborated
+(cannot skip from <code>sketch</code> to <code>verified</code>) cannot be proven.
+The verifier enforces this: <code>lifecycle: verified</code> requires
+at least one SHA in <code>applications[]</code>.</p>
+<p><strong>Packet</strong>: <code>math/04-process/</code></p>
+<h2 id="a5-accounting-epistemic" tabindex="-1"><a class="header-anchor" href="#a5-accounting-epistemic">#</a> A5. Accounting (epistemic)</h2>
+<p><strong>Statement</strong>: Knowledge must be marked. Verdicts must be
+named. Changes must be witnessed. Modes must be honest
+about scope.</p>
+<p><strong>Formal</strong>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>B : Prop × Agent → [0, 1]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  fact        B(P) ≥ 0.95</span></span>
+<span class="line"><span>  hypothesis  0.5 &#x3C; B &#x3C; 0.95</span></span>
+<span class="line"><span>  judgment    B ∈ {0, 1}</span></span>
+<span class="line"><span>  unknown     B = 0</span></span>
+<span class="line"><span>  proven      end-to-end verified</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Spec ⊨ P</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  VERIFIED, NEEDS_REVISION, UNVERIFIABLE:{TOOL_MISSING,</span></span>
+<span class="line"><span>  DEFERRED, OUT_OF_SCOPE}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>applications : List[(SHA × List[FilePath])]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>modes = { light, standard, strict }</span></span></code></pre></p>
+<p><strong>Why it matters</strong>: &quot;looks fine&quot; is the failure mode. The
+five epistemic markers, five verdict outcomes, SHA witness,
+supersession DAG, and three modes are the discipline of
+care (axiom Care).</p>
+<p><strong>Packet</strong>: <code>math/05-accounting/</code></p>
+<h2 id="a6-self-application-meta" tabindex="-1"><a class="header-anchor" href="#a6-self-application-meta">#</a> A6. Self-Application (meta)</h2>
+<p><strong>Statement</strong>: The convention applies to itself. Every
+axiom above is realised as a packet under <code>math/</code>. The
+verifier that checks those packets is itself the subject of
+a packet.</p>
+<p><strong>Formal</strong>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>∀ packet P ∈ math/* :</span></span>
+<span class="line"><span>    ∀ axiom A_i (i ∈ {0,..,5}) :</span></span>
+<span class="line"><span>        P satisfies A_i</span></span></code></pre></p>
+<p><strong>Why it matters</strong>: a convention that cannot verify itself
+relies on external authority. axiom Self-Application closes the loop:
+<code>sh core/self/probe.sh</code> exits 0 ⟺ the convention is
+internally consistent. The probe runs six predicates; their
+conjunction is axiom Self-Application.</p>
+<p><strong>Packet</strong>: <code>math/06-self-application/</code></p>
+<hr>
+<h2 id="order-of-dependency" tabindex="-1"><a class="header-anchor" href="#order-of-dependency">#</a> Order of dependency</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>A0 (ontological)  →  A1 (motivational)  →  A2 (structural)  →</span></span>
+<span class="line"><span>A3 (substrate)    →  A4 (temporal)      →  A5 (epistemic)   →</span></span>
+<span class="line"><span>A6 (meta)</span></span></code></pre></p>
+<p>Each axiom depends on the preceding axioms; each axiom is
+also instantiated as a packet that the next axiom depends
+on.</p>
+<h2 id="reading-order" tabindex="-1"><a class="header-anchor" href="#reading-order">#</a> Reading order</h2>
+<p>For first contact, read A0 → A1 → A2 → A6. These four give
+the ontological foundation (A0), the motivation (A1), the
+structural bridge (A2), and the meta-discipline (A6). The
+remaining axioms (A3-A5) operationalise the first four into
+material basis, process, and accounting.</p>
+<p>For implementation, read A2 → A3 → A5 → A4. These give the
+structural template (A2), the substrate (A3), the accounting
+instruments (A5), and the temporal discipline (A4).</p>
+
+    </section>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

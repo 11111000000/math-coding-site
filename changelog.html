@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changelog — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-changelog">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/CHANGELOG.md">Changelog</a></nav>
+  <article class="page">
+    
+    <div class="page-body"><h1 id="changelog" tabindex="-1"><a class="header-anchor" href="#changelog">#</a> Changelog</h1>
+<p>Versions follow the φ-recurrence: <code>v_{n+1} = v_n + (1 - v_n) * 0.618</code>.
+The convention approaches but never reaches 1.0.</p>
+<h2 id="v0854---2026-07-15" tabindex="-1"><a class="header-anchor" href="#v0854---2026-07-15">#</a> [v0.854] - 2026-07-15</h2>
+<p>First release after the recursive reset to v0.618.</p>
+<h3 id="seven-axioms-genesis-packets-under-math" tabindex="-1"><a class="header-anchor" href="#seven-axioms-genesis-packets-under-math">#</a> Seven axioms (genesis packets under math/)</h3>
+<p>A0 Difference (ontological)          math/00-difference/
+A1 Care (motivational)               math/01-care/
+A2 Curry-Howard (structural)         math/02-curry-howard/
+A3 Material Basis (substrate)        math/03-material/
+A4 Process (temporal)                math/04-process/
+A5 Accounting (epistemic)            math/05-accounting/
+A6 Self-Application (meta)           math/06-self-application/</p>
+<h3 id="eighth-packet-packet-lifecycle-process-discipline" tabindex="-1"><a class="header-anchor" href="#eighth-packet-packet-lifecycle-process-discipline">#</a> Eighth packet: Packet Lifecycle (process discipline)</h3>
+<p>math/packet-lifecycle/                how a packet evolves</p>
+<h3 id="eight-theories" tabindex="-1"><a class="header-anchor" href="#eight-theories">#</a> Eight theories</h3>
+<p>curry-howard, predicate, fsm, refinement, verdict,
+epistemic, deprecation, agent</p>
+<h3 id="tools-5-core-scripts-dispatcher-2-author-scripts" tabindex="-1"><a class="header-anchor" href="#tools-5-core-scripts-dispatcher-2-author-scripts">#</a> Tools (5 core scripts + dispatcher + 2 author scripts)</h3>
+<p>core/author/init-packet.sh          scaffold 5-file packet (template)
+core/author/create-packet.sh        spec-driven packet creation (one call)
+core/author/extract-packet.sh      reverse 5 files -&gt; YAML spec
+core/check/verify.sh                structural + axioms + theories check
+core/check/drift-check.sh           applications[] SHA vs HEAD
+core/agent/mathrc.sh                load ./.mathrc
+core/self/probe.sh                  axiom Self-Application self-application
+core/install/install.sh             brownfield install
+core/install/upgrade.sh             brownfield upgrade
+core/install/uninstall.sh           brownfield uninstall
+core/spec/packet-schema.md          five-file contract
+core/spec/think-before-do.md        temporal discipline
+core/spec/decision-modes.md         light / standard / strict
+core/README.md                      core/ layout index
+math-coding                         dispatcher</p>
+<h3 id="axiom-self-application-proven" tabindex="-1"><a class="header-anchor" href="#axiom-self-application-proven">#</a> axiom Self-Application (proven)</h3>
+<h1 id="-sh-math-coding-probe" tabindex="-1"><a class="header-anchor" href="#-sh-math-coding-probe">#</a> $ sh math-coding probe</h1>
+<h1 id="16-five-files-per-packet-ok-8-packets26-seven-axioms-in-docs-ok-7-axioms36-eight-theories-in-theories-ok-8-theories46-corecheckverifysh-ok-exit-056-corecheckdrift-checksh-ok-no-drift66-axiom-packets-form-chain-ok-a6-references-a0" tabindex="-1"><a class="header-anchor" href="#16-five-files-per-packet-ok-8-packets26-seven-axioms-in-docs-ok-7-axioms36-eight-theories-in-theories-ok-8-theories46-corecheckverifysh-ok-exit-056-corecheckdrift-checksh-ok-no-drift66-axiom-packets-form-chain-ok-a6-references-a0">#</a> [1/6] five files per packet        ok: 8 packets
+[2/6] seven axioms in docs/        ok: 7 axioms
+[3/6] eight theories in theories/  ok: 8 theories
+[4/6] core/check/verify.sh         ok: exit 0
+[5/6] core/check/drift-check.sh    ok: no drift
+[6/6] axiom packets form chain     ok: A6 references A0</h1>
+<p>axiom Self-Application: PROVEN</p>
+<h3 id="three-modes-light-standard-strict" tabindex="-1"><a class="header-anchor" href="#three-modes-light-standard-strict">#</a> Three modes (light / standard / strict)</h3>
+<h3 id="five-epistemic-markers-fact-hypothesis-judgment-unknown-proven" tabindex="-1"><a class="header-anchor" href="#five-epistemic-markers-fact-hypothesis-judgment-unknown-proven">#</a> Five epistemic markers (fact / hypothesis / judgment / unknown / proven)</h3>
+<h3 id="five-verdict-outcomes-verified-needsrevision-unverifiable" tabindex="-1"><a class="header-anchor" href="#five-verdict-outcomes-verified-needsrevision-unverifiable">#</a> Five verdict outcomes (VERIFIED / NEEDS_REVISION / UNVERIFIABLE:*)</h3>
+<h3 id="obsidian-support" tabindex="-1"><a class="header-anchor" href="#obsidian-support">#</a> Obsidian support</h3>
+<p>The repository is designed for Obsidian. Open as a vault;
+Dataview queries are pre-installed in <code>docs/axioms.md</code> and
+<code>theories/README.md</code>. See <code>extensions/obsidian.md</code> for
+plugin recommendations and wikilink conventions.</p>
+<h3 id="post-genesis-extensions-3-useful-2-kiss-violations-removed" tabindex="-1"><a class="header-anchor" href="#post-genesis-extensions-3-useful-2-kiss-violations-removed">#</a> Post-genesis extensions (3 useful, 2 KISS-violations removed)</h3>
+<p>Five new packets and four new core scripts were added
+after the genetic seed. After KISS-review, two packets
+(<code>examples-cache-ttl</code>, <code>extension-tla-guide</code>) and one
+extension README (<code>extensions/tla/README.md</code>) were
+<strong>removed</strong> as KISS-violations. What remains:</p>
+<ul>
+<li><strong>create-packet-spec-driven</strong> (math/): spec-driven
+packet creation. One YAML spec → five files in one call.
+Before: 8 operations (init + 5 file edits + verify +
+commit). After: 2 operations (write spec, run create).</li>
+<li><strong>extract-packet-reverse</strong> (math/): reverse operation.
+Five files → one YAML spec on stdout. Round-trips with
+create-packet-spec-driven. The script is present but
+not auto-tested (a test would require an example
+packet, which is itself a KISS-violation).</li>
+<li><strong>ci-workflow-convention</strong> (math/ + .github/workflows/):
+CI that runs axiom Self-Application on every push/PR.
+Distributed axiom A6: every contributor's PR is verified
+by the convention itself.</li>
+</ul>
+<p>New core scripts (in addition to the original 5):</p>
+<ul>
+<li><code>core/author/create-packet.sh</code> — spec → 5 files</li>
+<li><code>core/author/extract-packet.sh</code> — 5 files → spec</li>
+</ul>
+<p>New dispatcher commands: <code>create</code>, <code>extract</code>.</p>
+<p>14 self-tests (Case 15 removed: required example packet,
+which was removed as KISS-violation).</p>
+<p>axiom Self-Application: PROVEN.</p>
+<h3 id="packet-quality-post-genesis-improvements" tabindex="-1"><a class="header-anchor" href="#packet-quality-post-genesis-improvements">#</a> Packet quality (post-genesis improvements)</h3>
+<p>After the initial 17 genesis commits, eight additional
+commits brought each axiom packet up to a high quality
+standard:</p>
+<ul>
+<li><strong>concrete thesis</strong> (A1: 3 AM fix scenario)</li>
+<li><strong>worked examples</strong> (A1, A3, A4, A5 — each shows the
+axiom applied to a concrete packet)</li>
+<li><strong>specific surface impact</strong> (replacing generic
+&quot;touches: convention's foundation&quot; with concrete file
+paths and field names)</li>
+<li><strong>evidence-based proof</strong> (each proof names the test,
+script, or witness that demonstrates the axiom holds)</li>
+<li><strong>applications[] witness</strong> (each axiom packet now
+carries a SHA in <code>applications[]</code> — axiom Accounting
+applied to itself)</li>
+<li><strong>backlinks</strong> (each axiom <a href="http://decision.md">decision.md</a> opens with a
+wikilink to the canonical axiom definition in
+<code>docs/axioms.md</code>)</li>
+<li><strong>named axioms</strong> (axiom Process,
+axiom Accounting, axiom Self-Application: axiom
+Self-Application) — the by-number names from the
+v0.618 → 7-axiom rename have been replaced</li>
+</ul>
+<p>Each commit passed <code>sh math-coding verify</code>,
+<code>sh math-coding probe</code>, and <code>sh math-coding drift-check</code>.
+Final state: 15/15 self-tests pass, 0 drift, axiom
+Self-Application proven.</p>
+<h3 id="brownfield-install" tabindex="-1"><a class="header-anchor" href="#brownfield-install">#</a> Brownfield install</h3>
+<p>$ sh math-coding install /path/to/project</p>
+<h2 id="v0618---2026-07-12-frozen" tabindex="-1"><a class="header-anchor" href="#v0618---2026-07-12-frozen">#</a> [v0.618] - 2026-07-12 (frozen)</h2>
+<p>Genetic seed preserved in git history (tag v0.618, commit
+c79a710). The reset point for v0.854.</p>
+<h2 id="pre-history" tabindex="-1"><a class="header-anchor" href="#pre-history">#</a> Pre-history</h2>
+<p>v0.1 (Force-TLA+ edition), v0.2 (ADR-based), v1 (3-file
+minimum) — see ~/Desktop/math-coding-v0.1, -v0.2, -v1 for
+the lineages that informed v0.854.</p>
+</div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

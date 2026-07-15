@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Obsidian compatibility — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-obsidian">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/extensions/obsidian.md">Obsidian compatibility</a></nav>
+  <article class="page">
+    
+    <div class="page-body"><h1 id="obsidian-support" tabindex="-1"><a class="header-anchor" href="#obsidian-support">#</a> Obsidian support</h1>
+<p>math-coding v0.854 is designed for Obsidian. Open this
+repository as an Obsidian vault.</p>
+<h2 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins">#</a> Plugins</h2>
+<p>Recommended (all built-in or freely available):</p>
+<ul>
+<li><strong>Dataview</strong> (built-in via Dataview community plugin) —
+enables queries over markdown files. Used in
+<code>docs/axioms.md</code> and <code>theories/README.md</code>.</li>
+<li><strong>Graph view</strong> (built-in) — visualises the axiom
+dependency graph.</li>
+</ul>
+<p>Not needed:</p>
+<ul>
+<li><strong>Templater</strong> — we do not use templates.</li>
+<li><strong>Calendar</strong> — not applicable.</li>
+<li><strong>Tasks</strong> — we use a finite state machine, not a task
+list.</li>
+</ul>
+<h2 id="wikilinks" tabindex="-1"><a class="header-anchor" href="#wikilinks">#</a> Wikilinks</h2>
+<p>Obsidian renders <code>[[...]]</code> as links between markdown files.
+The convention uses wikilinks liberally:</p>
+<p><code>[[docs/axioms.md#a0-difference-ontological|A0]]</code> —
+link to a specific axiom by anchor.</p>
+<p><code>[[math/00-difference|packet A0]]</code> — link to a packet.</p>
+<p>Each axiom packet's <code>decision.md</code> has a backlink to the
+axiom definition in <code>docs/axioms.md</code>, and vice versa.</p>
+<h2 id="dataview-queries" tabindex="-1"><a class="header-anchor" href="#dataview-queries">#</a> Dataview queries</h2>
+<p><code>docs/axioms.md</code> lists axiom packets:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
+<span class="line"><span>  lifecycle AS "lifecycle",</span></span>
+<span class="line"><span>  substrate AS "substrate",</span></span>
+<span class="line"><span>  decision AS "decision"</span></span>
+<span class="line"><span>FROM "math"</span></span>
+<span class="line"><span>WHERE file.name >= "00" AND file.name &#x3C; "10"</span></span>
+<span class="line"><span>SORT file.name ASC</span></span></code></pre></p>
+<p><code>theories/README.md</code> lists theories:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
+<span class="line"><span>  file.link AS "theory",</span></span>
+<span class="line"><span>  axiom AS "axiom"</span></span>
+<span class="line"><span>FROM "theories"</span></span>
+<span class="line"><span>WHERE file.name != "README"</span></span>
+<span class="line"><span>SORT file.name ASC</span></span></code></pre></p>
+<h2 id="looking-at-the-axiom-graph" tabindex="-1"><a class="header-anchor" href="#looking-at-the-axiom-graph">#</a> Looking at the axiom graph</h2>
+<p>Open <code>math/</code> and view it in Graph view. Obsidian renders
+wikilinks between axiom packets and <code>docs/axioms.md</code> as
+edges. The seven axiom packets cluster around <code>docs/axioms.md</code>
+with edges to axiom-specific anchors.</p>
+<h2 id="reading-order-recommended-for-obsidian" tabindex="-1"><a class="header-anchor" href="#reading-order-recommended-for-obsidian">#</a> Reading order (recommended for Obsidian)</h2>
+<ol>
+<li><code>README.md</code> (one-page manifest)</li>
+<li><code>docs/axioms.md</code> (seven axioms, Dataview query at top)</li>
+<li><code>theories/README.md</code> (eight theories, Dataview query)</li>
+<li>One axiom packet — start with <code>math/00-difference/</code></li>
+</ol>
+<p>For implementation: <code>docs/spec.md</code> → one axiom packet →
+<code>core/spec/packet-schema.md</code>.</p>
+</div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>verdict — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-theory">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/theories/">Theories</a><span class="sep">/</span><a href="/theories/verdict.html">verdict</a></nav>
+  <article class="page">
+    
+    <div class="page-body"><header><h1>verdict</h1><p class="axiom-link">grounded in A5</p></header><h1 id="verdict-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#verdict-axiom-accounting">#</a> Verdict (axiom Accounting)</h1>
+<p>A verdict is the outcome of evaluating the proof
+obligation:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Spec ⊨ P</span></span></code></pre></p>
+<p>read as: &quot;the specification entails the proposition&quot;.</p>
+<h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
+<p>The five canonical verdicts of math-coding:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  VERIFIED                    proof accepted under test</span></span>
+<span class="line"><span>  NEEDS_REVISION              counterexample or missing piece</span></span>
+<span class="line"><span>  UNVERIFIABLE:TOOL_MISSING   required tool unavailable</span></span>
+<span class="line"><span>  UNVERIFIABLE:DEFERRED       data not yet available</span></span>
+<span class="line"><span>  UNVERIFIABLE:OUT_OF_SCOPE   human review required</span></span></code></pre></p>
+<h2 id="mapping-to-verifier-behaviour" tabindex="-1"><a class="header-anchor" href="#mapping-to-verifier-behaviour">#</a> Mapping to verifier behaviour</h2>
+<table>
+<thead>
+<tr>
+<th>verdict</th>
+<th>verifier exit code</th>
+<th>convention artefact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VERIFIED</td>
+<td>0</td>
+<td><code>core/check/verify.sh</code> exits 0</td>
+</tr>
+<tr>
+<td>NEEDS_REVISION</td>
+<td>1</td>
+<td><code>verify.sh</code> finds a missing file or invalid field</td>
+</tr>
+<tr>
+<td>UNVERIFIABLE:TOOL_MISSING</td>
+<td>69 (EX_UNAVAILABLE)</td>
+<td>a substrate (TLA+, Coq) is required but not installed</td>
+</tr>
+<tr>
+<td>UNVERIFIABLE:DEFERRED</td>
+<td>64 (EX_USAGE)</td>
+<td>data not yet available</td>
+</tr>
+<tr>
+<td>UNVERIFIABLE:OUT_OF_SCOPE</td>
+<td>76 (EX_PROTOCOL)</td>
+<td>requires human review</td>
+</tr>
+</tbody>
+</table>
+<p>Exit codes follow POSIX sysexits.h convention.</p>
+<h2 id="why-it-matters" tabindex="-1"><a class="header-anchor" href="#why-it-matters">#</a> Why it matters</h2>
+<p>Anything outside these five is &quot;looks fine&quot; — the failure
+mode axiom Accounting forbids.</p>
+<p>A verifier that prints &quot;all checks passed&quot; without
+naming a verdict fails axiom Accounting. A reviewer who reads
+&quot;VERIFIED&quot; knows what passed; a reviewer who reads &quot;looks
+fine&quot; knows nothing.</p>
+<h2 id="worked-example" tabindex="-1"><a class="header-anchor" href="#worked-example">#</a> Worked example</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>$ sh core/check/verify.sh</span></span>
+<span class="line"><span>FAIL: math/my-pkt/: packet.yaml missing field applications</span></span>
+<span class="line"><span>verify: 4 checks, 1 errors</span></span></code></pre></p>
+<p>The verifier prints the failure cause and exit code 1.
+The convention's verdict is NEEDS_REVISION. The reviewer
+reads the cause, fixes the packet, re-runs the verifier.</p>
+<p>If the verifier printed &quot;ok&quot;:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>$ sh core/check/verify.sh</span></span>
+<span class="line"><span>verify: 4 checks, 0 errors</span></span></code></pre></p>
+<p>the verdict is VERIFIED. The reviewer knows the packet
+satisfies the structure.</p>
+<h2 id="where-this-lives" tabindex="-1"><a class="header-anchor" href="#where-this-lives">#</a> Where this lives</h2>
+<p><code>math/05-accounting/decision.md</code> — the axiom packet
+<code>theories/verdict.md</code> — this file
+<code>core/check/verify.sh</code> — the verifier that produces verdicts
+<code>core/self/probe.sh</code> — axiom Self-Application</p>
+</div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ci-workflow-convention — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-packet">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/">math-coding</a><span class="sep">/</span><a href="/math/">Packets</a><span class="sep">/</span><a href="/math/ci-workflow-convention/">ci-workflow-convention</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+  <header class="packet-header">
+    <h1>ci-workflow-convention</h1>
+    <div class="packet-meta">
+      <span class="lifecycle-badge lifecycle-sketch">sketch</span>
+      <span class="substrate">none</span>
+      <span class="rigor">light</span>
+      <span class="task-id">ci-workflow-convention</span>
+    </div>
+  </header>
+
+  <div class="packet-tabs" data-default-tab="decision">
+    <input type="radio" name="tabs" id="tab-decision" checked>
+    <label for="tab-decision">decision</label>
+
+    <input type="radio" name="tabs" id="tab-task">
+    <label for="tab-task">task</label>
+
+    <input type="radio" name="tabs" id="tab-assumptions">
+    <label for="tab-assumptions">assumptions</label>
+
+    <input type="radio" name="tabs" id="tab-refinement">
+    <label for="tab-refinement">refinement</label>
+
+    <input type="radio" name="tabs" id="tab-yaml">
+    <label for="tab-yaml">packet.yaml</label>
+
+    <div class="tab-panel" id="panel-decision"><h1 id="ci-workflow-convention" tabindex="-1"><a class="header-anchor" href="#ci-workflow-convention">#</a> ci-workflow-convention</h1>
+<h2 id="thesis" tabindex="-1"><a class="header-anchor" href="#thesis">#</a> Thesis</h2>
+<p>State the proposition this packet commits to.</p>
+<h2 id="antithesis" tabindex="-1"><a class="header-anchor" href="#antithesis">#</a> Antithesis</h2>
+<p>State what could contradict the thesis.</p>
+<h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
+<p>State the resolution.</p>
+<h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
+<p>(if applicable) touches: <element> [FROZEN|FLUID]</p>
+<h2 id="proof" tabindex="-1"><a class="header-anchor" href="#proof">#</a> Proof</h2>
+<p>(if applicable) tests/contract/<test>.spec</p>
+</div>
+    <div class="tab-panel" id="panel-task"><h1 id="ci-workflow-convention" tabindex="-1"><a class="header-anchor" href="#ci-workflow-convention">#</a> ci-workflow-convention</h1>
+<h2 id="problem" tabindex="-1"><a class="header-anchor" href="#problem">#</a> Problem</h2>
+<p>What problem does this packet address?</p>
+<h2 id="desired-outcome" tabindex="-1"><a class="header-anchor" href="#desired-outcome">#</a> Desired outcome</h2>
+<p>What does success look like?</p>
+<h2 id="constraints" tabindex="-1"><a class="header-anchor" href="#constraints">#</a> Constraints</h2>
+<ul>
+<li>must be testable</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-assumptions">
+    <table class="assumptions-table">
+      <thead>
+        <tr><th>id</th><th>statement</th><th>epistemology</th><th>conf</th><th>status</th><th>evidence</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><code>A1</code></td>
+      <td>&lt;your first assumption&gt;</td>
+      <td><span class="epistemology-hypothesis">hypothesis</span></td>
+      <td>0.50</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>&lt;one-line evidence&gt;
+</pre></details></td>
+    </tr></tbody>
+    </table></div>
+    <div class="tab-panel" id="panel-refinement"><h1 id="refinement-ci-workflow-convention" tabindex="-1"><a class="header-anchor" href="#refinement-ci-workflow-convention">#</a> Refinement: ci-workflow-convention</h1>
+<h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
+<ul>
+<li>pre: <what was true before this packet></li>
+<li>post: <what this packet makes true></li>
+</ul>
+<h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
+<ul>
+<li>
+<what action implements this packet>
+</li>
+</ul>
+<h2 id="mapping" tabindex="-1"><a class="header-anchor" href="#mapping">#</a> Mapping</h2>
+<spec state to impl state mapping>
+<h2 id="invariant-preservation" tabindex="-1"><a class="header-anchor" href="#invariant-preservation">#</a> Invariant preservation</h2>
+<ul>
+<li>
+<what stays true>
+</li>
+</ul>
+<h2 id="test-obligation" tabindex="-1"><a class="header-anchor" href="#test-obligation">#</a> Test obligation</h2>
+<ul>
+<li>
+<how to verify this packet>
+</li>
+</ul>
+<h2 id="runtime-check" tabindex="-1"><a class="header-anchor" href="#runtime-check">#</a> Runtime check</h2>
+<ul>
+<li>
+<how to monitor at runtime>
+</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-yaml"><pre><code>task_id: ci-workflow-convention
+title: ci-workflow-convention
+lifecycle: sketch
+substrate: none
+rigor: light
+decision: needed
+created: '2026-07-14'
+verifier: null
+depends_on: []
+applications: []
+</code></pre></div>
+  </div>
+
+  
+    <footer class="packet-footer">
+      
+      
+      <p class="empty">No applications[] entries yet.</p>
+    </footer>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

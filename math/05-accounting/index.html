@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A5 Accounting — epistemic axiom — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-packet">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/">math-coding</a><span class="sep">/</span><a href="/math/">Packets</a><span class="sep">/</span><a href="/math/05-accounting/">05-accounting</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+  <header class="packet-header">
+    <h1>A5 Accounting — epistemic axiom</h1>
+    <div class="packet-meta">
+      <span class="lifecycle-badge lifecycle-working">working</span>
+      <span class="substrate">none</span>
+      <span class="rigor">property</span>
+      <span class="task-id">05-accounting</span>
+    </div>
+  </header>
+
+  <div class="packet-tabs" data-default-tab="decision">
+    <input type="radio" name="tabs" id="tab-decision" checked>
+    <label for="tab-decision">decision</label>
+
+    <input type="radio" name="tabs" id="tab-task">
+    <label for="tab-task">task</label>
+
+    <input type="radio" name="tabs" id="tab-assumptions">
+    <label for="tab-assumptions">assumptions</label>
+
+    <input type="radio" name="tabs" id="tab-refinement">
+    <label for="tab-refinement">refinement</label>
+
+    <input type="radio" name="tabs" id="tab-yaml">
+    <label for="tab-yaml">packet.yaml</label>
+
+    <div class="tab-panel" id="panel-decision"><h1 id="05-accounting" tabindex="-1"><a class="header-anchor" href="#05-accounting">#</a> 05-accounting</h1>
+<p>This packet realises <a href="/axioms/#a5-accounting-epistemic" class="wikilink">axiom Accounting</a>.</p>
+<h2 id="thesis" tabindex="-1"><a class="header-anchor" href="#thesis">#</a> Thesis</h2>
+<p>Knowledge must be marked. Verdicts must be named. Changes
+must be witnessed. Modes must be honest about scope.</p>
+<p>Four instruments:</p>
+<p>epistemic markers (5)   — what we know
+verdict outcomes (5)    — what the verifier says
+SHA witness             — what changed
+supersession DAG        — what replaced what
+modes (3)               — how much ceremony</p>
+<h2 id="epistemic-markers-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#epistemic-markers-axiom-accounting">#</a> Epistemic markers (axiom Accounting)</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>B : Prop × Agent → [0, 1]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  fact        — B(P, agent) ≥ 0.95    we have evidence</span></span>
+<span class="line"><span>  hypothesis  — 0.5 &#x3C; B &#x3C; 0.95       we suspect, not proof</span></span>
+<span class="line"><span>  judgment    — B ∈ {0, 1}            we decided, do not argue</span></span>
+<span class="line"><span>  unknown     — B = 0                  we do not know</span></span>
+<span class="line"><span>  proven      — end-to-end verified by convention's own tools</span></span></code></pre></p>
+<p>The five markers are the discipline of care (axiom Care).
+A claim marked <code>fact</code> without evidence is a lie. A claim
+marked <code>unknown</code> honestly is honest.</p>
+<h2 id="verdict-outcomes-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#verdict-outcomes-axiom-accounting">#</a> Verdict outcomes (axiom Accounting)</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Spec ⊨ P</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  VERIFIED                    proof accepted under test</span></span>
+<span class="line"><span>  NEEDS_REVISION              counterexample or missing piece</span></span>
+<span class="line"><span>  UNVERIFIABLE:TOOL_MISSING  required tool unavailable</span></span>
+<span class="line"><span>  UNVERIFIABLE:DEFERRED       data not yet available</span></span>
+<span class="line"><span>  UNVERIFIABLE:OUT_OF_SCOPE   human review required</span></span></code></pre></p>
+<p>Anything outside these five is &quot;looks fine&quot; — the failure
+mode axiom Accounting forbids.</p>
+<h2 id="sha-witness-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#sha-witness-axiom-accounting">#</a> SHA witness (axiom Accounting)</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>applications: List[(SHA × List[FilePath])]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  - sha:    abc123</span></span>
+<span class="line"><span>    by:     agent</span></span>
+<span class="line"><span>    date:   2026-07-15</span></span>
+<span class="line"><span>    pressure: feature</span></span>
+<span class="line"><span>    files:  [src/foo.py]</span></span></code></pre></p>
+<p>Each entry is a concrete proof term. The SHA points to a
+commit. The files are what the commit changed. axiom
+Accounting forbids an entry without a SHA: that would be
+a witness without evidence.</p>
+<h2 id="supersession-dag-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#supersession-dag-axiom-accounting">#</a> Supersession DAG (axiom Accounting)</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>supersession: P_old ⊥ P_new</span></span></code></pre></p>
+<p>P_old and P_new are packets. The relation is a strict partial
+order: irreflexive, asymmetric, transitive. When a packet
+is replaced, its <code>supersession:</code> block names the successor.
+The successor exists as a directory under <code>math/</code>.</p>
+<h2 id="modes-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#modes-axiom-accounting">#</a> Modes (axiom Accounting)</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  light    — commit message only</span></span>
+<span class="line"><span>  standard — full 5-file packet</span></span>
+<span class="line"><span>  strict   — packet + theory link + applications[] + surface impact</span></span></code></pre></p>
+<p>Three modes cover the spectrum without explosion. A
+<code>light</code> change is a typo. A <code>standard</code> change is a feature.
+A <code>strict</code> change is architectural.</p>
+<h2 id="antithesis" tabindex="-1"><a class="header-anchor" href="#antithesis">#</a> Antithesis</h2>
+<p>Without epistemic markers, every claim is &quot;fact&quot; and
+nothing is checked.</p>
+<p>Without verdict outcomes, the verifier says &quot;looks fine&quot;
+or nothing at all.</p>
+<p>Without SHA witness, every change is anonymous and every
+reviewer is guessing.</p>
+<p>Without supersession DAG, packets never retire. The
+convention accumulates ghosts.</p>
+<p>Without modes, every change has the same ceremony — even
+typos. Or every change has no ceremony — even architecture.</p>
+<h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
+<p>axiom Accounting fixes four instruments of accounting.
+axiom Self-Application verifies that they are applied to
+the convention's own packets.</p>
+<p>The five epistemic markers, five verdict outcomes, SHA
+witness, supersession DAG, and three modes are the
+operational face of care (axiom Care). Without care, they
+are empty forms. With care, they catch drift.</p>
+<h2 id="how-a5-appears-in-a-packet-worked-example" tabindex="-1"><a class="header-anchor" href="#how-a5-appears-in-a-packet-worked-example">#</a> How A5 appears in a packet (worked example)</h2>
+<p>Consider this packet, <code>math/05-accounting/</code>. Each of the
+five instruments is concretely realised here:</p>
+<p><strong>1. Epistemic markers</strong> — <code>assumptions.yaml</code>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
+<span class="line"><span style="color:#85E89D">  statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"five epistemic markers capture every belief"</span></span>
+<span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent-inferred</span></span>
+<span class="line"><span style="color:#85E89D">  epistemology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact</span></span>
+<span class="line"><span style="color:#85E89D">  confidence</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.95</span></span>
+<span class="line"><span style="color:#85E89D">  evidence</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">    See theories/epistemic.md. The five markers</span></span>
+<span class="line"><span style="color:#9ECBFF">    (fact/hypothesis/judgment/unknown/proven) are</span></span>
+<span class="line"><span style="color:#9ECBFF">    mutually exclusive and exhaustive for the range</span></span>
+<span class="line"><span style="color:#9ECBFF">    [0, 1].</span></span></code></pre></p>
+<p>The marker is <code>fact</code> because the claim is derived from the
+theory file; the evidence cites the theory.</p>
+<p><strong>2. Verdict outcomes</strong> — produced by <code>core/check/verify.sh</code>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>verify: 74 checks, 0 errors</span></span>
+<span class="line"><span>=== summary ===</span></span>
+<span class="line"><span>  errors: 0</span></span>
+<span class="line"><span>  axiom Self-Application: PROVEN</span></span></code></pre></p>
+<p>When <a href="http://verify.sh">verify.sh</a> exits 0, the verdict is <code>VERIFIED</code>. When
+exit 1, <code>NEEDS_REVISION</code>. The convention does not produce
+&quot;looks fine&quot; — the verdict is named.</p>
+<p><strong>3. SHA witness</strong> — <code>packet.yaml:applications[]</code>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">applications</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">sha</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">576d803</span></span>
+<span class="line"><span style="color:#85E89D">    by</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent</span></span>
+<span class="line"><span style="color:#85E89D">    date</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-07-15</span></span>
+<span class="line"><span style="color:#85E89D">    pressure</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">feature</span></span>
+<span class="line"><span style="color:#85E89D">    files</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">math/05-accounting/decision.md</span><span style="color:#E1E4E8">]</span></span></code></pre></p>
+<p>The SHA points to a real commit; <code>git cat-file -e 576d803</code>
+succeeds. The witness is concrete, not symbolic.</p>
+<p><strong>4. Supersession DAG</strong> — <code>packet.yaml:supersession</code> (only
+when superseded). None here; this packet is in <code>working</code>.
+If the proposition of this packet changes, a successor
+packet is created with <code>supersession: math/05-accounting/</code>,
+and this packet's lifecycle becomes <code>superseded</code>.</p>
+<p><strong>5. Modes</strong> — declared in <code>packet.yaml:rigor</code> and chosen
+by <code>decision.md:Pressure</code>. This packet is <code>rigor: property</code>
+(mode: standard), because it requires the full 5-file
+packet plus theory-link evidence in the proof.</p>
+<h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
+<p>touches: assumptions.yaml:epistemology (5 markers),
+packet.yaml:verifier (the verifying script), packet.yaml:
+applications[].sha (the witness), packet.yaml:supersession
+(deprecated packets), <a href="http://decision.md">decision.md</a>:Pressure (mode choice)</p>
+<h2 id="proof" tabindex="-1"><a class="header-anchor" href="#proof">#</a> Proof</h2>
+<p>The evidence is the verifier's enforcement. The specific
+line in <code>core/check/verify.sh</code> that rejects invalid
+epistemology markers (anything outside the five-marker set)
+is the proof. axiom Self-Application's check 4/6 confirms
+the verifier exits 0 when all four instruments are
+applied correctly.</p>
+</div>
+    <div class="tab-panel" id="panel-task"><h1 id="05-accounting" tabindex="-1"><a class="header-anchor" href="#05-accounting">#</a> 05-accounting</h1>
+<h2 id="problem" tabindex="-1"><a class="header-anchor" href="#problem">#</a> Problem</h2>
+<p>How does the convention record what it knows, what it has
+checked, what has changed, and what has been replaced?</p>
+<h2 id="desired-outcome" tabindex="-1"><a class="header-anchor" href="#desired-outcome">#</a> Desired outcome</h2>
+<p>An epistemic axiom — A5 — that fixes five epistemic
+markers, five verdict outcomes, the SHA witness convention,
+the supersession DAG, and the three modes.</p>
+<h2 id="constraints" tabindex="-1"><a class="header-anchor" href="#constraints">#</a> Constraints</h2>
+<ul>
+<li>Five epistemic markers. Fewer loses distinction; more
+adds noise.</li>
+<li>Five verdict outcomes: VERIFIED, NEEDS_REVISION,
+UNVERIFIABLE:TOOL_MISSING, UNVERIFIABLE:DEFERRED,
+UNVERIFIABLE:OUT_OF_SCOPE.</li>
+<li>Every change carries a git SHA in <code>applications:</code>.</li>
+<li>Supersession is a strict partial order.</li>
+<li>Three modes: light (commit only), standard (5-file
+packet), strict (packet + theory link).</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-assumptions">
+    <table class="assumptions-table">
+      <thead>
+        <tr><th>id</th><th>statement</th><th>epistemology</th><th>conf</th><th>status</th><th>evidence</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><code>A1</code></td>
+      <td>five epistemic markers are sufficient</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.90</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>fact (B &gt;= 0.95), hypothesis (0.5 &lt; B &lt; 0.95),
+judgment (B in {0, 1}), unknown (B = 0),
+proven (end-to-end verified by convention).
+Five is enough; fewer loses distinction.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A2</code></td>
+      <td>verdicts are finite and named</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>VERIFIED, NEEDS_REVISION, UNVERIFIABLE:{TOOL_MISSING,
+DEFERRED, OUT_OF_SCOPE}. Anything else collapses to
+"looks fine" — the failure mode this axiom prevents.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A3</code></td>
+      <td>every change has a SHA witness</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>applications: [{sha, by, date, files: [...]}] in
+packet.yaml. The SHA is the proof term; the files
+are the bridge from proof to implementation.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A4</code></td>
+      <td>supersession is a strict partial order</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.95</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>Irreflexive, asymmetric, transitive. See
+theories/deprecation.md.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A5</code></td>
+      <td>three modes are sufficient</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>light (commit only), standard (5-file packet),
+strict (packet + theory link + applications[]).
+Three modes cover the spectrum without explosion.
+</pre></details></td>
+    </tr></tbody>
+    </table></div>
+    <div class="tab-panel" id="panel-refinement"><h1 id="refinement-05-accounting" tabindex="-1"><a class="header-anchor" href="#refinement-05-accounting">#</a> Refinement: 05-accounting</h1>
+<h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
+<ul>
+<li>pre: convention without epistemic discipline — assumptions
+unmarked, verdicts informal, changes anonymous, modes
+fuzzy.</li>
+<li>post: convention with five epistemic instruments.
+Every belief carries a marker. Every change carries a SHA.
+Every verdict has a defined name.</li>
+</ul>
+<h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
+<p>Enforce five instruments:</p>
+<ol>
+<li><strong>Epistemic markers</strong> in assumptions.yaml:
+<code>fact</code>, <code>hypothesis</code>, <code>judgment</code>, <code>unknown</code>, <code>proven</code>.</li>
+<li><strong>Verdict outcomes</strong> in verifier output: <code>VERIFIED</code>,
+<code>NEEDS_REVISION</code>, <code>UNVERIFIABLE:TOOL_MISSING</code>,
+<code>UNVERIFIABLE:DEFERRED</code>, <code>UNVERIFIABLE:OUT_OF_SCOPE</code>.</li>
+<li><strong>SHA witness</strong> in packet.yaml:applications[].</li>
+<li><strong>Supersession DAG</strong>: deprecated packets reference their
+successors.</li>
+<li><strong>Three modes</strong>: light, standard, strict — chosen by
+<code>decision.md:Pressure</code>.</li>
+</ol>
+<h2 id="mapping" tabindex="-1"><a class="header-anchor" href="#mapping">#</a> Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>instrument</th>
+<th>where it lives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>epistemic markers</td>
+<td>assumptions.yaml:epistemology</td>
+</tr>
+<tr>
+<td>verdict</td>
+<td>verifier stdout, packet.yaml:verifier</td>
+</tr>
+<tr>
+<td>SHA witness</td>
+<td>packet.yaml:applications[].sha</td>
+</tr>
+<tr>
+<td>supersession</td>
+<td>packet.yaml:supersession</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>packet.yaml:decision + lifecycle</td>
+</tr>
+</tbody>
+</table>
+<h2 id="invariant-preservation" tabindex="-1"><a class="header-anchor" href="#invariant-preservation">#</a> Invariant preservation</h2>
+<ul>
+<li>No assumption may omit its epistemic marker.</li>
+<li>No <code>verified</code> packet may carry an empty <code>applications:</code>.</li>
+<li>No <code>deprecated</code> packet may point to a non-existent successor.</li>
+</ul>
+<h2 id="test-obligation" tabindex="-1"><a class="header-anchor" href="#test-obligation">#</a> Test obligation</h2>
+<ul>
+<li>axiom Self-Application — verifier rejects malformed epistemic markers,
+empty witnesses, dangling supersession references.</li>
+</ul>
+<h2 id="runtime-check" tabindex="-1"><a class="header-anchor" href="#runtime-check">#</a> Runtime check</h2>
+<ul>
+<li>axiom Self-Application — convention verifies its own epistemic
+accounting.</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-yaml"><pre><code>task_id: 05-accounting
+title: A5 Accounting — epistemic axiom
+lifecycle: working
+substrate: none
+rigor: property
+decision: made
+created: '2026-07-15'
+verifier: sh core/axiom/probe.sh
+depends_on:
+  - 00-difference
+  - 01-care
+  - 02-curry-howard
+  - 03-material
+  - 04-process
+applications:
+  - sha: ce2faf53096f7f832094c95f8e71c77c496d0351
+    by: agent
+    date: '2026-07-15'
+    pressure: feature
+    files:
+      - math/05-accounting/decision.md
+</code></pre></div>
+  </div>
+
+  
+    <footer class="packet-footer">
+      <div class="depends-on"><h3>Depends on</h3><p><a href="/math/00-difference/" class="dep-link">00-difference</a>, <a href="/math/01-care/" class="dep-link">01-care</a>, <a href="/math/02-curry-howard/" class="dep-link">02-curry-howard</a>, <a href="/math/03-material/" class="dep-link">03-material</a>, <a href="/math/04-process/" class="dep-link">04-process</a></p></div>
+      
+      <div class="applications"><h3>Applications (axiom Accounting witnesses)</h3><ul><li><code>ce2faf5</code> 2026-07-15 — feature (1 files)</li></ul></div>
+    </footer>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

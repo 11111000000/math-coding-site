@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Epistemic markers in theories/epistemic.md — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-packet">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/">math-coding</a><span class="sep">/</span><a href="/math/">Packets</a><span class="sep">/</span><a href="/math/epistemic-markers-in-theory/">epistemic-markers-in-theory</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+  <header class="packet-header">
+    <h1>Epistemic markers in theories/epistemic.md</h1>
+    <div class="packet-meta">
+      <span class="lifecycle-badge lifecycle-working">working</span>
+      <span class="substrate">none</span>
+      <span class="rigor">light</span>
+      <span class="task-id">epistemic-markers-in-theory</span>
+    </div>
+  </header>
+
+  <div class="packet-tabs" data-default-tab="decision">
+    <input type="radio" name="tabs" id="tab-decision" checked>
+    <label for="tab-decision">decision</label>
+
+    <input type="radio" name="tabs" id="tab-task">
+    <label for="tab-task">task</label>
+
+    <input type="radio" name="tabs" id="tab-assumptions">
+    <label for="tab-assumptions">assumptions</label>
+
+    <input type="radio" name="tabs" id="tab-refinement">
+    <label for="tab-refinement">refinement</label>
+
+    <input type="radio" name="tabs" id="tab-yaml">
+    <label for="tab-yaml">packet.yaml</label>
+
+    <div class="tab-panel" id="panel-decision"><h1 id="epistemic-markers-in-theory" tabindex="-1"><a class="header-anchor" href="#epistemic-markers-in-theory">#</a> epistemic-markers-in-theory</h1>
+<h2 id="thesis" tabindex="-1"><a class="header-anchor" href="#thesis">#</a> Thesis</h2>
+<p>The five epistemic markers (fact, hypothesis, judgment,
+unknown, proven) appear in <code>theories/epistemic.md</code>. The
+theory of epistemic markers <strong>contains</strong> the markers it
+defines.</p>
+<h2 id="antithesis" tabindex="-1"><a class="header-anchor" href="#antithesis">#</a> Antithesis</h2>
+<p>If the theory file omits a marker, axiom Accounting's
+implementation is silent. axiom Accounting is implemented
+in <code>core/check/verify.sh</code>, which checks for marker
+<strong>membership</strong> in the allowed set. If the allowed set is
+stale (missing a marker), the verifier silently accepts the
+missing marker as invalid.</p>
+<p>A typo in the theory (e.g. &quot;hypothises&quot; instead of
+&quot;hypothesis&quot;) would not be caught unless someone reads the
+theory file manually.</p>
+<h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
+<p><code>tests/run.sh</code> Case 17 asserts that all five markers
+appear in <code>theories/epistemic.md</code>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>if grep -q "fact" "$REPO_ROOT/theories/epistemic.md" &#x26;&#x26; \</span></span>
+<span class="line"><span>   grep -q "hypothesis" "$REPO_ROOT/theories/epistemic.md" &#x26;&#x26; \</span></span>
+<span class="line"><span>   grep -q "judgment" "$REPO_ROOT/theories/epistemic.md" &#x26;&#x26; \</span></span>
+<span class="line"><span>   grep -q "unknown" "$REPO_ROOT/theories/epistemic.md" &#x26;&#x26; \</span></span>
+<span class="line"><span>   grep -q "proven" "$REPO_ROOT/theories/epistemic.md"; then</span></span>
+<span class="line"><span>    PASS</span></span>
+<span class="line"><span>else</span></span>
+<span class="line"><span>    FAIL</span></span>
+<span class="line"><span>fi</span></span></code></pre></p>
+<p>The test is <strong>content-based</strong>, not structural. It catches
+typos, missing words, and accidental deletions.</p>
+<h2 id="worked-example" tabindex="-1"><a class="header-anchor" href="#worked-example">#</a> Worked example</h2>
+<p>A contributor adds a new marker &quot;conjecture&quot; to the
+allowed set in <code>convention-spec.yaml</code> but forgets to add
+it to <code>theories/epistemic.md</code>. axiom Accounting's spec is
+extended; the verifier accepts &quot;conjecture&quot;. The test
+catches this only if it also asserts that the <strong>five
+canonical</strong> markers are in the theory file.</p>
+<p>This test is <strong>conservative</strong>: it asserts the <strong>canonical
+five</strong> markers are present, not that <strong>only</strong> the five are
+present. Future extensions (new markers) require a test
+update, which is <strong>explicit</strong> and <strong>visible</strong> in a commit.</p>
+<h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
+<p>touches: <code>theories/epistemic.md</code> (canonical content),
+<code>tests/run.sh</code> (Case 17), axiom Accounting (the theory
+of epistemic markers)</p>
+<h2 id="proof" tabindex="-1"><a class="header-anchor" href="#proof">#</a> Proof</h2>
+<p>The test runs at every commit (CI and locally). If the
+theory file loses a marker, the test fails, the commit is
+blocked (in CI), and the convention stays self-consistent.</p>
+</div>
+    <div class="tab-panel" id="panel-task"><h1 id="epistemic-markers-in-theory" tabindex="-1"><a class="header-anchor" href="#epistemic-markers-in-theory">#</a> epistemic-markers-in-theory</h1>
+<h2 id="problem" tabindex="-1"><a class="header-anchor" href="#problem">#</a> Problem</h2>
+<p>axiom Accounting's five epistemic markers (fact,
+hypothesis, judgment, unknown, proven) are defined in
+<code>theories/epistemic.md</code>. If the theory file is missing
+one, axiom Accounting's implementation (which checks for
+marker membership) silently fails on a stale allowed set.</p>
+<h2 id="desired-outcome" tabindex="-1"><a class="header-anchor" href="#desired-outcome">#</a> Desired outcome</h2>
+<p>A self-test that asserts all five canonical markers appear
+in <code>theories/epistemic.md</code>. The convention verifies its
+own theory.</p>
+<h2 id="constraints" tabindex="-1"><a class="header-anchor" href="#constraints">#</a> Constraints</h2>
+<ul>
+<li>POSIX shell only.</li>
+<li>The test must fail loudly if any marker is missing.</li>
+<li>The test must be deterministic.</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-assumptions">
+    <table class="assumptions-table">
+      <thead>
+        <tr><th>id</th><th>statement</th><th>epistemology</th><th>conf</th><th>status</th><th>evidence</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><code>A1</code></td>
+      <td>five markers are canonical</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>axiom Accounting (A5) names five epistemic markers:
+fact, hypothesis, judgment, unknown, proven. See
+theories/epistemic.md.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A2</code></td>
+      <td>the theory file contains all five</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.95</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>theories/epistemic.md is the canonical source. The
+test verifies that all five are present.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A3</code></td>
+      <td>missing a marker is a convention bug</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>If a marker is missing, axiom Accounting's spec is
+silent, and the verifier may accept invalid markers.
+</pre></details></td>
+    </tr></tbody>
+    </table></div>
+    <div class="tab-panel" id="panel-refinement"><h1 id="refinement-epistemic-markers-in-theory" tabindex="-1"><a class="header-anchor" href="#refinement-epistemic-markers-in-theory">#</a> Refinement: epistemic-markers-in-theory</h1>
+<h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
+<ul>
+<li>pre: theories/epistemic.md contains five markers
+(manually verified at genesis). A typo would not be
+caught.</li>
+<li>post: a self-test asserts the five markers are present.
+Typo caught at commit time.</li>
+</ul>
+<h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
+<p><code>tests/run.sh</code> Case 17:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>markers_found=0</span></span>
+<span class="line"><span>for m in fact hypothesis judgment unknown proven; do</span></span>
+<span class="line"><span>    if grep -q "$m" "$REPO_ROOT/theories/epistemic.md"; then</span></span>
+<span class="line"><span>        markers_found=$((markers_found + 1))</span></span>
+<span class="line"><span>    fi</span></span>
+<span class="line"><span>done</span></span>
+<span class="line"><span>if [ "$markers_found" = "5" ]; then</span></span>
+<span class="line"><span>    PASS</span></span>
+<span class="line"><span>else</span></span>
+<span class="line"><span>    FAIL</span></span>
+<span class="line"><span>fi</span></span></code></pre></p>
+<h2 id="mapping" tabindex="-1"><a class="header-anchor" href="#mapping">#</a> Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>marker</th>
+<th>role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fact</td>
+<td>B(P) &gt;= 0.95</td>
+</tr>
+<tr>
+<td>hypothesis</td>
+<td>0.5 &lt; B(P) &lt; 0.95</td>
+</tr>
+<tr>
+<td>judgment</td>
+<td>B(P) in {0, 1}</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td>B(P) = 0</td>
+</tr>
+<tr>
+<td>proven</td>
+<td>end-to-end verified (axiom A6)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="invariant-preservation" tabindex="-1"><a class="header-anchor" href="#invariant-preservation">#</a> Invariant preservation</h2>
+<ul>
+<li>All five markers are present in theories/epistemic.md.</li>
+<li>axiom Accounting is consistent with its theory.</li>
+</ul>
+<h2 id="test-obligation" tabindex="-1"><a class="header-anchor" href="#test-obligation">#</a> Test obligation</h2>
+<p>The test runs at every commit. Failure blocks the commit
+(in CI). The convention's theory stays self-consistent.</p>
+<h2 id="runtime-check" tabindex="-1"><a class="header-anchor" href="#runtime-check">#</a> Runtime check</h2>
+<p>None. The test runs at commit time.</p>
+</div>
+    <div class="tab-panel" id="panel-yaml"><pre><code>task_id: epistemic-markers-in-theory
+title: Epistemic markers in theories/epistemic.md
+lifecycle: working
+substrate: none
+rigor: light
+decision: made
+created: '2026-07-15'
+verifier: sh tests/run.sh
+depends_on:
+  - axiom-accounting
+applications: []
+</code></pre></div>
+  </div>
+
+  
+    <footer class="packet-footer">
+      <div class="depends-on"><h3>Depends on</h3><p><a href="/math/axiom-accounting/" class="dep-link">axiom-accounting</a></p></div>
+      
+      <p class="empty">No applications[] entries yet.</p>
+    </footer>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

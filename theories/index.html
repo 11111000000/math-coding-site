@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theories — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-theories">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/theories/">Theories</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+    <header><h1>Eight theories</h1></header>
+    <p class="intro">Eight mathematical theories ground the convention.</p>
+    <div class="theory-grid"><article class="theory-card">
+        <h3><a href="/theories/agent.html">agent</a></h3>
+        <p class="axiom-link">A6</p>
+        <p class="excerpt">An AI coding agent is a function over a state space: `` S = (chat_history, files_read, files_written, mode, role) ` The …</p>
+      </article><article class="theory-card">
+        <h3><a href="/theories/curry-howard.html">curry-howard</a></h3>
+        <p class="axiom-link">A2</p>
+        <p class="excerpt">A proposition is a type. A proof is a program. A type-check is the verification that a program inhabits its type. `` Typ…</p>
+      </article><article class="theory-card">
+        <h3><a href="/theories/deprecation.html">deprecation</a></h3>
+        <p class="axiom-link">A5</p>
+        <p class="excerpt">Supersession is a binary relation ⊥ between packets. It is a strict partial order: ``   Irreflexive   ¬(P ⊥ P)   Asymmet…</p>
+      </article><article class="theory-card">
+        <h3><a href="/theories/epistemic.html">epistemic</a></h3>
+        <p class="axiom-link">A5</p>
+        <p class="excerpt">A belief state is a function: `` B : Prop × Agent → [0, 1] ` mapping a proposition and an agent to a confidence value. T…</p>
+      </article><article class="theory-card">
+        <h3><a href="/theories/fsm.html">fsm</a></h3>
+        <p class="axiom-link">A4</p>
+        <p class="excerpt">A finite state machine is a tuple: `` M = ⟨ S, s₀, A, →, I ⟩ ` where   S     — finite set of states   s₀    — initial st…</p>
+      </article><article class="theory-card">
+        <h3><a href="/theories/predicate.html">predicate</a></h3>
+        <p class="axiom-link">A4</p>
+        <p class="excerpt">A predicate over a state space S is a function: `` I : S → Bool ` A state s satisfies I iff I(s) = true. In math-coding,…</p>
+      </article><article class="theory-card">
+        <h3><a href="/theories/refinement.html">refinement</a></h3>
+        <p class="axiom-link">A4</p>
+        <p class="excerpt">A refinement is a relation: `` R ⊆ S_impl × S_spec ` such that every implementation behaviour has a matching (possibly s…</p>
+      </article><article class="theory-card">
+        <h3><a href="/theories/verdict.html">verdict</a></h3>
+        <p class="axiom-link">A5</p>
+        <p class="excerpt">A verdict is the outcome of evaluating the proof obligation: `` Spec ⊨ P ` read as: "the specification entails the propo…</p>
+      </article></div>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

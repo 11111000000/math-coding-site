@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A6 Self-Application — meta axiom — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-packet">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/">math-coding</a><span class="sep">/</span><a href="/math/">Packets</a><span class="sep">/</span><a href="/math/06-self-application/">06-self-application</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+  <header class="packet-header">
+    <h1>A6 Self-Application — meta axiom</h1>
+    <div class="packet-meta">
+      <span class="lifecycle-badge lifecycle-working">working</span>
+      <span class="substrate">none</span>
+      <span class="rigor">proof</span>
+      <span class="task-id">06-self-application</span>
+    </div>
+  </header>
+
+  <div class="packet-tabs" data-default-tab="decision">
+    <input type="radio" name="tabs" id="tab-decision" checked>
+    <label for="tab-decision">decision</label>
+
+    <input type="radio" name="tabs" id="tab-task">
+    <label for="tab-task">task</label>
+
+    <input type="radio" name="tabs" id="tab-assumptions">
+    <label for="tab-assumptions">assumptions</label>
+
+    <input type="radio" name="tabs" id="tab-refinement">
+    <label for="tab-refinement">refinement</label>
+
+    <input type="radio" name="tabs" id="tab-yaml">
+    <label for="tab-yaml">packet.yaml</label>
+
+    <div class="tab-panel" id="panel-decision"><h1 id="06-self-application" tabindex="-1"><a class="header-anchor" href="#06-self-application">#</a> 06-self-application</h1>
+<p>This packet realises <a href="/axioms/#a6-self-application-meta" class="wikilink">axiom Self-Application</a>.</p>
+<h2 id="thesis" tabindex="-1"><a class="header-anchor" href="#thesis">#</a> Thesis</h2>
+<p>The convention applies to itself. Every axiom above is
+realised as a packet under <code>math/</code>. The verifier that
+checks those packets is itself the subject of a packet.
+The probe that proves axiom Self-Application holds is
+axiom Self-Application made operational.</p>
+<p>Formally:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>A6.  ∀ packet P ∈ math/* :</span></span>
+<span class="line"><span>        ∀ axiom A_i (i ∈ {0,..,5}) :</span></span>
+<span class="line"><span>          P satisfies A_i</span></span></code></pre></p>
+<p>axiom Self-Application is the closing of the loop. The
+seven axioms are seven packets. The <code>core/</code> scripts are
+themselves subjects of packets. The verifier exit-code is
+itself a witness in <code>applications[]</code>.</p>
+<p><code>sh core/self/probe.sh</code> is the proof: when the script
+returns 0, the convention has applied itself to its own
+state and found itself consistent.</p>
+<h2 id="antithesis" tabindex="-1"><a class="header-anchor" href="#antithesis">#</a> Antithesis</h2>
+<p>A convention that cannot verify itself relies on external
+authority — a maintainer, a reviewer, a runtime. That
+authority can disappear; the convention then rots in
+silence.</p>
+<p>Many conventions are exactly this. They have a README that
+asserts &quot;we follow these principles&quot; and no script that
+checks whether the principles are followed. The principles
+are held in the maintainer's head; when the maintainer
+leaves, the principles leave.</p>
+<p>Some conventions try to test themselves via a CI pipeline
+that runs after every commit. This is necessary but not
+sufficient. CI can check that tests pass; it cannot check
+that the axioms are coherent. axiom Self-Application is
+more than CI. It is the convention observing its own
+structure.</p>
+<h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
+<p>axiom Self-Application closes the loop. The proof
+obligation is</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>sh core/self/probe.sh  →  exit 0</span></span></code></pre></p>
+<p>The probe runs six checks:</p>
+<p>[1/6]  every math/<pkt>/ has five files
+[2/6]  docs/axioms.md lists seven axioms
+[3/6]  theories/ contains eight theories
+[4/6]  core/check/verify.sh exits 0
+[5/6]  core/check/drift-check.sh detects no drift
+[6/6]  axiom packets form a dependency chain</p>
+<p>Each check is a predicate (axiom Process). The conjunction
+of the six predicates is axiom Self-Application. The probe
+evaluates the conjunction. If all six hold, exit 0.</p>
+<p>The proof of axiom Self-Application is axiom
+Self-Application itself. The script that proves axiom
+Self-Application is a script written under axiom
+Self-Application (axiom Curry-Howard: a script is a
+proof term; axiom Process: the script's lifecycle is
+verified because the probe runs; axiom Accounting: the
+probe's exit code is the witness).</p>
+<h2 id="what-this-means-in-practice" tabindex="-1"><a class="header-anchor" href="#what-this-means-in-practice">#</a> What this means in practice</h2>
+<p>When you run <code>sh math-coding probe</code>, the convention runs
+against itself. The seven axiom packets are the test
+fixtures. The probe is the test runner. The exit code is
+the verdict.</p>
+<p>If you change <code>core/self/probe.sh</code> and break axiom
+Self-Application, the probe exits non-zero. The convention
+tells you. You fix the probe. axiom Self-Application
+holds again.</p>
+<p>If you change a theory file and the theory drifts from
+what axiom packets cite, the probe exits non-zero. The
+convention tells you. You align the theory with the packet.</p>
+<p>The convention is not a static document. It is a system
+that observes itself.</p>
+<h2 id="a-worked-example" tabindex="-1"><a class="header-anchor" href="#a-worked-example">#</a> A worked example</h2>
+<p>When the backlinks commit (12ece14) introduced edits to
+each axiom packet's <code>decision.md</code>, the recorded SHA in
+<code>applications[]</code> became stale for two packets (A6 and
+packet-lifecycle). The convention caught the drift
+immediately:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>$ sh math-coding drift-check</span></span>
+<span class="line"><span>DRIFT: 06-self-application application 9fd84a9... stale</span></span>
+<span class="line"><span>DRIFT: packet-lifecycle application 9fd84a9... stale</span></span>
+<span class="line"><span>applied: 6, lookahead: 0, drift: 2</span></span></code></pre></p>
+<p>This is axiom Self-Application in action. The convention
+detected that its own witness was stale. Two fix commits
+refreshed the SHA; the drift cleared; axiom Self-Application held again.</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>$ sh math-coding drift-check</span></span>
+<span class="line"><span>applied: 8, lookahead: 0, drift: 0</span></span></code></pre></p>
+<p>The convention observed its own drift and recorded the
+observation. axiom Self-Application is real because the
+convention recorded it happening.</p>
+<h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
+<p>touches: the six checks in <code>core/self/probe.sh</code>:
+[1/6] 5 files per packet (axiom Curry-Howard)
+[2/6] seven axioms in docs/axioms.md (axiom Process)
+[3/6] eight theories in theories/ (axiom Process)
+[4/6] <a href="http://verify.sh">verify.sh</a> exit 0 (axiom Curry-Howard)
+[5/6] <a href="http://drift-check.sh">drift-check.sh</a> exit 0 (axiom Accounting)
+[6/6] axiom dependency chain closed (axiom Process)</p>
+<h2 id="proof" tabindex="-1"><a class="header-anchor" href="#proof">#</a> Proof</h2>
+<p>The proof is the probe itself. <code>sh core/self/probe.sh</code>
+exits 0 ⟺ the convention's own packets satisfy the
+structure their verifier demands, the axioms in
+docs/axioms.md cohere with the theories in theories/,
+the core/ scripts run on a minimal POSIX shell, the
+applications[] SHA witnesses resolve to real commits.</p>
+<p>The proof of axiom Self-Application is axiom
+Self-Application itself.</p>
+</div>
+    <div class="tab-panel" id="panel-task"><h1 id="06-self-application" tabindex="-1"><a class="header-anchor" href="#06-self-application">#</a> 06-self-application</h1>
+<h2 id="problem" tabindex="-1"><a class="header-anchor" href="#problem">#</a> Problem</h2>
+<p>How does the convention prove that it is internally
+consistent? What runs the proof?</p>
+<h2 id="desired-outcome" tabindex="-1"><a class="header-anchor" href="#desired-outcome">#</a> Desired outcome</h2>
+<p>A meta axiom — A6 — and the script that satisfies it.</p>
+<p>When <code>sh core/self/probe.sh</code> returns 0, the convention
+has applied its own rules to its own state. The exit-code
+is the witness.</p>
+<h2 id="constraints" tabindex="-1"><a class="header-anchor" href="#constraints">#</a> Constraints</h2>
+<ul>
+<li>The script must run on a minimal POSIX environment.</li>
+<li>The script must check all seven axioms coherently.</li>
+<li>The script must not depend on any non-core/ artifact.</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-assumptions">
+    <table class="assumptions-table">
+      <thead>
+        <tr><th>id</th><th>statement</th><th>epistemology</th><th>conf</th><th>status</th><th>evidence</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><code>A1</code></td>
+      <td>the convention's own packets must satisfy its verifier</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>The seven axiom packets live under math/ and must
+pass core/check/verify.sh. Their verifier is one of
+the artifacts under core/.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A2</code></td>
+      <td>probe.sh exits 0 iff the convention is internally consistent</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>probe.sh runs core/check/verify.sh against every
+math/&lt;pkt&gt;/, then checks coherence between docs/axioms.md
+and theories/, then runs core/check/drift-check.sh on
+the axioms' applications[] entries.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A3</code></td>
+      <td>the meta-check is itself a packet</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.99</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>This packet — math/06-self-application/ — is the
+meta-check made into a 5-file packet. Its existence
+is the proof that the convention applies to itself.
+</pre></details></td>
+    </tr></tbody>
+    </table></div>
+    <div class="tab-panel" id="panel-refinement"><h1 id="refinement-06-self-application" tabindex="-1"><a class="header-anchor" href="#refinement-06-self-application">#</a> Refinement: 06-self-application</h1>
+<h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
+<ul>
+<li>pre: the convention exists in fragments — packets, scripts,
+theories, axioms — but no single act demonstrates their
+mutual coherence.</li>
+<li>post: <code>sh core/self/probe.sh</code> runs and returns 0. The
+convention has applied itself to its own state and found
+itself consistent.</li>
+</ul>
+<h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
+<p><a href="http://probe.sh">probe.sh</a> performs these checks:</p>
+<ol>
+<li>Every math/<pkt>/ has exactly five files.</li>
+<li>Every packet.yaml declares one of the seven epistemic
+markers per assumption.</li>
+<li>Every axiom packet references its predecessors in
+depends_on:.</li>
+<li>docs/axioms.md lists exactly seven axioms in canonical
+order (A0, A1, A2, A3, A4, A5, A6).</li>
+<li>theories/ contains the eight theories cited from the
+seven axiom packets.</li>
+<li>Every application[] SHA resolves to a real commit in
+the git history.</li>
+</ol>
+<h2 id="mapping" tabindex="-1"><a class="header-anchor" href="#mapping">#</a> Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>A6 obligation</th>
+<th><a href="http://probe.sh">probe.sh</a> check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>five files per packet</td>
+<td><code>find math -name packet.yaml | wc -l</code> matches count of <code>*/{decision,task,assumptions,refinement}.md</code></td>
+</tr>
+<tr>
+<td>epistemic markers</td>
+<td>grep assumptions.yaml for invalid markers</td>
+</tr>
+<tr>
+<td>depends_on chain</td>
+<td>topological sort; reject cycles</td>
+</tr>
+<tr>
+<td>axioms doc</td>
+<td>grep <code>^## A[0-9]\.</code> for exactly seven</td>
+</tr>
+<tr>
+<td>theories present</td>
+<td>for each theory cited in axiom packets, assert file exists</td>
+</tr>
+<tr>
+<td>SHA witness</td>
+<td>for each SHA in applications[], assert git rev-parse succeeds</td>
+</tr>
+</tbody>
+</table>
+<h2 id="invariant-preservation" tabindex="-1"><a class="header-anchor" href="#invariant-preservation">#</a> Invariant preservation</h2>
+<ul>
+<li>A6 holds across all edits that pass <a href="http://probe.sh">probe.sh</a>.</li>
+<li>A6 cannot hold vacuously: <a href="http://probe.sh">probe.sh</a> is a POSIX shell
+script that runs against the real filesystem and real
+git history.</li>
+</ul>
+<h2 id="test-obligation" tabindex="-1"><a class="header-anchor" href="#test-obligation">#</a> Test obligation</h2>
+<ul>
+<li><a href="http://probe.sh">probe.sh</a> exit 0 = axiom Self-Application proven.</li>
+<li><a href="http://probe.sh">probe.sh</a> exit non-zero = drift; the verdict lists the
+first failing check.</li>
+</ul>
+<h2 id="runtime-check" tabindex="-1"><a class="header-anchor" href="#runtime-check">#</a> Runtime check</h2>
+<ul>
+<li>axiom Self-Application itself — the convention's own runtime.</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-yaml"><pre><code>task_id: 06-self-application
+title: A6 Self-Application — meta axiom
+lifecycle: working
+substrate: none
+rigor: proof
+decision: made
+created: '2026-07-15'
+verifier: sh core/axiom/probe.sh
+depends_on:
+  - 00-difference
+  - 01-care
+  - 02-curry-howard
+  - 03-material
+  - 04-process
+  - 05-accounting
+applications:
+  - sha: ce2faf53096f7f832094c95f8e71c77c496d0351
+    by: agent
+    date: '2026-07-15'
+    pressure: feature
+    files:
+      - math/06-self-application/decision.md
+</code></pre></div>
+  </div>
+
+  
+    <footer class="packet-footer">
+      <div class="depends-on"><h3>Depends on</h3><p><a href="/math/00-difference/" class="dep-link">00-difference</a>, <a href="/math/01-care/" class="dep-link">01-care</a>, <a href="/math/02-curry-howard/" class="dep-link">02-curry-howard</a>, <a href="/math/03-material/" class="dep-link">03-material</a>, <a href="/math/04-process/" class="dep-link">04-process</a>, <a href="/math/05-accounting/" class="dep-link">05-accounting</a></p></div>
+      
+      <div class="applications"><h3>Applications (axiom Accounting witnesses)</h3><ul><li><code>ce2faf5</code> 2026-07-15 — feature (1 files)</li></ul></div>
+    </footer>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FSM — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-fsm">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/fsm/">FSM</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+    <header>
+      <h1>Lifecycle FSM (axiom Process)</h1>
+      <p class="intro">The convention's lifecycle is a six-state machine. Every packet traverses it; axiom Process forbids <code>sketch → verified</code>.</p>
+      <div class="fsm-stats"><span class="stat"><span class="lifecycle-badge lifecycle-sketch">sketch</span> 1</span><span class="stat"><span class="lifecycle-badge lifecycle-working">working</span> 12</span><span class="stat"><span class="lifecycle-badge lifecycle-verified">verified</span> 0</span><span class="stat"><span class="lifecycle-badge lifecycle-deprecated">deprecated</span> 0</span><span class="stat"><span class="lifecycle-badge lifecycle-archived">archived</span> 0</span><span class="stat"><span class="lifecycle-badge lifecycle-superseded">superseded</span> 0</span></div>
+    </header>
+    <section class="fsm-diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" class="fsm-svg" role="img" aria-label="lifecycle FSM">
+<line x1="90" y1="80" x2="126" y2="80" stroke="#888" stroke-width="1.5" />
+<line x1="226" y1="80" x2="262" y2="80" stroke="#888" stroke-width="1.5" />
+<line x1="362" y1="80" x2="398" y2="80" stroke="#888" stroke-width="1.5" />
+<line x1="498" y1="80" x2="534" y2="80" stroke="#888" stroke-width="1.5" />
+<line x1="362" y1="80" x2="670" y2="80" stroke="#888" stroke-width="1.5" />
+<line x1="226" y1="80" x2="670" y2="80" stroke="#888" stroke-width="1.5" />
+<g class="fsm-state" data-state="sketch">
+  <rect x="-10" y="56" width="100" height="48" rx="6"/>
+  <text x="40" y="84">sketch</text>
+</g>
+<g class="fsm-state" data-state="working">
+  <rect x="126" y="56" width="100" height="48" rx="6"/>
+  <text x="176" y="84">working</text>
+</g>
+<g class="fsm-state" data-state="verified">
+  <rect x="262" y="56" width="100" height="48" rx="6"/>
+  <text x="312" y="84">verified</text>
+</g>
+<g class="fsm-state" data-state="deprecated">
+  <rect x="398" y="56" width="100" height="48" rx="6"/>
+  <text x="448" y="84">deprecated</text>
+</g>
+<g class="fsm-state" data-state="archived">
+  <rect x="534" y="56" width="100" height="48" rx="6"/>
+  <text x="584" y="84">archived</text>
+</g>
+<g class="fsm-state" data-state="superseded">
+  <rect x="670" y="56" width="100" height="48" rx="6"/>
+  <text x="720" y="84">superseded</text>
+</g>
+<text x="40" y="180" class="fsm-legend">allowed transition</text>
+<line x1="170" y1="176" x2="220" y2="176" stroke="#888" stroke-width="1.5"/>
+<text x="240" y="180" class="fsm-legend">forbidden transition</text>
+<line x1="370" y1="176" x2="420" y2="176" stroke="#c7472b" stroke-width="1.5" stroke-dasharray="4 4"/>
+</svg></section>
+    <section class="fsm-table">
+      <table>
+        <thead>
+          <tr><th>packet</th><th>title</th><th>current</th><th>transitions</th><th>latest SHA</th></tr>
+        </thead>
+        <tbody><tr>
+        <td><a href="/math/00-difference/">00-difference</a></td>
+        <td>A0 Difference — ontological axiom</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr><tr>
+        <td><a href="/math/01-care/">01-care</a></td>
+        <td>A1 Care — motivational axiom</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr><tr>
+        <td><a href="/math/02-curry-howard/">02-curry-howard</a></td>
+        <td>A2 Curry-Howard — structural axiom</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr><tr>
+        <td><a href="/math/03-material/">03-material</a></td>
+        <td>A3 Material Basis — substrate axiom</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr><tr>
+        <td><a href="/math/04-process/">04-process</a></td>
+        <td>A4 Process — temporal axiom</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr><tr>
+        <td><a href="/math/05-accounting/">05-accounting</a></td>
+        <td>A5 Accounting — epistemic axiom</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr><tr>
+        <td><a href="/math/06-self-application/">06-self-application</a></td>
+        <td>A6 Self-Application — meta axiom</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr><tr>
+        <td><a href="/math/brownfield-install-cycle-test/">brownfield-install-cycle-test</a></td>
+        <td>Brownfield install + verify + uninstall cycle test</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>0</td>
+        <td>—</td>
+      </tr><tr>
+        <td><a href="/math/ci-workflow-convention/">ci-workflow-convention</a></td>
+        <td>ci-workflow-convention</td>
+        <td><span class="lifecycle-badge lifecycle-sketch">sketch</span></td>
+        <td>0</td>
+        <td>—</td>
+      </tr><tr>
+        <td><a href="/math/create-packet-spec-driven/">create-packet-spec-driven</a></td>
+        <td>Spec-driven packet creation — single-call packet synthesis</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>0</td>
+        <td>—</td>
+      </tr><tr>
+        <td><a href="/math/epistemic-markers-in-theory/">epistemic-markers-in-theory</a></td>
+        <td>Epistemic markers in theories/epistemic.md</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>0</td>
+        <td>—</td>
+      </tr><tr>
+        <td><a href="/math/extract-packet-reverse/">extract-packet-reverse</a></td>
+        <td>Reverse — extract 5-file packet to single spec</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>0</td>
+        <td>—</td>
+      </tr><tr>
+        <td><a href="/math/packet-lifecycle/">packet-lifecycle</a></td>
+        <td>Packet lifecycle — amendment and supersession</td>
+        <td><span class="lifecycle-badge lifecycle-working">working</span></td>
+        <td>1</td>
+        <td><code>ce2faf5</code></td>
+      </tr></tbody>
+      </table>
+    </section>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packet lifecycle — amendment and supersession — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-packet">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/">math-coding</a><span class="sep">/</span><a href="/math/">Packets</a><span class="sep">/</span><a href="/math/packet-lifecycle/">packet-lifecycle</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+  <header class="packet-header">
+    <h1>Packet lifecycle — amendment and supersession</h1>
+    <div class="packet-meta">
+      <span class="lifecycle-badge lifecycle-working">working</span>
+      <span class="substrate">none</span>
+      <span class="rigor">property</span>
+      <span class="task-id">packet-lifecycle</span>
+    </div>
+  </header>
+
+  <div class="packet-tabs" data-default-tab="decision">
+    <input type="radio" name="tabs" id="tab-decision" checked>
+    <label for="tab-decision">decision</label>
+
+    <input type="radio" name="tabs" id="tab-task">
+    <label for="tab-task">task</label>
+
+    <input type="radio" name="tabs" id="tab-assumptions">
+    <label for="tab-assumptions">assumptions</label>
+
+    <input type="radio" name="tabs" id="tab-refinement">
+    <label for="tab-refinement">refinement</label>
+
+    <input type="radio" name="tabs" id="tab-yaml">
+    <label for="tab-yaml">packet.yaml</label>
+
+    <div class="tab-panel" id="panel-decision"><h1 id="packet-lifecycle" tabindex="-1"><a class="header-anchor" href="#packet-lifecycle">#</a> packet-lifecycle</h1>
+<p>This packet realises the lifecycle discipline described
+in <a href="/axioms/#a4-process-temporal" class="wikilink">axiom Process</a>
+and <a href="/axioms/#a5-accounting-epistemic" class="wikilink">axiom Accounting</a>.</p>
+<h2 id="thesis" tabindex="-1"><a class="header-anchor" href="#thesis">#</a> Thesis</h2>
+<p>A packet lives through seven phases — from a rough idea
+to archival — and each transition leaves a SHA witness.
+Amendments add entries to <code>applications[]</code>. Supersession
+spawns a new packet. Re-application is a new packet that
+points back. Nothing is edited in place; everything is
+appended.</p>
+<h2 id="antithesis" tabindex="-1"><a class="header-anchor" href="#antithesis">#</a> Antithesis</h2>
+<p>If we edited packets in place, the convention would lose
+its append-only ledger. A &quot;fixed&quot; packet would contradict
+its own <code>applications[].sha</code>. Reviewers would not know
+which version of the packet they were looking at.</p>
+<p>If we treated every change as a new packet, the tree would
+explode. A typo in <code>refinement.md</code> would be a new packet.</p>
+<h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
+<p>A packet is <strong>append-only at the commit level</strong> but
+<strong>evolving at the meaning level</strong>. Two distinct kinds of
+change:</p>
+<p><strong>amendment</strong> — adds a SHA to <code>applications[]</code>. The
+packet's proposition is unchanged; the evidence is
+richer. Use this for fixes, refactors, additional tests.</p>
+<p><strong>supersession</strong> — creates a new packet. The old packet's
+<code>lifecycle: superseded</code>; its <code>supersession:</code> block names
+the successor. Use this when the proposition itself
+changes.</p>
+<p>The boundary between the two is sharp: an amendment
+extends evidence, a supersession replaces the claim. The
+former is a commit, the latter is a new directory.</p>
+<h2 id="how-a-packet-looks-over-time" tabindex="-1"><a class="header-anchor" href="#how-a-packet-looks-over-time">#</a> How a packet looks over time</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>t=0  sh math-coding create packet-foo --from spec.yaml</span></span>
+<span class="line"><span>     # lifecycle: sketch, applications: []</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>t=1  first commit with code</span></span>
+<span class="line"><span>     # lifecycle: working, applications: []</span></span>
+<span class="line"><span>     # sh math-coding verify → ok</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>t=2  fix a typo, add a test</span></span>
+<span class="line"><span>     # applications: [{sha: abc123, files: [src/foo.py]}]</span></span>
+<span class="line"><span>     # applications: [{sha: def456, files: [src/foo.py, tests/]}]</span></span>
+<span class="line"><span>     # lifecycle: working</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>t=3  code is solid, tests pass, axiom Self-Application verified</span></span>
+<span class="line"><span>     # lifecycle: verified</span></span>
+<span class="line"><span>     # applications: [{sha: ghi789, ...}]</span></span>
+<span class="line"><span>     # sh math-coding probe → exit 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>t=4  realize the proposition was wrong</span></span>
+<span class="line"><span>     # create math/packet-foo-v2/ with supersession</span></span>
+<span class="line"><span>     # math/packet-foo/ → lifecycle: superseded</span></span>
+<span class="line"><span>     # math/packet-foo/supersession: math/packet-foo-v2/</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>t=5  nobody needs packet-foo anymore</span></span>
+<span class="line"><span>     # math/packet-foo/ → lifecycle: archived</span></span></code></pre></p>
+<h2 id="what-this-is-not" tabindex="-1"><a class="header-anchor" href="#what-this-is-not">#</a> What this is NOT</h2>
+<ul>
+<li><strong>Not a workflow tool.</strong> No kanban, no sprints, no
+tickets. This is the <strong>discipline</strong> of how a packet
+changes.</li>
+<li><strong>Not a renaming convention.</strong> When a packet's
+proposition changes, do not rename the old packet.
+Spawn a new one with <code>supersession:</code>.</li>
+<li><strong>Not an excuse for ceremony.</strong> An amendment is one
+commit with a SHA in <code>applications[]</code>. Nothing more.</li>
+</ul>
+<h2 id="a-worked-example" tabindex="-1"><a class="header-anchor" href="#a-worked-example">#</a> A worked example</h2>
+<p>Consider <code>math/01-care/</code>. After the genesis commit, the
+packet's <code>decision.md</code> was the placeholder. After the
+formal-statement commit (ee80bb4), the decision was
+substantive. After the backlinks commit (12ece14), the
+decision contained a wikilink. Each step was an amendment:
+the proposition was unchanged, the evidence was richer.
+The packet's <code>applications[]</code> array grew from empty to one
+entry; the lifecycle moved from <code>working</code> to itself
+remaining <code>working</code> (because the proposition was the same).</p>
+<p>Consider <code>math/06-self-application/</code>. After the genesis
+commit, the <code>applications[]</code> array contained a stale SHA.
+After the drift-check caught it (dc68f8e), the SHA was
+refreshed. The packet's <code>applications[]</code> array had a new
+entry; the lifecycle remained <code>working</code>. This was not an
+amendment to the proposition; it was a correction of the
+witness. The convention used the convention to fix itself.</p>
+<p>In both cases, the lifecycle is the discipline. The
+proposition changes via supersession (new packet); the
+evidence changes via amendment (new SHA). The convention
+records both.</p>
+<h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
+<p>touches: how every packet in <code>math/</code> evolves — the
+lifecycle FSM (axiom Process), the supersession DAG
+(axiom Accounting), the SHA witness in <code>applications[]</code>
+(axiom Accounting), the verifier checks in
+<code>core/check/drift-check.sh</code></p>
+<h2 id="proof" tabindex="-1"><a class="header-anchor" href="#proof">#</a> Proof</h2>
+<p>The evidence is the lifecycle FSM itself. The specific
+enforcement is the line in <code>core/check/verify.sh</code> that
+rejects <code>verified</code> packets without SHA entries. axiom
+Self-Application's check 5/6 confirms
+<code>sh core/check/drift-check.sh</code> reports three buckets
+(applied, lookahead, drift). The discipline is enforced
+at commit time.</p>
+</div>
+    <div class="tab-panel" id="panel-task"><h1 id="packet-lifecycle" tabindex="-1"><a class="header-anchor" href="#packet-lifecycle">#</a> packet-lifecycle</h1>
+<h2 id="problem" tabindex="-1"><a class="header-anchor" href="#problem">#</a> Problem</h2>
+<p>How does a packet change after the first commit? What does
+&quot;amend&quot; mean? When does a packet become a new packet?</p>
+<h2 id="desired-outcome" tabindex="-1"><a class="header-anchor" href="#desired-outcome">#</a> Desired outcome</h2>
+<p>A documented lifecycle that an agent (or human) can follow
+without guessing.</p>
+<h2 id="constraints" tabindex="-1"><a class="header-anchor" href="#constraints">#</a> Constraints</h2>
+<ul>
+<li>Append-only at commit level (axiom Process).</li>
+<li>SHA witness for every change (axiom Accounting).</li>
+<li>Re-application must be explicit (new directory, new
+lifecycle, supersession block).</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-assumptions">
+    <table class="assumptions-table">
+      <thead>
+        <tr><th>id</th><th>statement</th><th>epistemology</th><th>conf</th><th>status</th><th>evidence</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><code>A1</code></td>
+      <td>every change to a packet carries a git SHA</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>axiom Process fixes the material basis as plain-text + git.
+axiom Accounting fixes the witness as SHA in applications[].
+A change without SHA is a lie.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A2</code></td>
+      <td>amendments and supersession are distinct acts</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.95</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>amendment: adds SHA to existing applications[].
+supersession: creates new packet, old packet marked
+superseded. The boundary is sharp: same proposition vs
+different proposition.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A3</code></td>
+      <td>no in-place edits of committed packets</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>In-place edits violate the append-only ledger axiom
+and contradict the SHA witness.
+</pre></details></td>
+    </tr></tbody>
+    </table></div>
+    <div class="tab-panel" id="panel-refinement"><h1 id="refinement-packet-lifecycle" tabindex="-1"><a class="header-anchor" href="#refinement-packet-lifecycle">#</a> Refinement: packet-lifecycle</h1>
+<h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
+<ul>
+<li>pre: a packet may be edited in place; witness meaningless;
+history unknowable.</li>
+<li>post: a packet is append-only at commit level; every
+change leaves a SHA; supersession spawns a new packet.</li>
+</ul>
+<h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
+<ol>
+<li>
+<p>Create a packet via <code>sh math-coding create &lt;name&gt; --from &lt;spec.yaml&gt;</code> (or <code>init &lt;name&gt;</code> for legacy template mode).
+This writes five files. lifecycle: sketch.</p>
+</li>
+<li>
+<p>Fill in the five files with content matching the spec.
+The verifier accepts placeholder content (sketch is
+permissive).</p>
+</li>
+<li>
+<p>Move to working: add the first commit with code.
+<code>applications: []</code> is allowed at working. <code>verify.sh</code>
+may emit warnings but should not block.</p>
+</li>
+<li>
+<p>Move to verified: ensure axiom Self-Application holds for this packet
+(tests pass, structure clean). Add the first SHA to
+<code>applications[]</code>. lifecycle: verified.</p>
+</li>
+<li>
+<p>Amendments: each new commit adds a new entry to
+<code>applications[]</code>. The proposition is unchanged; the
+evidence is richer.</p>
+</li>
+<li>
+<p>Supersession: when the proposition itself changes,
+create <code>math/&lt;name&gt;-v2/</code> with a <code>supersession:</code> block
+pointing back. The old packet's lifecycle becomes
+superseded. <strong>Do not edit the old packet.</strong></p>
+</li>
+<li>
+<p>Deprecation: lifecycle becomes deprecated when the
+packet is superseded but still referenced. Once nothing
+references it, move to archived.</p>
+</li>
+</ol>
+<h2 id="mapping" tabindex="-1"><a class="header-anchor" href="#mapping">#</a> Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>change kind</th>
+<th>mechanism</th>
+<th>git footprint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>typo fix</td>
+<td>amendment</td>
+<td>+1 commit, +1 applications entry</td>
+</tr>
+<tr>
+<td>new test</td>
+<td>amendment</td>
+<td>+1 commit, +1 applications entry</td>
+</tr>
+<tr>
+<td>proposition changes</td>
+<td>supersession</td>
+<td>+1 new directory, no edits to old</td>
+</tr>
+<tr>
+<td>rename</td>
+<td>not allowed</td>
+<td>(use supersession instead)</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>archival</td>
+<td>lifecycle: archived, file remains</td>
+</tr>
+</tbody>
+</table>
+<h2 id="invariant-preservation" tabindex="-1"><a class="header-anchor" href="#invariant-preservation">#</a> Invariant preservation</h2>
+<ul>
+<li>
+<p>For every packet with <code>lifecycle: verified</code>, the verifier
+must find at least one entry in <code>applications[]</code> whose
+SHA points to a commit where the listed files match HEAD.</p>
+</li>
+<li>
+<p>For every <code>supersession:</code> block, the named successor must
+exist as a directory under math/.</p>
+</li>
+<li>
+<p>For every packet with <code>lifecycle: superseded</code> or
+<code>lifecycle: archived</code>, <code>applications[]</code> is frozen: no new
+entries may be added.</p>
+</li>
+</ul>
+<h2 id="test-obligation" tabindex="-1"><a class="header-anchor" href="#test-obligation">#</a> Test obligation</h2>
+<ul>
+<li>axiom Self-Application — the verifier checks <code>supersession:</code> references
+resolve.</li>
+<li><code>sh core/check/drift-check.sh</code> — every <code>applications[].sha</code>
+either matches HEAD (applied) or is unknown (lookahead).</li>
+</ul>
+<h2 id="runtime-check" tabindex="-1"><a class="header-anchor" href="#runtime-check">#</a> Runtime check</h2>
+<p>None. The lifecycle is enforced at commit time.</p>
+</div>
+    <div class="tab-panel" id="panel-yaml"><pre><code>task_id: packet-lifecycle
+title: Packet lifecycle — amendment and supersession
+lifecycle: working
+substrate: none
+rigor: property
+decision: made
+created: '2026-07-15'
+verifier: sh core/axiom/probe.sh
+depends_on:
+  - 04-process
+  - 05-accounting
+applications:
+  - sha: ce2faf53096f7f832094c95f8e71c77c496d0351
+    by: agent
+    date: '2026-07-15'
+    pressure: feature
+    files:
+      - math/packet-lifecycle/decision.md
+</code></pre></div>
+  </div>
+
+  
+    <footer class="packet-footer">
+      <div class="depends-on"><h3>Depends on</h3><p><a href="/math/04-process/" class="dep-link">04-process</a>, <a href="/math/05-accounting/" class="dep-link">05-accounting</a></p></div>
+      
+      <div class="applications"><h3>Applications (axiom Accounting witnesses)</h3><ul><li><code>ce2faf5</code> 2026-07-15 — feature (1 files)</li></ul></div>
+    </footer>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

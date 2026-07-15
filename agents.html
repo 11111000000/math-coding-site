@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AGENTS — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-agents">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/AGENTS.md">AGENTS</a></nav>
+  <article class="page">
+    
+    <div class="page-body"><h1 id="agentsmd-math-coding-v0854-runtime-hint" tabindex="-1"><a class="header-anchor" href="#agentsmd-math-coding-v0854-runtime-hint">#</a> <a href="http://AGENTS.md">AGENTS.md</a> — math-coding v0.854 runtime hint</h1>
+<p>You are working in a math-coding v0.854 repository. Seven
+axioms govern the convention. axiom Self-Application is
+proven: <code>sh math-coding probe</code> exits 0 against this very
+repository.</p>
+<h2 id="the-seven-axioms" tabindex="-1"><a class="header-anchor" href="#the-seven-axioms">#</a> The seven axioms</h2>
+<p>A0 Difference        A4 Process
+A1 Care              A5 Accounting
+A2 Curry-Howard      A6 Self-Application
+A3 Material Basis</p>
+<p>Read <code>docs/axioms.md</code> for the canonical statement of each
+axiom with formal definition, worked example, surface
+impact, and proof. Read <code>theories/</code> for the eight theories
+that ground them.</p>
+<h2 id="read-first-in-order" tabindex="-1"><a class="header-anchor" href="#read-first-in-order">#</a> Read first (in order)</h2>
+<ol>
+<li><code>README.md</code> — one-page manifest</li>
+<li><code>docs/axioms.md</code> — seven axioms</li>
+<li><code>theories/README.md</code> — eight theories</li>
+<li><code>math/&lt;latest-packet&gt;/decision.md</code> — most recent decision</li>
+</ol>
+<p>Resolve the latest packet with:</p>
+<p>git log --oneline math/*/decision.md | head -1</p>
+<h2 id="how-to-operate" tabindex="-1"><a class="header-anchor" href="#how-to-operate">#</a> How to operate</h2>
+<p>You are a function over:</p>
+<p>S = (chat_history, files_read, files_written, mode, role)</p>
+<p>Your trace is your proof term. Your type-checker is
+<code>sh math-coding verify</code>. Your meta-checker is
+<code>sh math-coding probe</code>.</p>
+<h3 id="mode-set-in-mathrc-default-standard" tabindex="-1"><a class="header-anchor" href="#mode-set-in-mathrc-default-standard">#</a> Mode (set in .mathrc, default standard)</h3>
+<p>skip      no record
+light     commit message only
+standard  full 5-file packet
+strict    packet + theory link</p>
+<h3 id="role-default-developer" tabindex="-1"><a class="header-anchor" href="#role-default-developer">#</a> Role (default developer)</h3>
+<p>developer / designer / product-manager / researcher / tech-writer</p>
+<h3 id="five-files-per-packet-standard-or-strict" tabindex="-1"><a class="header-anchor" href="#five-files-per-packet-standard-or-strict">#</a> Five files per packet (standard or strict)</h3>
+<p>packet.yaml       manifest, lifecycle, applications[]
+<a href="http://decision.md">decision.md</a>       proposition (thesis / antithesis / synthesis)
+<a href="http://task.md">task.md</a>           intent (problem / outcome / constraints)
+assumptions.yaml  epistemic context (5 markers)
+<a href="http://refinement.md">refinement.md</a>     state / operation / invariant / test / runtime</p>
+<h3 id="five-epistemic-markers-assumptionsyaml" tabindex="-1"><a class="header-anchor" href="#five-epistemic-markers-assumptionsyaml">#</a> Five epistemic markers (assumptions.yaml)</h3>
+<p>fact        B(P) ≥ 0.95
+hypothesis  0.5 &lt; B(P) &lt; 0.95
+judgment    B(P) ∈ {0, 1}
+unknown     B(P) = 0
+proven      end-to-end verified (axiom Self-Application)</p>
+<h3 id="six-lifecycle-states-packetyaml" tabindex="-1"><a class="header-anchor" href="#six-lifecycle-states-packetyaml">#</a> Six lifecycle states (packet.yaml)</h3>
+<p>sketch → working → verified → deprecated → archived
+↑
+superseded</p>
+<p>Forbidden: <code>sketch → verified</code>.</p>
+<h3 id="five-verdict-outcomes" tabindex="-1"><a class="header-anchor" href="#five-verdict-outcomes">#</a> Five verdict outcomes</h3>
+<p>VERIFIED
+NEEDS_REVISION
+UNVERIFIABLE:TOOL_MISSING
+UNVERIFIABLE:DEFERRED
+UNVERIFIABLE:OUT_OF_SCOPE</p>
+<h2 id="writing-good-packets-axiom-process-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#writing-good-packets-axiom-process-axiom-accounting">#</a> Writing good packets (axiom Process + axiom Accounting)</h2>
+<p>A packet is the proof of your proposition. The five files
+are the proof term. The verifier is the type-check. axiom
+Accounting requires that every claim is marked with its
+epistemic status. axiom Process forbids <code>sketch → verified</code>.</p>
+<p>A good packet is <strong>specific</strong>, <strong>falsifiable</strong>, and
+<strong>honest</strong>.</p>
+<h3 id="good-decisionmdthesis" tabindex="-1"><a class="header-anchor" href="#good-decisionmdthesis">#</a> Good <code>decision.md:thesis</code></h3>
+<p>A good thesis is:</p>
+<ul>
+<li><strong>specific</strong>: not &quot;improve performance&quot; but &quot;reduce
+latency by 30%&quot;</li>
+<li><strong>falsifiable</strong>: it can be wrong</li>
+<li><strong>one sentence</strong>: avoid &quot;and&quot;</li>
+<li><strong>concrete</strong>: numbers, names, paths</li>
+</ul>
+<p>Good: &quot;Cache entries expire after 60 seconds, not at user
+request.&quot; Bad: &quot;Cache is fast.&quot;</p>
+<p>Good: &quot;A 3 AM fix must work the first time because the cost
+of a second deploy during an outage is the outage itself.&quot;
+Bad: &quot;Fixes should be careful.&quot;</p>
+<h3 id="good-decisionmdantithesis" tabindex="-1"><a class="header-anchor" href="#good-decisionmdantithesis">#</a> Good <code>decision.md:antithesis</code></h3>
+<p>A good antithesis is the <strong>strongest objection</strong> to the
+thesis. It is not a strawman; it is the reason a thoughtful
+reviewer might reject the packet.</p>
+<p>Good: &quot;Users may need manual invalidation; fixed TTL forces
+them to wait 60 seconds.&quot; Bad: &quot;What if we want to be
+faster?&quot;</p>
+<h3 id="good-decisionmdsynthesis" tabindex="-1"><a class="header-anchor" href="#good-decisionmdsynthesis">#</a> Good <code>decision.md:synthesis</code></h3>
+<p>A good synthesis resolves the thesis + antithesis. It is
+not &quot;we chose this&quot;; it is <strong>how</strong> the choice was made.</p>
+<p>Good: &quot;TTL is fixed at 60s; manual invalidation is a
+separate endpoint (<code>--cache-invalidate</code>). The two paths are
+independent.&quot; Bad: &quot;We chose TTL.&quot;</p>
+<h3 id="good-assumptionsyaml" tabindex="-1"><a class="header-anchor" href="#good-assumptionsyaml">#</a> Good <code>assumptions.yaml</code></h3>
+<p>Each assumption has:</p>
+<ul>
+<li><strong>id</strong>: A1, A2, ...</li>
+<li><strong>statement</strong>: one sentence</li>
+<li><strong>status</strong>: user-confirmed | agent-inferred | open</li>
+<li><strong>epistemology</strong>: fact | hypothesis | judgment | unknown |
+proven</li>
+<li><strong>evidence</strong>: one line, or <code>open</code> for unknown</li>
+</ul>
+<p>Good:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
+<span class="line"><span style="color:#85E89D">  statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"60s is acceptable for this endpoint"</span></span>
+<span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user-confirmed</span></span>
+<span class="line"><span style="color:#85E89D">  epistemology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact</span></span>
+<span class="line"><span style="color:#85E89D">  confidence</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.95</span></span>
+<span class="line"><span style="color:#85E89D">  evidence</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"SLA allows 60s for /cache"</span></span></code></pre></p>
+<p>Bad:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
+<span class="line"><span style="color:#85E89D">  statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"cache works"</span></span>
+<span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent-inferred</span></span>
+<span class="line"><span style="color:#85E89D">  epistemology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">hypothesis</span></span>
+<span class="line"><span style="color:#85E89D">  confidence</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.5</span></span></code></pre></p>
+<h3 id="good-refinementmd" tabindex="-1"><a class="header-anchor" href="#good-refinementmd">#</a> Good <code>refinement.md</code></h3>
+<p>A good refinement is <strong>operational</strong>:</p>
+<ul>
+<li>State: pre/post (specific)</li>
+<li>Operation: what the agent or developer does</li>
+<li>Mapping: spec state → impl state</li>
+<li>Invariant: what stays true (mathematically)</li>
+<li>Test: how to verify (concretely)</li>
+</ul>
+<p>Good:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>State:</span></span>
+<span class="line"><span>  pre:  cache miss (no entry for key)</span></span>
+<span class="line"><span>  post: cache hit (entry exists, age &#x3C; 60s)</span></span>
+<span class="line"><span>Operation:</span></span>
+<span class="line"><span>  On read, check entry timestamp. If age > 60s, refresh</span></span>
+<span class="line"><span>  from upstream.</span></span>
+<span class="line"><span>Mapping:</span></span>
+<span class="line"><span>  spec: cache hit returns entry within 60s of last refresh</span></span>
+<span class="line"><span>  impl: dict[key] returns entry if (now - ts) &#x3C; 60s</span></span>
+<span class="line"><span>Invariant:</span></span>
+<span class="line"><span>  Cache entries never served beyond TTL.</span></span>
+<span class="line"><span>Test:</span></span>
+<span class="line"><span>  Insert entry with ts = now - 61s. Read. Expect upstream fetch.</span></span></code></pre></p>
+<h3 id="good-decisionmdsurface-impact" tabindex="-1"><a class="header-anchor" href="#good-decisionmdsurface-impact">#</a> Good <code>decision.md:surface impact</code></h3>
+<p>A good surface impact is <strong>specific</strong>, not generic:</p>
+<p>Good: &quot;touches: 5 epistemic markers (assumptions.yaml:epistemology),
+SHA witness (packet.yaml:applications[].sha), 5 verdict
+outcomes (verifier stdout)&quot;</p>
+<p>Bad: &quot;touches: convention's foundation [FROZEN]&quot;</p>
+<p>The surface impact is a <strong>pointer</strong> to what other parts of
+the convention this packet's claim touches. A reviewer can
+use the surface impact to find related packets.</p>
+<h3 id="good-decisionmdproof" tabindex="-1"><a class="header-anchor" href="#good-decisionmdproof">#</a> Good <code>decision.md:proof</code></h3>
+<p>A good proof is <strong>evidence</strong>, not a claim.</p>
+<p>Good: &quot;The evidence is <code>tests/run.sh</code> which runs 8
+self-tests against the convention's own state. The 8/8 PASS
+result is the witness.&quot;</p>
+<p>Bad: &quot;All scripts run on a minimal POSIX environment.&quot; (this
+is a claim, not evidence — the test is the evidence)</p>
+<p>The proof section should answer: &quot;what concrete test,
+script, or witness demonstrates this axiom holds at this
+commit?&quot;</p>
+<h3 id="lifecycle-discipline" tabindex="-1"><a class="header-anchor" href="#lifecycle-discipline">#</a> Lifecycle discipline</h3>
+<p>Move the lifecycle as the work progresses:</p>
+<p>draft     →  packet created via <code>sh math-coding init</code>
+sketch    →  first commit with code
+working   →  code committed, tests present
+verified  →  tests pass, axiom Self-Application holds for
+this packet</p>
+<p><strong>Never</strong> move <code>sketch → verified</code> directly. axiom Process
+forbids it; <code>verify.sh</code> enforces it.</p>
+<h3 id="supersession" tabindex="-1"><a class="header-anchor" href="#supersession">#</a> Supersession</h3>
+<p>When the proposition itself changes, do not edit the old
+packet. Create a new one:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#B392F0">sh</span><span style="color:#9ECBFF"> math-coding</span><span style="color:#9ECBFF"> init</span><span style="color:#9ECBFF"> cache-ttl-v2</span><span style="color:#79B8FF"> --template=feature</span></span></code></pre></p>
+<p>In <code>cache-ttl-v2/packet.yaml</code>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">supersession</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">math/cache-ttl/</span></span></code></pre></p>
+<p>The old packet's lifecycle becomes <code>superseded</code>. The new
+packet becomes the source of truth.</p>
+<h3 id="applications-witness" tabindex="-1"><a class="header-anchor" href="#applications-witness">#</a> applications[] witness</h3>
+<p>Every packet that moves to <code>verified</code> must have at least
+one entry in <code>packet.yaml:applications[]</code>:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">applications</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">sha</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">abc123def456</span></span>
+<span class="line"><span style="color:#85E89D">    by</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent</span></span>
+<span class="line"><span style="color:#85E89D">    date</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2026-07-15"</span></span>
+<span class="line"><span style="color:#85E89D">    pressure</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">feature</span></span>
+<span class="line"><span style="color:#85E89D">    files</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">src/cache.py</span></span></code></pre></p>
+<p>The SHA is a real commit. <code>git cat-file -e &lt;sha&gt;</code> succeeds.
+The files are what the commit changed. The witness is
+concrete, not symbolic.</p>
+<p>The axiom packets themselves carry applications[] entries
+(axiom Accounting applied to itself). The drift-check
+reports <code>applied: 8, lookahead: 0, drift: 0</code> against this
+repository.</p>
+<h2 id="commands" tabindex="-1"><a class="header-anchor" href="#commands">#</a> Commands</h2>
+<p>sh math-coding init <name>     scaffold a 5-file packet (template)
+sh math-coding create <name>   create from YAML spec (one call, five files)
+sh math-coding extract <name>  emit YAML spec to stdout
+sh math-coding verify          structural check
+sh math-coding drift-check     applications[] SHA vs HEAD
+sh math-coding probe           axiom A6 self-application
+sh math-coding install <path>  install into a project
+sh math-coding upgrade <path>  upgrade existing install
+sh math-coding uninstall <path></p>
+<h2 id="modes-of-operation" tabindex="-1"><a class="header-anchor" href="#modes-of-operation">#</a> Modes of operation</h2>
+<p>When the user asks for a non-trivial change, open a packet
+with <code>sh math-coding init &lt;name&gt;</code>, fill the five files, and
+commit. For typos and doc fixes, commit directly.</p>
+<p>When the user asks about an axiom, cite <code>math/&lt;NN-axiom&gt;/</code>
+and <code>theories/&lt;theory&gt;.md</code>.</p>
+<p>When the user asks about the convention's own state, run
+<code>sh math-coding probe</code>. If it returns 0, axiom Self-Application
+holds.</p>
+</div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>

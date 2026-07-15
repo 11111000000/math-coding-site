@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spec-driven packet creation — single-call packet synthesis — math-coding</title>
+<meta name="description" content="A convention where every non-trivial decision is a packet — a directory with exactly five files.">
+<meta name="generator" content="math-coding-ui">
+<link rel="canonical" href="https://math-coding.github.io/v0.854">
+<link rel="stylesheet" href="/assets/themes/katex.css">
+<link rel="stylesheet" href="/assets/themes/math-ui.css">
+<link rel="preload" href="/search.json" as="fetch" crossorigin>
+<style></style>
+</head>
+<body class="theme-auto page-packet">
+<header class="site-header">
+  <a class="site-title" href="/">math-coding</a>
+  <nav class="site-nav">
+    <a href="/axioms/">Axioms</a>
+    <a href="/theories/">Theories</a>
+    <a href="/math/">Packets</a>
+    <a href="/graph/">Graph</a>
+    <a href="/fsm/">FSM</a>
+    <a href="/obsidian.html">Obsidian</a>
+    <a href="/changelog.html">Changelog</a>
+  </nav>
+  <button class="theme-toggle" aria-label="Toggle theme">◐</button>
+</header>
+<main class="site-main">
+  <nav class="breadcrumbs"><a href="/">math-coding</a><span class="sep">/</span><a href="/math/">Packets</a><span class="sep">/</span><a href="/math/create-packet-spec-driven/">create-packet-spec-driven</a></nav>
+  <article class="page">
+    
+    <div class="page-body">
+  <header class="packet-header">
+    <h1>Spec-driven packet creation — single-call packet synthesis</h1>
+    <div class="packet-meta">
+      <span class="lifecycle-badge lifecycle-working">working</span>
+      <span class="substrate">shell</span>
+      <span class="rigor">light</span>
+      <span class="task-id">create-packet-spec-driven</span>
+    </div>
+  </header>
+
+  <div class="packet-tabs" data-default-tab="decision">
+    <input type="radio" name="tabs" id="tab-decision" checked>
+    <label for="tab-decision">decision</label>
+
+    <input type="radio" name="tabs" id="tab-task">
+    <label for="tab-task">task</label>
+
+    <input type="radio" name="tabs" id="tab-assumptions">
+    <label for="tab-assumptions">assumptions</label>
+
+    <input type="radio" name="tabs" id="tab-refinement">
+    <label for="tab-refinement">refinement</label>
+
+    <input type="radio" name="tabs" id="tab-yaml">
+    <label for="tab-yaml">packet.yaml</label>
+
+    <div class="tab-panel" id="panel-decision"><h1 id="create-packet-spec-driven" tabindex="-1"><a class="header-anchor" href="#create-packet-spec-driven">#</a> create-packet-spec-driven</h1>
+<h2 id="thesis" tabindex="-1"><a class="header-anchor" href="#thesis">#</a> Thesis</h2>
+<p>A packet can be created from a single YAML spec via one
+shell call. The agent writes one spec, the convention
+produces the five files atomically.</p>
+<h2 id="antithesis" tabindex="-1"><a class="header-anchor" href="#antithesis">#</a> Antithesis</h2>
+<p>The current <code>core/author/init-packet.sh</code> produces only
+<strong>placeholders</strong> — five files containing &quot;<your thesis
+here>&quot;. The agent must then <strong>separately</strong> open each file
+and fill it. This is <strong>eight operations</strong> for one packet:
+init + five writes + verify + commit.</p>
+<p>A convention should <strong>reduce</strong> the number of operations,
+not expand them. The five-file packet is <strong>one</strong> atomic
+proposition; it should be <strong>one</strong> atomic operation to
+produce.</p>
+<h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
+<p>A spec is a YAML document with a fixed shape:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">cache-ttl</span></span>
+<span class="line"><span style="color:#85E89D">mode</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">standard</span></span>
+<span class="line"><span style="color:#85E89D">thesis</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Cache entries expire after 60 seconds."</span></span>
+<span class="line"><span style="color:#85E89D">antithesis</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Users may need manual invalidation."</span></span>
+<span class="line"><span style="color:#85E89D">synthesis</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"TTL is fixed; manual invalidation is a separate</span></span>
+<span class="line"><span style="color:#9ECBFF">         endpoint."</span></span>
+<span class="line"><span style="color:#85E89D">surface_impact</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"touches: --cache-invalidate [FROZEN]"</span></span>
+<span class="line"><span style="color:#85E89D">proof</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"tests/contract/test_cache_ttl.spec"</span></span>
+<span class="line"><span style="color:#85E89D">problem</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Stale data is served indefinitely after upstream</span></span>
+<span class="line"><span style="color:#9ECBFF">         changes."</span></span>
+<span class="line"><span style="color:#85E89D">outcome</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"After 60s, cache is refreshed."</span></span>
+<span class="line"><span style="color:#85E89D">constraints</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">TTL must be configurable</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">Invalidation must be idempotent</span></span>
+<span class="line"><span style="color:#85E89D">assumptions</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
+<span class="line"><span style="color:#85E89D">    statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"60s is acceptable for this endpoint"</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user-confirmed</span></span>
+<span class="line"><span style="color:#85E89D">    epistemology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact</span></span>
+<span class="line"><span style="color:#85E89D">    confidence</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.95</span></span>
+<span class="line"><span style="color:#85E89D">    evidence</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"SLA allows 60s for /cache"</span></span>
+<span class="line"><span style="color:#85E89D">state</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  pre</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">cache miss</span></span>
+<span class="line"><span style="color:#85E89D">  post</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">cache hit</span></span>
+<span class="line"><span style="color:#85E89D">operation</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"On read, check TTL. If age > 60s, refresh."</span></span>
+<span class="line"><span style="color:#85E89D">mapping</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"raw bytes -> dict entry"</span></span>
+<span class="line"><span style="color:#85E89D">invariant</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Cache entries never served beyond TTL."</span></span>
+<span class="line"><span style="color:#85E89D">test_obligation</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"tests/contract/test_cache_ttl.spec"</span></span>
+<span class="line"><span style="color:#85E89D">runtime_check</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"errors to stderr"</span></span></code></pre></p>
+<p><code>core/author/create-packet.sh</code> reads this spec, parses it,
+generates the five files, and exits 0. The agent writes
+<strong>one</strong> spec, the convention writes <strong>five</strong> files.</p>
+<h2 id="worked-example" tabindex="-1"><a class="header-anchor" href="#worked-example">#</a> Worked example</h2>
+<p>A human agent wants a packet:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>$ cat > /tmp/spec.yaml &#x3C;&#x3C;'EOF'</span></span>
+<span class="line"><span>name: my-feature</span></span>
+<span class="line"><span>mode: standard</span></span>
+<span class="line"><span>thesis: "The feature does X."</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>EOF</span></span>
+<span class="line"><span>$ sh math-coding create my-feature --from /tmp/spec.yaml</span></span>
+<span class="line"><span>Created packet: math/my-feature</span></span>
+<span class="line"><span>  - packet.yaml      (manifest)</span></span>
+<span class="line"><span>  - decision.md      (proposition)</span></span>
+<span class="line"><span>  - task.md          (intent)</span></span>
+<span class="line"><span>  - assumptions.yaml (epistemic context)</span></span>
+<span class="line"><span>  - refinement.md    (state/op/mapping/invariant/test)</span></span></code></pre></p>
+<p>One call. Five files. The convention does the rest.</p>
+<h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
+<p>touches: <code>core/author/create-packet.sh</code> (new script),
+<code>math-coding</code> dispatcher (new <code>create</code> command), the
+five-file packet format (now produced by spec, not by
+init template)</p>
+<h2 id="proof" tabindex="-1"><a class="header-anchor" href="#proof">#</a> Proof</h2>
+<p>The evidence is the test: <code>tests/run.sh</code> runs a case that
+calls <code>create-packet.sh</code> with a minimal spec, then asserts
+the five files exist and pass <code>core/check/verify.sh</code>.
+The test exits 0 iff the spec-driven path produces a valid
+packet. axiom Self-Application holds iff the new path
+satisfies the existing convention — i.e., the new path
+must produce a packet that <a href="http://probe.sh">probe.sh</a> accepts.</p>
+</div>
+    <div class="tab-panel" id="panel-task"><h1 id="create-packet-spec-driven" tabindex="-1"><a class="header-anchor" href="#create-packet-spec-driven">#</a> create-packet-spec-driven</h1>
+<h2 id="problem" tabindex="-1"><a class="header-anchor" href="#problem">#</a> Problem</h2>
+<p>Creating a packet today requires <strong>eight operations</strong>:
+one <code>init-packet.sh</code> call + five file edits + one verify +
+one commit. The friction is high for AI-agents that produce
+specs in a single response.</p>
+<h2 id="desired-outcome" tabindex="-1"><a class="header-anchor" href="#desired-outcome">#</a> Desired outcome</h2>
+<p>A spec-driven creation: one shell call takes a YAML spec
+and produces the five files atomically. One call, one
+packet.</p>
+<h2 id="constraints" tabindex="-1"><a class="header-anchor" href="#constraints">#</a> Constraints</h2>
+<ul>
+<li>POSIX shell only (axiom Material Basis).</li>
+<li>Plain-text spec (axiom Material Basis).</li>
+<li>Must produce packets that pass <code>core/check/verify.sh</code>
+(axiom Curry-Howard, axiom Process).</li>
+<li>Must not break existing <code>init-packet.sh</code> flow
+(axiom Self-Application).</li>
+</ul>
+</div>
+    <div class="tab-panel" id="panel-assumptions">
+    <table class="assumptions-table">
+      <thead>
+        <tr><th>id</th><th>statement</th><th>epistemology</th><th>conf</th><th>status</th><th>evidence</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td><code>A1</code></td>
+      <td>agents produce specs in a single output</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.95</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>Modern agents produce structured output (YAML, JSON,
+XML) in a single response. The convention can
+consume this output directly.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A2</code></td>
+      <td>one spec produces one packet, atomically</td>
+      <td><span class="epistemology-judgment">judgment</span></td>
+      <td></td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>The 5-file packet is one atomic proposition
+(axiom Curry-Howard). The creation should reflect
+this — either all five files exist or none do.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A3</code></td>
+      <td>YAML is sufficient as a spec format</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.90</td>
+      <td><span class="status-user-confirmed">user-confirmed</span></td>
+      <td><details><summary>evidence</summary><pre>YAML is plain text, parseable by POSIX awk, well-
+known to humans and agents. The convention's other
+YAML files (assumptions.yaml, packet.yaml) use it.
+</pre></details></td>
+    </tr>
+    <tr>
+      <td><code>A4</code></td>
+      <td>spec-driven creation extends init-packet.sh, not replaces it</td>
+      <td><span class="epistemology-fact">fact</span></td>
+      <td>0.95</td>
+      <td><span class="status-agent-inferred">agent-inferred</span></td>
+      <td><details><summary>evidence</summary><pre>init-packet.sh is the template scaffolder; create-
+packet.sh is the content generator. Both paths
+produce the same five files, both pass verify.sh.
+</pre></details></td>
+    </tr></tbody>
+    </table></div>
+    <div class="tab-panel" id="panel-refinement"><h1 id="refinement-create-packet-spec-driven" tabindex="-1"><a class="header-anchor" href="#refinement-create-packet-spec-driven">#</a> Refinement: create-packet-spec-driven</h1>
+<h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
+<ul>
+<li>pre: agent writes 1 spec → 1 init call + 5 file edits =
+8 operations to create a packet.</li>
+<li>post: agent writes 1 spec → 1 create call = 2 operations
+(the spec write + the create call). Convention does the rest.</li>
+</ul>
+<h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
+<p><code>sh math-coding create &lt;name&gt; --from &lt;spec.yaml&gt;</code> reads the
+spec, parses it, generates the five files atomically. The
+agent writes the spec; the convention fills the packet.</p>
+<p>For shell pipelines: <code>sh math-coding create &lt;name&gt; --from -</code>
+reads the spec from stdin, enabling heredoc:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>sh math-coding create my-feature --from - &#x3C;&#x3C;'EOF'</span></span>
+<span class="line"><span>name: my-feature</span></span>
+<span class="line"><span>mode: standard</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>EOF</span></span></code></pre></p>
+<h2 id="mapping" tabindex="-1"><a class="header-anchor" href="#mapping">#</a> Mapping</h2>
+<table>
+<thead>
+<tr>
+<th>spec field</th>
+<th>packet file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>packet.yaml:task_id</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>(workflow only; not in file)</td>
+</tr>
+<tr>
+<td>thesis</td>
+<td><a href="http://decision.md">decision.md</a>:## Thesis</td>
+</tr>
+<tr>
+<td>antithesis</td>
+<td><a href="http://decision.md">decision.md</a>:## Antithesis</td>
+</tr>
+<tr>
+<td>synthesis</td>
+<td><a href="http://decision.md">decision.md</a>:## Synthesis</td>
+</tr>
+<tr>
+<td>surface_impact</td>
+<td><a href="http://decision.md">decision.md</a>:## Surface impact</td>
+</tr>
+<tr>
+<td>proof</td>
+<td><a href="http://decision.md">decision.md</a>:## Proof</td>
+</tr>
+<tr>
+<td>problem</td>
+<td><a href="http://task.md">task.md</a>:## Problem</td>
+</tr>
+<tr>
+<td>outcome</td>
+<td><a href="http://task.md">task.md</a>:## Desired outcome</td>
+</tr>
+<tr>
+<td>constraints</td>
+<td><a href="http://task.md">task.md</a>:## Constraints</td>
+</tr>
+<tr>
+<td>assumptions</td>
+<td>assumptions.yaml (list of dicts)</td>
+</tr>
+<tr>
+<td>state.pre</td>
+<td><a href="http://refinement.md">refinement.md</a>:## State pre</td>
+</tr>
+<tr>
+<td>state.post</td>
+<td><a href="http://refinement.md">refinement.md</a>:## State post</td>
+</tr>
+<tr>
+<td>operation</td>
+<td><a href="http://refinement.md">refinement.md</a>:## Operation</td>
+</tr>
+<tr>
+<td>mapping</td>
+<td><a href="http://refinement.md">refinement.md</a>:## Mapping</td>
+</tr>
+<tr>
+<td>invariant</td>
+<td><a href="http://refinement.md">refinement.md</a>:## Invariant preservation</td>
+</tr>
+<tr>
+<td>test_obligation</td>
+<td><a href="http://refinement.md">refinement.md</a>:## Test obligation</td>
+</tr>
+<tr>
+<td>runtime_check</td>
+<td><a href="http://refinement.md">refinement.md</a>:## Runtime check</td>
+</tr>
+</tbody>
+</table>
+<h2 id="invariant-preservation" tabindex="-1"><a class="header-anchor" href="#invariant-preservation">#</a> Invariant preservation</h2>
+<ul>
+<li>All five files exist after <code>create</code> exits 0.</li>
+<li>The produced packet passes <code>core/check/verify.sh</code>.</li>
+<li>The spec's <code>thesis</code> appears verbatim in
+<code>decision.md:## Thesis</code>.</li>
+<li>axiom Self-Application holds for the new packet
+(<a href="http://probe.sh">probe.sh</a> accepts it).</li>
+<li><code>init-packet.sh</code> continues to work unchanged.</li>
+</ul>
+<h2 id="test-obligation" tabindex="-1"><a class="header-anchor" href="#test-obligation">#</a> Test obligation</h2>
+<p><code>tests/run.sh</code> adds a case:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>create-packet-spec-driven: create a packet from a minimal</span></span>
+<span class="line"><span>  spec, assert five files exist, assert verify.sh exits 0,</span></span>
+<span class="line"><span>  assert probe.sh exits 0.</span></span></code></pre></p>
+<p>The test exits 0 iff the new path satisfies the existing
+convention. If the new path produces a packet that <a href="http://probe.sh">probe.sh</a>
+rejects, axiom Self-Application fails.</p>
+<h2 id="runtime-check" tabindex="-1"><a class="header-anchor" href="#runtime-check">#</a> Runtime check</h2>
+<p>None. The creation is commit-time. The runtime check is
+the standard <a href="http://probe.sh">probe.sh</a> axiom-Self-Application invocation
+at every commit.</p>
+</div>
+    <div class="tab-panel" id="panel-yaml"><pre><code>task_id: create-packet-spec-driven
+title: Spec-driven packet creation — single-call packet synthesis
+lifecycle: working
+substrate: shell
+rigor: light
+decision: made
+created: '2026-07-15'
+verifier: sh core/check/verify.sh
+depends_on:
+  - axiom-process
+  - axiom-accounting
+applications: []
+</code></pre></div>
+  </div>
+
+  
+    <footer class="packet-footer">
+      <div class="depends-on"><h3>Depends on</h3><p><a href="/math/axiom-process/" class="dep-link">axiom-process</a>, <a href="/math/axiom-accounting/" class="dep-link">axiom-accounting</a></p></div>
+      
+      <p class="empty">No applications[] entries yet.</p>
+    </footer>
+  </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <span>Built with <a href="https://github.com/11111000000/math-coding-ui">math-coding-ui</a></span>
+  <span class="lifecycle-badge">auto</span>
+</footer>
+<script src="/assets/themes/math-ui.js" defer></script>
+<script></script>
+</body>
+</html>
