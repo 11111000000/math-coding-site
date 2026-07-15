@@ -26,6 +26,7 @@ Self-Application closes the loop.
     <a href="/math-coding-site/math/">Packets</a>
     <a href="/math-coding-site/graph/">Graph</a>
     <a href="/math-coding-site/fsm/">FSM</a>
+    <a href="/math-coding-site/skills/">Skills</a>
     <a href="/math-coding-site/obsidian.html">Obsidian</a>
     <a href="/math-coding-site/changelog.html">Changelog</a>
   </nav>
@@ -45,7 +46,7 @@ proposition; the verifier is the type-check; axiom
 Self-Application closes the loop.
 </p>
       <p class="counts">
-        <span><strong>13</strong> packets</span>
+        <span><strong>14</strong> packets</span>
         <span><strong>8</strong> theories</span>
         <span><strong>7</strong> axioms</span>
       </p>
@@ -143,13 +144,14 @@ Self-Application closes the loop.
 <h2 id="what-the-verifier-does" tabindex="-1"><a class="header-anchor" href="#what-the-verifier-does">#</a> What the verifier does</h2>
 <p><code>sh math-coding verify</code> runs structural checks across the project: every packet has five files, every axiom packet is in <code>math/</code>, every SHA in <code>applications[]</code> resolves. <code>sh math-coding probe</code> runs six predicates that together are axiom Self-Application. Exit 0 means the convention is internally consistent.</p>
 <h2 id="how-to-read-this-site" tabindex="-1"><a class="header-anchor" href="#how-to-read-this-site">#</a> How to read this site</h2>
-<p>The navigation on top opens the seven sections of the rendered convention:</p>
+<p>The navigation on top opens the eight sections of the rendered convention:</p>
 <ul>
 <li><strong>Axioms</strong> — the seven axiom packets, each with a statement and a link to its packet.</li>
 <li><strong>Theories</strong> — the eight mathematical theories that ground the convention.</li>
 <li><strong>Packets</strong> — every packet in the project, with lifecycle badges and links.</li>
 <li><strong>Graph</strong> — the dependency graph between packets, axioms, and theories.</li>
 <li><strong>FSM</strong> — the six-state lifecycle machine, with each packet's current position.</li>
+<li><strong>Skills</strong> — opencode skills and reference material under <code>extensions/agents/</code>. Each skill has a <a href="http://SKILL.md">SKILL.md</a> entry point and lazy-loaded reference files.</li>
 <li><strong>Obsidian</strong> — compatibility notes for opening the same vault in Obsidian.</li>
 </ul>
 <p>The keyboard works too. <code>/</code> opens search. <code>j</code> and <code>k</code> move between packets. <code>g f</code> jumps to the FSM. <code>g g</code> to the graph. <code>Esc</code> closes the search.</p>
@@ -175,7 +177,7 @@ Self-Application closes the loop.
           </ul>
         </section>
         <section class="lifecycle-section">
-          <h2><span class="lifecycle-badge lifecycle-working">working</span> <span class="count">12</span></h2>
+          <h2><span class="lifecycle-badge lifecycle-working">working</span> <span class="count">13</span></h2>
           <ul class="packet-list">
             <li>
                   <a href="/math-coding-site/math/00-difference/">
@@ -231,6 +233,11 @@ Self-Application closes the loop.
                   <a href="/math-coding-site/math/extract-packet-reverse/">
                     <code class="packet-id">extract-packet-reverse</code>
                     Reverse — extract 5-file packet to single spec
+                  </a>
+                </li><li>
+                  <a href="/math-coding-site/math/opencode-skill-restructure/">
+                    <code class="packet-id">opencode-skill-restructure</code>
+                    Opencode skill — split entry from references, add examples
                   </a>
                 </li><li>
                   <a href="/math-coding-site/math/packet-lifecycle/">
