@@ -41,41 +41,51 @@ Self-Application closes the loop.
       <p class="intro">The convention's lifecycle is a six-state machine. Every packet traverses it; axiom Process forbids <code>sketch → verified</code>.</p>
       <div class="fsm-stats"><span class="stat"><span class="lifecycle-badge lifecycle-sketch">sketch</span> 1</span><span class="stat"><span class="lifecycle-badge lifecycle-working">working</span> 12</span><span class="stat"><span class="lifecycle-badge lifecycle-verified">verified</span> 0</span><span class="stat"><span class="lifecycle-badge lifecycle-deprecated">deprecated</span> 0</span><span class="stat"><span class="lifecycle-badge lifecycle-archived">archived</span> 0</span><span class="stat"><span class="lifecycle-badge lifecycle-superseded">superseded</span> 0</span></div>
     </header>
-    <section class="fsm-diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" class="fsm-svg" role="img" aria-label="lifecycle FSM">
-<line x1="90" y1="80" x2="126" y2="80" stroke="#888" stroke-width="1.5" />
-<line x1="226" y1="80" x2="262" y2="80" stroke="#888" stroke-width="1.5" />
-<line x1="362" y1="80" x2="398" y2="80" stroke="#888" stroke-width="1.5" />
-<line x1="498" y1="80" x2="534" y2="80" stroke="#888" stroke-width="1.5" />
-<line x1="362" y1="80" x2="670" y2="80" stroke="#888" stroke-width="1.5" />
-<line x1="226" y1="80" x2="670" y2="80" stroke="#888" stroke-width="1.5" />
+    <section class="fsm-diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 320" class="fsm-svg" role="img" aria-label="lifecycle FSM">
+<defs>
+  <marker id="arrow-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-edge-allowed, #888)"/>
+  </marker>
+  <marker id="arrow-no" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-accent, #c7472b)"/>
+  </marker>
+</defs>
+<path d="M 120 90 L 200 90" stroke="var(--color-edge-allowed, #888)" stroke-width="2" fill="none"  marker-end="url(#arrow-ok)"/>
+<path d="M 320 90 L 400 90" stroke="var(--color-edge-allowed, #888)" stroke-width="2" fill="none"  marker-end="url(#arrow-ok)"/>
+<path d="M 520 90 L 600 90" stroke="var(--color-edge-allowed, #888)" stroke-width="2" fill="none"  marker-end="url(#arrow-ok)"/>
+<path d="M 720 90 L 800 90" stroke="var(--color-edge-allowed, #888)" stroke-width="2" fill="none"  marker-end="url(#arrow-ok)"/>
+<path d="M 460 118 L 460 192" stroke="var(--color-edge-allowed, #888)" stroke-width="2" fill="none"  marker-end="url(#arrow-ok)"/>
+<path d="M 303.0769230769231 118 L 416.9230769230769 192" stroke="var(--color-edge-allowed, #888)" stroke-width="2" fill="none"  marker-end="url(#arrow-ok)"/>
 <g class="fsm-state" data-state="sketch">
-  <rect x="-10" y="56" width="100" height="48" rx="6"/>
-  <text x="40" y="84">sketch</text>
+  <rect x="0" y="62" width="120" height="56" rx="8" fill="var(--color-sketch, #e8eaed)" stroke="var(--color-border-strong, #888)" stroke-width="1.5"/>
+  <text x="60" y="95" class="fsm-state-text">sketch</text>
 </g>
 <g class="fsm-state" data-state="working">
-  <rect x="126" y="56" width="100" height="48" rx="6"/>
-  <text x="176" y="84">working</text>
+  <rect x="200" y="62" width="120" height="56" rx="8" fill="var(--color-working-soft, #fff3cd)" stroke="var(--color-border-strong, #888)" stroke-width="1.5"/>
+  <text x="260" y="95" class="fsm-state-text">working</text>
 </g>
 <g class="fsm-state" data-state="verified">
-  <rect x="262" y="56" width="100" height="48" rx="6"/>
-  <text x="312" y="84">verified</text>
+  <rect x="400" y="62" width="120" height="56" rx="8" fill="var(--color-verified-soft, #d4edda)" stroke="var(--color-border-strong, #888)" stroke-width="1.5"/>
+  <text x="460" y="95" class="fsm-state-text">verified</text>
 </g>
 <g class="fsm-state" data-state="deprecated">
-  <rect x="398" y="56" width="100" height="48" rx="6"/>
-  <text x="448" y="84">deprecated</text>
+  <rect x="600" y="62" width="120" height="56" rx="8" fill="var(--color-deprecated-soft, #e9ecef)" stroke="var(--color-border-strong, #888)" stroke-width="1.5"/>
+  <text x="660" y="95" class="fsm-state-text">deprecated</text>
 </g>
 <g class="fsm-state" data-state="archived">
-  <rect x="534" y="56" width="100" height="48" rx="6"/>
-  <text x="584" y="84">archived</text>
+  <rect x="800" y="62" width="120" height="56" rx="8" fill="var(--color-archived-soft, #d0d0d0)" stroke="var(--color-border-strong, #888)" stroke-width="1.5"/>
+  <text x="860" y="95" class="fsm-state-text">archived</text>
 </g>
 <g class="fsm-state" data-state="superseded">
-  <rect x="670" y="56" width="100" height="48" rx="6"/>
-  <text x="720" y="84">superseded</text>
+  <rect x="400" y="192" width="120" height="56" rx="8" fill="var(--color-superseded-soft, #e8daef)" stroke="var(--color-border-strong, #888)" stroke-width="1.5"/>
+  <text x="460" y="225" class="fsm-state-text">superseded</text>
 </g>
-<text x="40" y="180" class="fsm-legend">allowed transition</text>
-<line x1="170" y1="176" x2="220" y2="176" stroke="#888" stroke-width="1.5"/>
-<text x="240" y="180" class="fsm-legend">forbidden transition</text>
-<line x1="370" y1="176" x2="420" y2="176" stroke="#c7472b" stroke-width="1.5" stroke-dasharray="4 4"/>
+<g class="fsm-legend" transform="translate(60, 280)">
+  <line x1="0" y1="6" x2="40" y2="6" stroke="var(--color-edge-allowed, #888)" stroke-width="2" marker-end="url(#arrow-ok)"/>
+  <text x="50" y="10" class="fsm-legend-text">allowed transition</text>
+  <line x1="220" y1="6" x2="260" y2="6" stroke="var(--color-accent, #c7472b)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-no)"/>
+  <text x="270" y="10" class="fsm-legend-text">forbidden transition (axiom Process)</text>
+</g>
 </svg></section>
     <section class="fsm-table">
       <table>

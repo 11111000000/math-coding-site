@@ -50,6 +50,118 @@ Self-Application closes the loop.
         <span><strong>7</strong> axioms</span>
       </p>
     </section>
+    <section class="methodology">
+    <div class="methodology-inner"><h1 id="what-is-math-coding" tabindex="-1"><a class="header-anchor" href="#what-is-math-coding">#</a> What is math-coding?</h1>
+<p>math-coding is a <strong>convention</strong> for AI coding agents and the developers who work with them. It is grounded on one observation: a <em>proposition</em> and its <em>implementation</em> are different kinds of thing, and the gap between them is the place where bugs grow.</p>
+<p>The convention fixes that gap by making every non-trivial decision a <strong>packet</strong> — a directory with exactly five files. The packet is the proposition. The verifier is the type-check. The convention applies to itself.</p>
+<h2 id="why-a-convention-at-all" tabindex="-1"><a class="header-anchor" href="#why-a-convention-at-all">#</a> Why a convention at all?</h2>
+<p>Code does not explain itself. A function <code>add(a, b)</code> is correct in arithmetic and wrong in string concatenation. The implementation carries no hint which one. The proposition must come from somewhere. Without a separate place for it, the developer guesses, the reviewer guesses, the user discovers.</p>
+<p>math-coding gives the proposition its own home. It lives in <code>decision.md</code>, distinct from the code, and the convention guarantees this distinction by structure — not by policy, not by convention, but by the verifier.</p>
+<h2 id="the-five-files-of-a-packet" tabindex="-1"><a class="header-anchor" href="#the-five-files-of-a-packet">#</a> The five files of a packet</h2>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>math/&#x3C;NN-name>/</span></span>
+<span class="line"><span>├── packet.yaml       manifest (lifecycle, substrate, applications)</span></span>
+<span class="line"><span>├── decision.md       the proposition (thesis / antithesis / synthesis)</span></span>
+<span class="line"><span>├── task.md           intent (problem / outcome / constraints)</span></span>
+<span class="line"><span>├── assumptions.yaml  epistemic context (5 markers)</span></span>
+<span class="line"><span>└── refinement.md     state / operation / invariant / test</span></span></code></pre></p>
+<ul>
+<li><strong>packet.yaml</strong> is the type signature. It says what the packet claims, what it depends on, who has applied it.</li>
+<li><strong><a href="http://decision.md">decision.md</a></strong> is the proposition. The thesis is what the packet commits to. The antithesis is the strongest objection. The synthesis is the resolution.</li>
+<li><strong><a href="http://task.md">task.md</a></strong> is the goal. What problem the packet solves, what success looks like, what constraints apply.</li>
+<li><strong>assumptions.yaml</strong> is the context. Five epistemic markers — <em>fact</em>, <em>hypothesis</em>, <em>judgment</em>, <em>unknown</em>, <em>proven</em> — keep knowledge honest.</li>
+<li><strong><a href="http://refinement.md">refinement.md</a></strong> is the elaboration. State, operation, mapping, invariant, test. How the claim unfolds.</li>
+</ul>
+<p>The five files are the parts of a proof term. axiom Curry-Howard says so. The verifier enforces it.</p>
+<h2 id="seven-axioms" tabindex="-1"><a class="header-anchor" href="#seven-axioms">#</a> Seven axioms</h2>
+<p>The convention rests on seven axioms. They are not aspirational — they are real constraints that the verifier checks.</p>
+<ul>
+<li><strong>A0 Difference</strong> — proposition and implementation are different kinds of thing.</li>
+<li><strong>A1 Care</strong> — a developer cares whether the code does what it claims.</li>
+<li><strong>A2 Curry-Howard</strong> — a packet is a proof term, the verifier is a type-check.</li>
+<li><strong>A3 Material Basis</strong> — the convention lives in plain text, in git, and runs on POSIX.</li>
+<li><strong>A4 Process</strong> — every packet traverses a six-state lifecycle; <code>sketch → verified</code> is forbidden.</li>
+<li><strong>A5 Accounting</strong> — knowledge is marked, verdicts are named, changes are witnessed.</li>
+<li><strong>A6 Self-Application</strong> — the convention applies to itself. Every axiom above is realised as a packet.</li>
+</ul>
+<p>The axioms are themselves packets. <code>math/00-difference/</code> is a five-file packet that proves A0. The probe that verifies the convention is the subject of a packet. axiom Self-Application closes the loop.</p>
+<h2 id="eight-theories" tabindex="-1"><a class="header-anchor" href="#eight-theories">#</a> Eight theories</h2>
+<p>Eight mathematical theories ground the axioms. Each theory is a compact runtime spec for an LLM agent.</p>
+<table>
+<thead>
+<tr>
+<th>Theory</th>
+<th>Axiom</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>curry-howard</td>
+<td>A2</td>
+<td>Types ⇔ Propositions, Programs ⇔ Proofs</td>
+</tr>
+<tr>
+<td>predicate</td>
+<td>A4</td>
+<td>I : S → Bool, every check is a predicate</td>
+</tr>
+<tr>
+<td>fsm</td>
+<td>A4</td>
+<td>M = ⟨S, s₀, A, →, I⟩, six-state lifecycle</td>
+</tr>
+<tr>
+<td>refinement</td>
+<td>A4</td>
+<td>R ⊆ S_impl × S_spec, packet ↔ implementation</td>
+</tr>
+<tr>
+<td>verdict</td>
+<td>A5</td>
+<td>Spec ⊨ P, five outcomes</td>
+</tr>
+<tr>
+<td>epistemic</td>
+<td>A5</td>
+<td>B : Prop × Agent → [0, 1], five markers</td>
+</tr>
+<tr>
+<td>deprecation</td>
+<td>A5</td>
+<td>⊥ strict partial order, supersession DAG</td>
+</tr>
+<tr>
+<td>agent</td>
+<td>A6</td>
+<td>S = (chat, files, mode, role)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-a-packet-evolves" tabindex="-1"><a class="header-anchor" href="#how-a-packet-evolves">#</a> How a packet evolves</h2>
+<p>A packet is born in <code>sketch</code>. The convention holds the proposition first; code is the last step. The packet moves through <code>working</code> (proposition fully elaborated) to <code>verified</code> (at least one SHA in <code>applications[]</code>). From there it can be <code>deprecated</code> (newer packet supersedes it), <code>archived</code> (no longer used), or <code>superseded</code> (named successor exists).</p>
+<p>The forbidden transition is <code>sketch → verified</code>. A proposition that has never been elaborated cannot be proven. The verifier enforces this: a packet with <code>lifecycle: verified</code> and no SHA in <code>applications[]</code> fails the check.</p>
+<h2 id="what-the-verifier-does" tabindex="-1"><a class="header-anchor" href="#what-the-verifier-does">#</a> What the verifier does</h2>
+<p><code>sh math-coding verify</code> runs structural checks across the project: every packet has five files, every axiom packet is in <code>math/</code>, every SHA in <code>applications[]</code> resolves. <code>sh math-coding probe</code> runs six predicates that together are axiom Self-Application. Exit 0 means the convention is internally consistent.</p>
+<h2 id="how-to-read-this-site" tabindex="-1"><a class="header-anchor" href="#how-to-read-this-site">#</a> How to read this site</h2>
+<p>The navigation on top opens the seven sections of the rendered convention:</p>
+<ul>
+<li><strong>Axioms</strong> — the seven axiom packets, each with a statement and a link to its packet.</li>
+<li><strong>Theories</strong> — the eight mathematical theories that ground the convention.</li>
+<li><strong>Packets</strong> — every packet in the project, with lifecycle badges and links.</li>
+<li><strong>Graph</strong> — the dependency graph between packets, axioms, and theories.</li>
+<li><strong>FSM</strong> — the six-state lifecycle machine, with each packet's current position.</li>
+<li><strong>Obsidian</strong> — compatibility notes for opening the same vault in Obsidian.</li>
+</ul>
+<p>The keyboard works too. <code>/</code> opens search. <code>j</code> and <code>k</code> move between packets. <code>g f</code> jumps to the FSM. <code>g g</code> to the graph. <code>Esc</code> closes the search.</p>
+<h2 id="get-started" tabindex="-1"><a class="header-anchor" href="#get-started">#</a> Get started</h2>
+<p>The convention runs in any POSIX shell. To install it in a project:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#B392F0">sh</span><span style="color:#9ECBFF"> /path/to/math-coding/math-coding</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> /path/to/project</span></span></code></pre></p>
+<p>To verify a project:</p>
+<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /path/to/project</span></span>
+<span class="line"><span style="color:#B392F0">sh</span><span style="color:#9ECBFF"> ./.math-coding/math-coding</span><span style="color:#9ECBFF"> probe</span></span></code></pre></p>
+<p>If the probe exits 0, the convention is internally consistent. axiom Self-Application holds.</p>
+</div>
+  </section>
     
         <section class="lifecycle-section">
           <h2><span class="lifecycle-badge lifecycle-sketch">sketch</span> <span class="count">1</span></h2>
