@@ -70,13 +70,14 @@ The forbidden transition is `sketch → verified`. A proposition that has never 
 
 ## How to read this site
 
-The navigation on top opens the seven sections of the rendered convention:
+The navigation on top opens the eight sections of the rendered convention:
 
 - **Axioms** — the seven axiom packets, each with a statement and a link to its packet.
 - **Theories** — the eight mathematical theories that ground the convention.
 - **Packets** — every packet in the project, with lifecycle badges and links.
 - **Graph** — the dependency graph between packets, axioms, and theories.
 - **FSM** — the six-state lifecycle machine, with each packet's current position.
+- **Skills** — opencode skills and reference material under `extensions/agents/`. Each skill has a SKILL.md entry point and lazy-loaded reference files.
 - **Obsidian** — compatibility notes for opening the same vault in Obsidian.
 
 The keyboard works too. `/` opens search. `j` and `k` move between packets. `g f` jumps to the FSM. `g g` to the graph. `Esc` closes the search.
