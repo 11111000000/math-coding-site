@@ -68,7 +68,7 @@ Self-Application closes the loop.
 <p>The opencode skill for math-coding is one file (<code>SKILL.md</code>,
 117 lines). This is too long for an entry point: every LLM
 agent reads it on load. The skill is split into one entry
-file (≤50 lines, with the seven axioms) and four reference
+<div class="math math-block" data-formula="file (≤50 lines, with the seven axioms) and four reference" data-formula-tex="file (\leq50 lines, with the seven axioms) and four reference" aria-label="less than or equal" data-source="math/opencode-skill-restructure">\[file (\leq50 lines, with the seven axioms) and four reference\]</div>
 files (axioms, theories, lifecycle, spec examples). The
 agent reads <a href="http://SKILL.md">SKILL.md</a> to learn the protocol; the agent reads
 references/ on demand.</p>
@@ -114,7 +114,7 @@ what it needs, when it needs it.</p>
 into entry + references), <code>extensions/agents/opencode/references/*.md</code>
 (new), <code>extensions/agents/opencode/examples/*.yaml</code> (new)</p>
 <h2 id="proof" tabindex="-1"><a class="header-anchor" href="#proof">#</a> Proof</h2>
-<p><code>SKILL.md</code> after the split is ≤50 lines. The references
+<p><code>SKILL.md</code><div class="math math-block" data-formula="after the split is ≤50 lines. The references" data-formula-tex="after the split is \leq50 lines. The references" aria-label="less than or equal" data-source="math/opencode-skill-restructure">\[after the split is \leq50 lines. The references\]</div>
 are loaded only on demand. The convention's axiom A6 (axiom
 Self-Application) still holds: the split skill still describes
 the same convention; <code>sh math-coding probe</code> still exits 0.</p>
@@ -179,7 +179,7 @@ uses ~1,000 tokens. The split is cheaper.
 <h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
 <ul>
 <li>pre: <a href="http://SKILL.md">SKILL.md</a> is 117 lines. Every agent reads all of it.</li>
-<li>post: <a href="http://SKILL.md">SKILL.md</a> is ≤50 lines. References/ has 4 files.
+<li>post: <a href="http://SKILL.md">SKILL.md</a><div class="math math-block" data-formula="is ≤50 lines. References/ has 4 files." data-formula-tex="is \leq50 lines. References/ has 4 files." aria-label="less than or equal" data-source="math/opencode-skill-restructure">\[is \leq50 lines. References/ has 4 files.\]</div>
 Examples/ has 1 example spec. The agent reads what it needs.</li>
 </ul>
 <h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
@@ -235,7 +235,7 @@ test_obligation, runtime_check</li>
 </tr>
 <tr>
 <td><code>references/lifecycle.md</code></td>
-<td>changes a packet's lifecycle (sketch → working → verified)</td>
+<td><div class="math math-block" data-formula="changes a packet's lifecycle (sketch → working → verified)" data-formula-tex="changes a packet's lifecycle (sketch \to working \to verified)" aria-label="to to" data-source="math/opencode-skill-restructure">\[changes a packet's lifecycle (sketch \to working \to verified)\]</div></td>
 </tr>
 <tr>
 <td><code>examples/cache-ttl-spec.yaml</code></td>
@@ -251,7 +251,7 @@ test_obligation, runtime_check</li>
 </ul>
 <h2 id="test-obligation" tabindex="-1"><a class="header-anchor" href="#test-obligation">#</a> Test obligation</h2>
 <p>Manual test: the skill loads successfully in opencode.
-The entry file is ≤50 lines. The references are present.
+<span class="math math-inline" data-formula="The entry file is ≤50 lines. The references are present." data-formula-tex="The entry file is \leq50 lines. The references are present." aria-label="less than or equal" data-source="math/opencode-skill-restructure">\(The entry file is \leq50 lines. The references are present.\)</span>
 <code>sh math-coding probe</code> still exits 0.</p>
 <h2 id="runtime-check" tabindex="-1"><a class="header-anchor" href="#runtime-check">#</a> Runtime check</h2>
 <p>None. The skill is loaded at agent-start time.</p>

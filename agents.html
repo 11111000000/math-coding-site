@@ -79,13 +79,13 @@ strict    packet + theory link</p>
 assumptions.yaml  epistemic context (5 markers)
 <a href="http://refinement.md">refinement.md</a>     state / operation / invariant / test / runtime</p>
 <h3 id="five-epistemic-markers-assumptionsyaml" tabindex="-1"><a class="header-anchor" href="#five-epistemic-markers-assumptionsyaml">#</a> Five epistemic markers (assumptions.yaml)</h3>
-<p>fact        B(P) ≥ 0.95
+<p><div class="math math-block" data-formula="fact        B(P) ≥ 0.95" data-formula-tex="fact        B(P) \geq 0.95" aria-label="greater than or equal" data-source="AGENTS.md">\[fact        B(P) \geq 0.95\]</div>
 hypothesis  0.5 &lt; B(P) &lt; 0.95
-judgment    B(P) ∈ {0, 1}
+<div class="math math-block" data-formula="judgment    B(P) ∈ {0, 1}" data-formula-tex="judgment    B(P) \in \{0, 1\}" aria-label="in" data-source="AGENTS.md">\[judgment    B(P) \in \{0, 1\}\]</div>
 unknown     B(P) = 0
 proven      end-to-end verified (axiom Self-Application)</p>
 <h3 id="six-lifecycle-states-packetyaml" tabindex="-1"><a class="header-anchor" href="#six-lifecycle-states-packetyaml">#</a> Six lifecycle states (packet.yaml)</h3>
-<p>sketch → working → verified → deprecated → archived
+<p><div class="math math-block" data-formula="sketch → working → verified → deprecated → archived" data-formula-tex="sketch \to working \to verified \to deprecated \to archived" aria-label="to to to to" data-source="AGENTS.md">\[sketch \to working \to verified \to deprecated \to archived\]</div>
 ↑
 superseded</p>
 <p>Forbidden: <code>sketch → verified</code>.</p>
@@ -140,14 +140,14 @@ proven</li>
 <li><strong>evidence</strong>: one line, or <code>open</code> for unknown</li>
 </ul>
 <p>Good:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
+<p><pre data-language="yaml" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
 <span class="line"><span style="color:#85E89D">  statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"60s is acceptable for this endpoint"</span></span>
 <span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user-confirmed</span></span>
 <span class="line"><span style="color:#85E89D">  epistemology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact</span></span>
 <span class="line"><span style="color:#85E89D">  confidence</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.95</span></span>
 <span class="line"><span style="color:#85E89D">  evidence</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"SLA allows 60s for /cache"</span></span></code></pre></p>
 <p>Bad:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
+<p><pre data-language="yaml" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
 <span class="line"><span style="color:#85E89D">  statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"cache works"</span></span>
 <span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent-inferred</span></span>
 <span class="line"><span style="color:#85E89D">  epistemology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">hypothesis</span></span>
@@ -157,12 +157,12 @@ proven</li>
 <ul>
 <li>State: pre/post (specific)</li>
 <li>Operation: what the agent or developer does</li>
-<li>Mapping: spec state → impl state</li>
+<li><div class="math math-block" data-formula="Mapping: spec state → impl state" data-formula-tex="Mapping: spec state \to impl state" aria-label="to" data-source="AGENTS.md">\[Mapping: spec state \to impl state\]</div></li>
 <li>Invariant: what stays true (mathematically)</li>
 <li>Test: how to verify (concretely)</li>
 </ul>
 <p>Good:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>State:</span></span>
+<p><pre data-language="markdown" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>State:</span></span>
 <span class="line"><span>  pre:  cache miss (no entry for key)</span></span>
 <span class="line"><span>  post: cache hit (entry exists, age &#x3C; 60s)</span></span>
 <span class="line"><span>Operation:</span></span>
@@ -196,25 +196,25 @@ script, or witness demonstrates this axiom holds at this
 commit?&quot;</p>
 <h3 id="lifecycle-discipline" tabindex="-1"><a class="header-anchor" href="#lifecycle-discipline">#</a> Lifecycle discipline</h3>
 <p>Move the lifecycle as the work progresses:</p>
-<p>draft     →  packet created via <code>sh math-coding init</code>
-sketch    →  first commit with code
-working   →  code committed, tests present
-verified  →  tests pass, axiom Self-Application holds for
+<p><div class="math math-block" data-formula="draft     →  packet created via" data-formula-tex="draft     \to  packet created via" aria-label="to" data-source="AGENTS.md">\[draft     \to  packet created via\]</div><code>sh math-coding init</code>
+<div class="math math-block" data-formula="sketch    →  first commit with code" data-formula-tex="sketch    \to  first commit with code" aria-label="to" data-source="AGENTS.md">\[sketch    \to  first commit with code\]</div>
+<div class="math math-block" data-formula="working   →  code committed, tests present" data-formula-tex="working   \to  code committed, tests present" aria-label="to" data-source="AGENTS.md">\[working   \to  code committed, tests present\]</div>
+<div class="math math-block" data-formula="verified  →  tests pass, axiom Self-Application holds for" data-formula-tex="verified  \to  tests pass, axiom Self-Application holds for" aria-label="to" data-source="AGENTS.md">\[verified  \to  tests pass, axiom Self-Application holds for\]</div>
 this packet</p>
 <p><strong>Never</strong> move <code>sketch → verified</code> directly. axiom Process
 forbids it; <code>verify.sh</code> enforces it.</p>
 <h3 id="supersession" tabindex="-1"><a class="header-anchor" href="#supersession">#</a> Supersession</h3>
 <p>When the proposition itself changes, do not edit the old
 packet. Create a new one:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#B392F0">sh</span><span style="color:#9ECBFF"> math-coding</span><span style="color:#9ECBFF"> init</span><span style="color:#9ECBFF"> cache-ttl-v2</span><span style="color:#79B8FF"> --template=feature</span></span></code></pre></p>
+<p><pre data-language="bash" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#B392F0">sh</span><span style="color:#9ECBFF"> math-coding</span><span style="color:#9ECBFF"> init</span><span style="color:#9ECBFF"> cache-ttl-v2</span><span style="color:#79B8FF"> --template=feature</span></span></code></pre></p>
 <p>In <code>cache-ttl-v2/packet.yaml</code>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">supersession</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">math/cache-ttl/</span></span></code></pre></p>
+<p><pre data-language="yaml" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">supersession</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">math/cache-ttl/</span></span></code></pre></p>
 <p>The old packet's lifecycle becomes <code>superseded</code>. The new
 packet becomes the source of truth.</p>
 <h3 id="applications-witness" tabindex="-1"><a class="header-anchor" href="#applications-witness">#</a> applications[] witness</h3>
 <p>Every packet that moves to <code>verified</code> must have at least
 one entry in <code>packet.yaml:applications[]</code>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">applications</span><span style="color:#E1E4E8">:</span></span>
+<p><pre data-language="yaml" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">applications</span><span style="color:#E1E4E8">:</span></span>
 <span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">sha</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">abc123def456</span></span>
 <span class="line"><span style="color:#85E89D">    by</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent</span></span>
 <span class="line"><span style="color:#85E89D">    date</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2026-07-15"</span></span>

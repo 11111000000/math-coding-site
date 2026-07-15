@@ -70,7 +70,7 @@ Self-Application closes the loop.
 implementation. The lifecycle of a packet is finite and
 ordered.</p>
 <p>Six states:</p>
-<p>sketch      → working    → verified → deprecated → archived
+<p><div class="math math-block" data-formula="sketch      → working    → verified → deprecated → archived" data-formula-tex="sketch      \to working    \to verified \to deprecated \to archived" aria-label="to to to to" data-source="math/04-process">\[sketch      \to working    \to verified \to deprecated \to archived\]</div>
 ↑
 superseded</p>
 <p>The forbidden transition is <code>sketch → verified</code>. A
@@ -97,14 +97,14 @@ implementation merge. axiom Difference forbids this.</p>
 <h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
 <p>axiom Process fixes the temporal discipline of math-coding.</p>
 <p>The lifecycle FSM is</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>M = ⟨ S, s₀, A, →, I ⟩</span></span></code></pre></p>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>M = ⟨ S, s₀, A, →, I ⟩</span></span></code></pre></p>
 <p>where</p>
 <p>S     = { sketch, working, verified, deprecated,
 archived, superseded }
-s₀    = sketch
+<div class="math math-block" data-formula="s₀    = sketch" data-formula-tex="s_0    = sketch" aria-label="sub zero" data-source="math/04-process">\[s_0    = sketch\]</div>
 A     = { elaborate, commit, prove, deprecate,
 supersede, archive }
-→     = the transitions above
+<div class="math math-block" data-formula="→     = the transitions above" data-formula-tex="\to     = the transitions above" aria-label="to" data-source="math/04-process">\[\to     = the transitions above\]</div>
 I(s)  = invariant for state s</p>
 <p>The invariants are:</p>
 <p>I(sketch)     = 5 files exist (any content)
@@ -227,7 +227,7 @@ each transition recorded as a git commit.</li>
 </ul>
 <h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
 <p>A packet transitions through six states:
-sketch → working → verified → deprecated → archived
+<div class="math math-block" data-formula="sketch → working → verified → deprecated → archived" data-formula-tex="sketch \to working \to verified \to deprecated \to archived" aria-label="to to to to" data-source="math/04-process">\[sketch \to working \to verified \to deprecated \to archived\]</div>
 ↑                ↓
 └── superseded ←──┘</p>
 <p>Forbidden: <code>sketch → verified</code>.</p>

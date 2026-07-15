@@ -65,7 +65,7 @@ link to a specific axiom by anchor.</p>
 axiom definition in <code>docs/axioms.md</code>, and vice versa.</p>
 <h2 id="dataview-queries" tabindex="-1"><a class="header-anchor" href="#dataview-queries">#</a> Dataview queries</h2>
 <p><code>docs/axioms.md</code> lists axiom packets:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
+<p><pre data-language="dataview" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
 <span class="line"><span>  lifecycle AS "lifecycle",</span></span>
 <span class="line"><span>  substrate AS "substrate",</span></span>
 <span class="line"><span>  decision AS "decision"</span></span>
@@ -73,7 +73,7 @@ axiom definition in <code>docs/axioms.md</code>, and vice versa.</p>
 <span class="line"><span>WHERE file.name >= "00" AND file.name &#x3C; "10"</span></span>
 <span class="line"><span>SORT file.name ASC</span></span></code></pre></p>
 <p><code>theories/README.md</code> lists theories:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
+<p><pre data-language="dataview" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
 <span class="line"><span>  file.link AS "theory",</span></span>
 <span class="line"><span>  axiom AS "axiom"</span></span>
 <span class="line"><span>FROM "theories"</span></span>
@@ -91,7 +91,7 @@ with edges to axiom-specific anchors.</p>
 <li><code>theories/README.md</code> (eight theories, Dataview query)</li>
 <li>One axiom packet — start with <code>math/00-difference/</code></li>
 </ol>
-<p>For implementation: <code>docs/spec.md</code> → one axiom packet →
+<p>For implementation: <code>docs/spec.md</code><div class="math math-block" data-formula="→ one axiom packet →" data-formula-tex="\to one axiom packet \to" aria-label="to to" data-source="extensions/obsidian.md">\[\to one axiom packet \to\]</div>
 <code>core/spec/packet-schema.md</code>.</p>
 </div>
   </article>

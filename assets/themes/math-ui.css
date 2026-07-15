@@ -498,6 +498,24 @@ th {
 .math { font-family: var(--font-serif); }
 .math-block { display: block; margin: 1rem 0; text-align: center; }
 
+/* Inline math (within prose) */
+.math-inline { display: inline; }
+.math-inline .katex { font-size: 1.05em; }
+
+/* Display math (standalone) */
+.math-block .katex { font-size: 1.1em; }
+
+/* LLM-friendly: data-formula attribute is preserved in HTML */
+[data-formula] {
+  /* Visual hint that this is a math expression, no special styling needed */
+}
+
+/* When formulas appear in tables, give them a bit of breathing room */
+td .math-inline,
+th .math-inline {
+  white-space: nowrap;
+}
+
 /* === Dataview === */
 
 .dataview {

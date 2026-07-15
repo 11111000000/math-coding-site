@@ -38,16 +38,16 @@ Self-Application closes the loop.
     
     <div class="page-body"><header><h1>fsm</h1><p class="axiom-link">grounded in A4</p></header><h1 id="finite-state-machine-axiom-process" tabindex="-1"><a class="header-anchor" href="#finite-state-machine-axiom-process">#</a> Finite State Machine (axiom Process)</h1>
 <p>A finite state machine is a tuple:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>M = ⟨ S, s₀, A, →, I ⟩</span></span></code></pre></p>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>M = ⟨ S, s₀, A, →, I ⟩</span></span></code></pre></p>
 <p>where</p>
 <p>S     — finite set of states
-s₀    — initial state
+<div class="math math-block" data-formula="s₀    — initial state" data-formula-tex="s_0    — initial state" aria-label="sub zero" data-source="theories/fsm.md">\[s_0    — initial state\]</div>
 A     — set of actions
-→     — transition relation (subset of S × A × S)
+<div class="math math-block" data-formula="→     — transition relation (subset of S × A × S)" data-formula-tex="\to     — transition relation (subset of S \times A \times S)" aria-label="to times times" data-source="theories/fsm.md">\[\to     — transition relation (subset of S \times A \times S)\]</div>
 I     — invariant function <code>I : S → Bool</code></p>
 <h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
 <p>In math-coding, the lifecycle FSM:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>S = { sketch, working, verified, deprecated, archived,</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>S = { sketch, working, verified, deprecated, archived,</span></span>
 <span class="line"><span>      superseded }</span></span>
 <span class="line"><span>s₀ = sketch</span></span>
 <span class="line"><span>A = { elaborate, commit, prove, deprecate, supersede,</span></span>

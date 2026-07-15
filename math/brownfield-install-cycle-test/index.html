@@ -65,7 +65,7 @@ Self-Application closes the loop.
 
     <div class="tab-panel" id="panel-decision"><h1 id="brownfield-install-cycle-test" tabindex="-1"><a class="header-anchor" href="#brownfield-install-cycle-test">#</a> brownfield-install-cycle-test</h1>
 <h2 id="thesis" tabindex="-1"><a class="header-anchor" href="#thesis">#</a> Thesis</h2>
-<p>The brownfield install cycle (install → verify → uninstall)
+<p><span class="math math-inline" data-formula="The brownfield install cycle (install → verify → uninstall)" data-formula-tex="The brownfield install cycle (install \to verify \to uninstall)" aria-label="to to" data-source="math/brownfield-install-cycle-test">\(The brownfield install cycle (install \to verify \to uninstall)\)</span>
 must work in isolation. A copy of the convention is
 installed into a tmp directory, verified by axiom A6, then
 uninstalled. The cycle is non-destructive: the tmp directory
@@ -120,7 +120,7 @@ broken path), all downstream users fail at axiom A6 — but
 in their copy, not in the source. axiom Self-Application
 runs in the source, so it does not catch install errors.</p>
 <h2 id="desired-outcome" tabindex="-1"><a class="header-anchor" href="#desired-outcome">#</a> Desired outcome</h2>
-<p>A hermetic test that exercises install → verify →
+<p><span class="math math-inline" data-formula="A hermetic test that exercises install → verify →" data-formula-tex="A hermetic test that exercises install \to verify \to" aria-label="to to" data-source="math/brownfield-install-cycle-test">\(A hermetic test that exercises install \to verify \to\)</span>
 uninstall in a tmp directory. The test runs in CI. axiom
 A6 is verified <strong>in the copy</strong>, not in the source.</p>
 <h2 id="constraints" tabindex="-1"><a class="header-anchor" href="#constraints">#</a> Constraints</h2>

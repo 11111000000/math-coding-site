@@ -81,7 +81,7 @@ The output is in the <strong>same shape</strong> as <code>create-packet.sh</code
 input, so:</p>
 <p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>sh math-coding extract cache-ttl > /tmp/spec.yaml</span></span>
 <span class="line"><span>sh math-coding create cache-ttl-renamed --from /tmp/spec.yaml</span></span></code></pre></p>
-<p>This is the <strong>round-trip</strong>: extract → create produces a
+<p>This is the <strong>round-trip</strong><div class="math math-block" data-formula=": extract → create produces a" data-formula-tex=": extract \to create produces a" aria-label="to" data-source="math/extract-packet-reverse">\[: extract \to create produces a\]</div>
 new packet with the same content.</p>
 <h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
 <p>touches: <code>core/author/extract-packet.sh</code> (new script),
@@ -157,12 +157,12 @@ substrate-specific logic.
 <h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>
 <p><code>sh math-coding extract &lt;name&gt;</code> reads:</p>
 <ul>
-<li>packet.yaml  → name, mode, lifecycle, etc.</li>
-<li><a href="http://decision.md">decision.md</a>  → Thesis, Antithesis, Synthesis, Surface,
+<li><div class="math math-block" data-formula="packet.yaml  → name, mode, lifecycle, etc." data-formula-tex="packet.yaml  \to name, mode, lifecycle, etc." aria-label="to" data-source="math/extract-packet-reverse">\[packet.yaml  \to name, mode, lifecycle, etc.\]</div></li>
+<li><a href="http://decision.md">decision.md</a><div class="math math-block" data-formula="→ Thesis, Antithesis, Synthesis, Surface," data-formula-tex="\to Thesis, Antithesis, Synthesis, Surface," aria-label="to" data-source="math/extract-packet-reverse">\[\to Thesis, Antithesis, Synthesis, Surface,\]</div>
 Proof (parsed by section header)</li>
-<li><a href="http://task.md">task.md</a>      → Problem, Desired outcome, Constraints</li>
-<li>assumptions.yaml → assumptions (parsed as YAML)</li>
-<li><a href="http://refinement.md">refinement.md</a> → State pre/post, Operation, Mapping,
+<li><a href="http://task.md">task.md</a><div class="math math-block" data-formula="→ Problem, Desired outcome, Constraints" data-formula-tex="\to Problem, Desired outcome, Constraints" aria-label="to" data-source="math/extract-packet-reverse">\[\to Problem, Desired outcome, Constraints\]</div></li>
+<li><div class="math math-block" data-formula="assumptions.yaml → assumptions (parsed as YAML)" data-formula-tex="assumptions.yaml \to assumptions (parsed as YAML)" aria-label="to" data-source="math/extract-packet-reverse">\[assumptions.yaml \to assumptions (parsed as YAML)\]</div></li>
+<li><a href="http://refinement.md">refinement.md</a><div class="math math-block" data-formula="→ State pre/post, Operation, Mapping," data-formula-tex="\to State pre/post, Operation, Mapping," aria-label="to" data-source="math/extract-packet-reverse">\[\to State pre/post, Operation, Mapping,\]</div>
 Invariant, Test, Runtime</li>
 </ul>
 <p>Emits to stdout in the same shape as <code>create-packet.sh</code>
@@ -249,7 +249,7 @@ input.</p>
 <h2 id="invariant-preservation" tabindex="-1"><a class="header-anchor" href="#invariant-preservation">#</a> Invariant preservation</h2>
 <ul>
 <li>Every field in the 5 files appears in the spec.</li>
-<li>Round-trip (extract → create) produces the same 5 files
+<li><div class="math math-block" data-formula="Round-trip (extract → create) produces the same 5 files" data-formula-tex="Round-trip (extract \to create) produces the same 5 files" aria-label="to" data-source="math/extract-packet-reverse">\[Round-trip (extract \to create) produces the same 5 files\]</div>
 with the same content.</li>
 <li>axiom Self-Application holds for the original and
 re-created packets.</li>

@@ -38,7 +38,7 @@ Self-Application closes the loop.
     
     <div class="page-body"><header><h1>lifecycle</h1><p class="path">extensions/agents/opencode/references/lifecycle.md</p></header><h1 id="referenceslifecyclemd" tabindex="-1"><a class="header-anchor" href="#referenceslifecyclemd">#</a> references/lifecycle.md</h1>
 <p>The lifecycle FSM. Load this when the agent changes a
-packet's lifecycle (sketch → working → verified) or asks
+<div class="math math-block" data-formula="packet's lifecycle (sketch → working → verified) or asks" data-formula-tex="packet's lifecycle (sketch \to working \to verified) or asks" aria-label="to to" data-source="extensions/agents/opencode/references/lifecycle.md">\[packet's lifecycle (sketch \to working \to verified) or asks\]</div>
 which state to use.</p>
 <h2 id="six-states" tabindex="-1"><a class="header-anchor" href="#six-states">#</a> Six states</h2>
 <table>
@@ -89,17 +89,17 @@ strictly: every transition is a commit; every commit is a
 SHA; every SHA is in <code>applications[]</code>.</p>
 <h2 id="how-to-transition" tabindex="-1"><a class="header-anchor" href="#how-to-transition">#</a> How to transition</h2>
 <ol>
-<li><strong>sketch → working</strong>: fill in the five files with
+<li><strong><div class="math math-block" data-formula="sketch → working" data-formula-tex="sketch \to working" aria-label="to" data-source="extensions/agents/opencode/references/lifecycle.md">\[sketch \to working\]</div></strong>: fill in the five files with
 content. First commit with code.</li>
-<li><strong>working → verified</strong>: ensure axiom A6 holds for this
+<li><strong><div class="math math-block" data-formula="working → verified" data-formula-tex="working \to verified" aria-label="to" data-source="extensions/agents/opencode/references/lifecycle.md">\[working \to verified\]</div></strong>: ensure axiom A6 holds for this
 packet (test passes). Add the first SHA to
 <code>applications[]</code>. Set <code>lifecycle: verified</code>.</li>
-<li><strong>verified → deprecated</strong>: when another packet supersedes
+<li><strong><div class="math math-block" data-formula="verified → deprecated" data-formula-tex="verified \to deprecated" aria-label="to" data-source="extensions/agents/opencode/references/lifecycle.md">\[verified \to deprecated\]</div></strong>: when another packet supersedes
 this one, set <code>lifecycle: deprecated</code> and add
 <code>supersession: math/&lt;newer&gt;/</code>.</li>
-<li><strong>deprecated → superseded</strong>: when the newer packet is
+<li><strong><div class="math math-block" data-formula="deprecated → superseded" data-formula-tex="deprecated \to superseded" aria-label="to" data-source="extensions/agents/opencode/references/lifecycle.md">\[deprecated \to superseded\]</div></strong>: when the newer packet is
 established, set <code>lifecycle: superseded</code>.</li>
-<li><strong>superseded → archived</strong>: when nothing references this
+<li><strong><div class="math math-block" data-formula="superseded → archived" data-formula-tex="superseded \to archived" aria-label="to" data-source="extensions/agents/opencode/references/lifecycle.md">\[superseded \to archived\]</div></strong>: when nothing references this
 packet, set <code>lifecycle: archived</code>.</li>
 </ol>
 <h2 id="when-to-supersession-vs-amend" tabindex="-1"><a class="header-anchor" href="#when-to-supersession-vs-amend">#</a> When to supersession vs amend</h2>

@@ -41,19 +41,19 @@ Self-Application closes the loop.
 type-check is the verification that a program inhabits its
 type.</p>
 <h2 id="formal-statement" tabindex="-1"><a class="header-anchor" href="#formal-statement">#</a> Formal statement</h2>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Types        ⇔  Propositions</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Types        ⇔  Propositions</span></span>
 <span class="line"><span>Programs     ⇔  Proofs</span></span>
 <span class="line"><span>Type-check   ⇔  Proof verification</span></span></code></pre></p>
 <p>In mathematical notation, the correspondence is between:</p>
-<p>simply-typed lambda calculus  ⇔  intuitionistic propositional logic
-System F                     ⇔  second-order propositional logic
-Calculus of constructions     ⇔  higher-order intuitionistic logic</p>
+<p><div class="math math-block" data-formula="simply-typed lambda calculus  ⇔  intuitionistic propositional logic" data-formula-tex="simply-typed lambda calculus  \Leftrightarrow  intuitionistic propositional logic" aria-label="if and only if" data-source="theories/curry-howard.md">\[simply-typed lambda calculus  \Leftrightarrow  intuitionistic propositional logic\]</div>
+<div class="math math-block" data-formula="System F                     ⇔  second-order propositional logic" data-formula-tex="System F                     \Leftrightarrow  second-order propositional logic" aria-label="if and only if" data-source="theories/curry-howard.md">\[System F                     \Leftrightarrow  second-order propositional logic\]</div>
+<div class="math math-block" data-formula="Calculus of constructions     ⇔  higher-order intuitionistic logic" data-formula-tex="Calculus of constructions     \Leftrightarrow  higher-order intuitionistic logic" aria-label="if and only if" data-source="theories/curry-howard.md">\[Calculus of constructions     \Leftrightarrow  higher-order intuitionistic logic\]</div></p>
 <h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
 <p>In math-coding:</p>
-<p>packet      ⇔  proof term
-verifier    ⇔  type-checker
-exit 0      ⇔  proof accepted
-exit ≠ 0    ⇔  proof rejected</p>
+<p><div class="math math-block" data-formula="packet      ⇔  proof term" data-formula-tex="packet      \Leftrightarrow  proof term" aria-label="if and only if" data-source="theories/curry-howard.md">\[packet      \Leftrightarrow  proof term\]</div>
+<div class="math math-block" data-formula="verifier    ⇔  type-checker" data-formula-tex="verifier    \Leftrightarrow  type-checker" aria-label="if and only if" data-source="theories/curry-howard.md">\[verifier    \Leftrightarrow  type-checker\]</div>
+<div class="math math-block" data-formula="exit 0      ⇔  proof accepted" data-formula-tex="exit 0      \Leftrightarrow  proof accepted" aria-label="if and only if" data-source="theories/curry-howard.md">\[exit 0      \Leftrightarrow  proof accepted\]</div>
+<div class="math math-block" data-formula="exit ≠ 0    ⇔  proof rejected" data-formula-tex="exit \neq 0    \Leftrightarrow  proof rejected" aria-label="not equal if and only if" data-source="theories/curry-howard.md">\[exit \neq 0    \Leftrightarrow  proof rejected\]</div></p>
 <p>The five files of a packet are the canonical projection of
 a typed lambda-term:</p>
 <table>
@@ -78,7 +78,7 @@ a typed lambda-term:</p>
 </tr>
 <tr>
 <td>assumptions.yaml</td>
-<td>context Γ</td>
+<td><div class="math math-block" data-formula="context Γ" data-formula-tex="context \Gamma" aria-label="Gamma" data-source="theories/curry-howard.md">\[context \Gamma\]</div></td>
 </tr>
 <tr>
 <td><a href="http://refinement.md">refinement.md</a></td>
@@ -98,7 +98,7 @@ Curry-Howard terms:</p>
 <a href="http://decision.md">decision.md</a>      — proposition: &quot;A packet is a proof term&quot;
 <a href="http://task.md">task.md</a>          — goal: &quot;fix the 5-file structure&quot;
 assumptions.yaml — context: A0 (Difference), A6 (Self-Application)
-<a href="http://refinement.md">refinement.md</a>    — elaboration: 5-file → typed lambda-term</p>
+<a href="http://refinement.md">refinement.md</a><div class="math math-block" data-formula="— elaboration: 5-file → typed lambda-term" data-formula-tex="— elaboration: 5-file \to typed lambda-term" aria-label="to" data-source="theories/curry-howard.md">\[— elaboration: 5-file \to typed lambda-term\]</div></p>
 <p>This packet is the proof that a packet is a proof term.
 The proof checks itself: <code>sh math-coding probe</code> exits 0.</p>
 <h2 id="why-it-matters" tabindex="-1"><a class="header-anchor" href="#why-it-matters">#</a> Why it matters</h2>

@@ -86,7 +86,7 @@ Self-Application closes the loop.
 <p>math-coding is grounded on seven axioms. Each axiom is a
 packet under <code>math/&lt;NN-axiom&gt;/</code>. The axiom lives in the
 proposition it states; the packet lives in the proof.</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
+<p><pre data-language="dataview" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>TABLE</span></span>
 <span class="line"><span>  lifecycle AS "lifecycle",</span></span>
 <span class="line"><span>  substrate AS "substrate",</span></span>
 <span class="line"><span>  decision AS "decision"</span></span>
@@ -120,16 +120,16 @@ describes.</p>
 <p><strong>Statement</strong>: A packet is a proof term. A verifier is a
 type-check.</p>
 <p><strong>Formal</strong>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Types        ⇔  Propositions</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Types        ⇔  Propositions</span></span>
 <span class="line"><span>Programs     ⇔  Proofs</span></span>
 <span class="line"><span>Type-check   ⇔  Proof verification</span></span></code></pre></p>
 <p><strong>Why it matters</strong>: the five files of a packet are the
 five parts of a proof:</p>
-<p>packet.yaml      →  type signature
-<a href="http://decision.md">decision.md</a>      →  the proposition
-<a href="http://task.md">task.md</a>          →  the goal
-assumptions.yaml →  the context Γ
-<a href="http://refinement.md">refinement.md</a>    →  the elaboration</p>
+<p><div class="math math-block" data-formula="packet.yaml      →  type signature" data-formula-tex="packet.yaml      \to  type signature" aria-label="to" data-source="docs/axioms.md">\[packet.yaml      \to  type signature\]</div>
+<a href="http://decision.md">decision.md</a><div class="math math-block" data-formula="→  the proposition" data-formula-tex="\to  the proposition" aria-label="to" data-source="docs/axioms.md">\[\to  the proposition\]</div>
+<a href="http://task.md">task.md</a><div class="math math-block" data-formula="→  the goal" data-formula-tex="\to  the goal" aria-label="to" data-source="docs/axioms.md">\[\to  the goal\]</div>
+<div class="math math-block" data-formula="assumptions.yaml →  the context Γ" data-formula-tex="assumptions.yaml \to  the context \Gamma" aria-label="to Gamma" data-source="docs/axioms.md">\[assumptions.yaml \to  the context \Gamma\]</div>
+<a href="http://refinement.md">refinement.md</a><div class="math math-block" data-formula="→  the elaboration" data-formula-tex="\to  the elaboration" aria-label="to" data-source="docs/axioms.md">\[\to  the elaboration\]</div></p>
 <p>The verifier checks the <strong>relationship</strong> between proposition
 and proof, not one or the other. Without axiom Curry-Howard, the
 five files collapse to one.</p>
@@ -146,7 +146,7 @@ older than the convention itself. They will outlive it.</p>
 <p><strong>Statement</strong>: Process precedes code. The lifecycle of a
 packet is finite and ordered.</p>
 <p><strong>Formal</strong>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>M = ⟨ S, s₀, A, →, I ⟩</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>M = ⟨ S, s₀, A, →, I ⟩</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>S = { sketch, working, verified, deprecated, archived,</span></span>
 <span class="line"><span>      superseded }</span></span>
@@ -163,7 +163,7 @@ at least one SHA in <code>applications[]</code>.</p>
 named. Changes must be witnessed. Modes must be honest
 about scope.</p>
 <p><strong>Formal</strong>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>B : Prop × Agent → [0, 1]</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>B : Prop × Agent → [0, 1]</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>  fact        B(P) ≥ 0.95</span></span>
 <span class="line"><span>  hypothesis  0.5 &#x3C; B &#x3C; 0.95</span></span>
@@ -190,7 +190,7 @@ axiom above is realised as a packet under <code>math/</code>. The
 verifier that checks those packets is itself the subject of
 a packet.</p>
 <p><strong>Formal</strong>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>∀ packet P ∈ math/* :</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>∀ packet P ∈ math/* :</span></span>
 <span class="line"><span>    ∀ axiom A_i (i ∈ {0,..,5}) :</span></span>
 <span class="line"><span>        P satisfies A_i</span></span></code></pre></p>
 <p><strong>Why it matters</strong>: a convention that cannot verify itself
@@ -201,19 +201,19 @@ conjunction is axiom Self-Application.</p>
 <p><strong>Packet</strong>: <code>math/06-self-application/</code></p>
 <hr>
 <h2 id="order-of-dependency" tabindex="-1"><a class="header-anchor" href="#order-of-dependency">#</a> Order of dependency</h2>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>A0 (ontological)  →  A1 (motivational)  →  A2 (structural)  →</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>A0 (ontological)  →  A1 (motivational)  →  A2 (structural)  →</span></span>
 <span class="line"><span>A3 (substrate)    →  A4 (temporal)      →  A5 (epistemic)   →</span></span>
 <span class="line"><span>A6 (meta)</span></span></code></pre></p>
 <p>Each axiom depends on the preceding axioms; each axiom is
 also instantiated as a packet that the next axiom depends
 on.</p>
 <h2 id="reading-order" tabindex="-1"><a class="header-anchor" href="#reading-order">#</a> Reading order</h2>
-<p>For first contact, read A0 → A1 → A2 → A6. These four give
+<p><div class="math math-block" data-formula="For first contact, read A0 → A1 → A2 → A6. These four give" data-formula-tex="For first contact, read A0 \to A1 \to A2 \to A6. These four give" aria-label="to to to" data-source="docs/axioms.md">\[For first contact, read A0 \to A1 \to A2 \to A6. These four give\]</div>
 the ontological foundation (A0), the motivation (A1), the
 structural bridge (A2), and the meta-discipline (A6). The
 remaining axioms (A3-A5) operationalise the first four into
 material basis, process, and accounting.</p>
-<p>For implementation, read A2 → A3 → A5 → A4. These give the
+<p><div class="math math-block" data-formula="For implementation, read A2 → A3 → A5 → A4. These give the" data-formula-tex="For implementation, read A2 \to A3 \to A5 \to A4. These give the" aria-label="to to to" data-source="docs/axioms.md">\[For implementation, read A2 \to A3 \to A5 \to A4. These give the\]</div>
 structural template (A2), the substrate (A3), the accounting
 instruments (A5), and the temporal discipline (A4).</p>
 

@@ -70,17 +70,17 @@ Self-Application closes the loop.
 five files of a packet are the canonical projection of a
 typed lambda-term.</p>
 <p>In the Curry-Howard correspondence:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  Types        ⇔  Propositions</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  Types        ⇔  Propositions</span></span>
 <span class="line"><span>  Programs     ⇔  Proofs</span></span>
 <span class="line"><span>  Type-check   ⇔  Proof verification</span></span></code></pre></p>
 <p>In math-coding:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  packet      ⇔  proof term</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  packet      ⇔  proof term</span></span>
 <span class="line"><span>  verifier    ⇔  type-checker</span></span>
 <span class="line"><span>  exit 0      ⇔  proof accepted</span></span>
 <span class="line"><span>  exit ≠ 0    ⇔  proof rejected</span></span></code></pre></p>
 <p>The five files of a packet are not five arbitrary artifacts.
 They are the five parts of a proof:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  packet.yaml      →  type signature (manifest of what's proven)</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>  packet.yaml      →  type signature (manifest of what's proven)</span></span>
 <span class="line"><span>  decision.md      →  the proposition (what's proven)</span></span>
 <span class="line"><span>  task.md          →  the goal (why this proof matters)</span></span>
 <span class="line"><span>  assumptions.yaml →  the context Γ (what we assume)</span></span>
@@ -118,7 +118,7 @@ Curry-Howard terms:</p>
 <a href="http://decision.md">decision.md</a>      — proposition: &quot;A packet is a proof term&quot;
 <a href="http://task.md">task.md</a>          — goal: &quot;fix the 5-file structure&quot;
 assumptions.yaml — context: axiom Difference, axiom Self-Application
-<a href="http://refinement.md">refinement.md</a>    — elaboration: 5-file → typed lambda-term</p>
+<a href="http://refinement.md">refinement.md</a><div class="math math-block" data-formula="— elaboration: 5-file → typed lambda-term" data-formula-tex="— elaboration: 5-file \to typed lambda-term" aria-label="to" data-source="math/02-curry-howard">\[— elaboration: 5-file \to typed lambda-term\]</div></p>
 <p>This packet is the proof that a packet is a proof term.
 The proof checks itself: <code>sh math-coding probe</code> exits 0.</p>
 <h2 id="surface-impact" tabindex="-1"><a class="header-anchor" href="#surface-impact">#</a> Surface impact</h2>
@@ -221,7 +221,7 @@ checks that every role is filled.</p>
 <td><a href="http://task.md">task.md</a></td>
 </tr>
 <tr>
-<td>context Γ</td>
+<td><div class="math math-block" data-formula="context Γ" data-formula-tex="context \Gamma" aria-label="Gamma" data-source="math/02-curry-howard">\[context \Gamma\]</div></td>
 <td>assumptions.yaml</td>
 </tr>
 <tr>

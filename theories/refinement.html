@@ -38,17 +38,17 @@ Self-Application closes the loop.
     
     <div class="page-body"><header><h1>refinement</h1><p class="axiom-link">grounded in A4</p></header><h1 id="refinement-axiom-process" tabindex="-1"><a class="header-anchor" href="#refinement-axiom-process">#</a> Refinement (axiom Process)</h1>
 <p>A refinement is a relation:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>R ⊆ S_impl × S_spec</span></span></code></pre></p>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>R ⊆ S_impl × S_spec</span></span></code></pre></p>
 <p>such that every implementation behaviour has a matching
 (possibly stuttering) specification behaviour:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>S_impl ⊨ R(S_spec)</span></span></code></pre></p>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>S_impl ⊨ R(S_spec)</span></span></code></pre></p>
 <h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
 <p>In math-coding, the packet is the specification; the
 implementation is whatever realises the packet. The
 <code>refinement.md</code> of each packet declares:</p>
 <p>State    : pre-state, post-state
 Operation : the action that implements the packet
-Mapping   : spec state → impl state
+<div class="math math-block" data-formula="Mapping   : spec state → impl state" data-formula-tex="Mapping   : spec state \to impl state" aria-label="to" data-source="theories/refinement.md">\[Mapping   : spec state \to impl state\]</div>
 Invariant : what stays true
 Test      : how to verify
 Runtime   : how to monitor</p>

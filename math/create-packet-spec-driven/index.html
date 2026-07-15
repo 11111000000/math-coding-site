@@ -80,7 +80,7 @@ proposition; it should be <strong>one</strong> atomic operation to
 produce.</p>
 <h2 id="synthesis" tabindex="-1"><a class="header-anchor" href="#synthesis">#</a> Synthesis</h2>
 <p>A spec is a YAML document with a fixed shape:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">cache-ttl</span></span>
+<p><pre data-language="yaml" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">cache-ttl</span></span>
 <span class="line"><span style="color:#85E89D">mode</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">standard</span></span>
 <span class="line"><span style="color:#85E89D">thesis</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Cache entries expire after 60 seconds."</span></span>
 <span class="line"><span style="color:#85E89D">antithesis</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Users may need manual invalidation."</span></span>
@@ -216,9 +216,9 @@ produce the same five files, both pass verify.sh.
     <div class="tab-panel" id="panel-refinement"><h1 id="refinement-create-packet-spec-driven" tabindex="-1"><a class="header-anchor" href="#refinement-create-packet-spec-driven">#</a> Refinement: create-packet-spec-driven</h1>
 <h2 id="state" tabindex="-1"><a class="header-anchor" href="#state">#</a> State</h2>
 <ul>
-<li>pre: agent writes 1 spec → 1 init call + 5 file edits =
+<li><div class="math math-block" data-formula="pre: agent writes 1 spec → 1 init call + 5 file edits =" data-formula-tex="pre: agent writes 1 spec \to 1 init call + 5 file edits =" aria-label="to" data-source="math/create-packet-spec-driven">\[pre: agent writes 1 spec \to 1 init call + 5 file edits =\]</div>
 8 operations to create a packet.</li>
-<li>post: agent writes 1 spec → 1 create call = 2 operations
+<li><div class="math math-block" data-formula="post: agent writes 1 spec → 1 create call = 2 operations" data-formula-tex="post: agent writes 1 spec \to 1 create call = 2 operations" aria-label="to" data-source="math/create-packet-spec-driven">\[post: agent writes 1 spec \to 1 create call = 2 operations\]</div>
 (the spec write + the create call). Convention does the rest.</li>
 </ul>
 <h2 id="operation" tabindex="-1"><a class="header-anchor" href="#operation">#</a> Operation</h2>

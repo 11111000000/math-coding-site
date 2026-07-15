@@ -37,7 +37,7 @@ Self-Application closes the loop.
   <article class="page">
     
     <div class="page-body"><h1 id="changelog" tabindex="-1"><a class="header-anchor" href="#changelog">#</a> Changelog</h1>
-<p>Versions follow the φ-recurrence: <code>v_{n+1} = v_n + (1 - v_n) * 0.618</code>.
+<p><div class="math math-block" data-formula="Versions follow the φ-recurrence:" data-formula-tex="Versions follow the \phi-recurrence:" aria-label="phi" data-source="CHANGELOG.md">\[Versions follow the \phi-recurrence:\]</div><code>v_{n+1} = v_n + (1 - v_n) * 0.618</code>.
 The convention approaches but never reaches 1.0.</p>
 <h2 id="v0854---2026-07-15" tabindex="-1"><a class="header-anchor" href="#v0854---2026-07-15">#</a> [v0.854] - 2026-07-15</h2>
 <p>First release after the recursive reset to v0.618.</p>
@@ -95,11 +95,11 @@ extension README (<code>extensions/tla/README.md</code>) were
 <strong>removed</strong> as KISS-violations. What remains:</p>
 <ul>
 <li><strong>create-packet-spec-driven</strong> (math/): spec-driven
-packet creation. One YAML spec → five files in one call.
+<div class="math math-block" data-formula="packet creation. One YAML spec → five files in one call." data-formula-tex="packet creation. One YAML spec \to five files in one call." aria-label="to" data-source="CHANGELOG.md">\[packet creation. One YAML spec \to five files in one call.\]</div>
 Before: 8 operations (init + 5 file edits + verify +
 commit). After: 2 operations (write spec, run create).</li>
 <li><strong>extract-packet-reverse</strong> (math/): reverse operation.
-Five files → one YAML spec on stdout. Round-trips with
+<div class="math math-block" data-formula="Five files → one YAML spec on stdout. Round-trips with" data-formula-tex="Five files \to one YAML spec on stdout. Round-trips with" aria-label="to" data-source="CHANGELOG.md">\[Five files \to one YAML spec on stdout. Round-trips with\]</div>
 create-packet-spec-driven. The script is present but
 not auto-tested (a test would require an example
 packet, which is itself a KISS-violation).</li>
@@ -110,8 +110,8 @@ by the convention itself.</li>
 </ul>
 <p>New core scripts (in addition to the original 5):</p>
 <ul>
-<li><code>core/author/create-packet.sh</code> — spec → 5 files</li>
-<li><code>core/author/extract-packet.sh</code> — 5 files → spec</li>
+<li><code>core/author/create-packet.sh</code><div class="math math-block" data-formula="— spec → 5 files" data-formula-tex="— spec \to 5 files" aria-label="to" data-source="CHANGELOG.md">\[— spec \to 5 files\]</div></li>
+<li><code>core/author/extract-packet.sh</code><div class="math math-block" data-formula="— 5 files → spec" data-formula-tex="— 5 files \to spec" aria-label="to" data-source="CHANGELOG.md">\[— 5 files \to spec\]</div></li>
 </ul>
 <p>New dispatcher commands: <code>create</code>, <code>extract</code>.</p>
 <p>14 self-tests (Case 15 removed: required example packet,
@@ -139,7 +139,7 @@ wikilink to the canonical axiom definition in
 <li><strong>named axioms</strong> (axiom Process,
 axiom Accounting, axiom Self-Application: axiom
 Self-Application) — the by-number names from the
-v0.618 → 7-axiom rename have been replaced</li>
+<div class="math math-block" data-formula="v0.618 → 7-axiom rename have been replaced" data-formula-tex="v0.618 \to 7-axiom rename have been replaced" aria-label="to" data-source="CHANGELOG.md">\[v0.618 \to 7-axiom rename have been replaced\]</div></li>
 </ul>
 <p>Each commit passed <code>sh math-coding verify</code>,
 <code>sh math-coding probe</code>, and <code>sh math-coding drift-check</code>.

@@ -75,7 +75,7 @@ SHA witness             — what changed
 supersession DAG        — what replaced what
 modes (3)               — how much ceremony</p>
 <h2 id="epistemic-markers-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#epistemic-markers-axiom-accounting">#</a> Epistemic markers (axiom Accounting)</h2>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>B : Prop × Agent → [0, 1]</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>B : Prop × Agent → [0, 1]</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>  fact        — B(P, agent) ≥ 0.95    we have evidence</span></span>
 <span class="line"><span>  hypothesis  — 0.5 &#x3C; B &#x3C; 0.95       we suspect, not proof</span></span>
@@ -86,7 +86,7 @@ modes (3)               — how much ceremony</p>
 A claim marked <code>fact</code> without evidence is a lie. A claim
 marked <code>unknown</code> honestly is honest.</p>
 <h2 id="verdict-outcomes-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#verdict-outcomes-axiom-accounting">#</a> Verdict outcomes (axiom Accounting)</h2>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Spec ⊨ P</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>Spec ⊨ P</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>  VERIFIED                    proof accepted under test</span></span>
 <span class="line"><span>  NEEDS_REVISION              counterexample or missing piece</span></span>
@@ -96,7 +96,7 @@ marked <code>unknown</code> honestly is honest.</p>
 <p>Anything outside these five is &quot;looks fine&quot; — the failure
 mode axiom Accounting forbids.</p>
 <h2 id="sha-witness-axiom-accounting" tabindex="-1"><a class="header-anchor" href="#sha-witness-axiom-accounting">#</a> SHA witness (axiom Accounting)</h2>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>applications: List[(SHA × List[FilePath])]</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>applications: List[(SHA × List[FilePath])]</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>  - sha:    abc123</span></span>
 <span class="line"><span>    by:     agent</span></span>
@@ -143,7 +143,7 @@ are empty forms. With care, they catch drift.</p>
 <p>Consider this packet, <code>math/05-accounting/</code>. Each of the
 five instruments is concretely realised here:</p>
 <p><strong>1. Epistemic markers</strong> — <code>assumptions.yaml</code>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
+<p><pre data-language="yaml" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">- </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">A1</span></span>
 <span class="line"><span style="color:#85E89D">  statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"five epistemic markers capture every belief"</span></span>
 <span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent-inferred</span></span>
 <span class="line"><span style="color:#85E89D">  epistemology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact</span></span>
@@ -164,7 +164,7 @@ theory file; the evidence cites the theory.</p>
 exit 1, <code>NEEDS_REVISION</code>. The convention does not produce
 &quot;looks fine&quot; — the verdict is named.</p>
 <p><strong>3. SHA witness</strong> — <code>packet.yaml:applications[]</code>:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">applications</span><span style="color:#E1E4E8">:</span></span>
+<p><pre data-language="yaml" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span style="color:#85E89D">applications</span><span style="color:#E1E4E8">:</span></span>
 <span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">sha</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">576d803</span></span>
 <span class="line"><span style="color:#85E89D">    by</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent</span></span>
 <span class="line"><span style="color:#85E89D">    date</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-07-15</span></span>

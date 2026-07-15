@@ -44,7 +44,7 @@ ask clarifying questions. Its actions form a trace:</p>
 <p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>trace = [(read, file), (propose, mode), (write, file), ...]</span></span></code></pre></p>
 <h2 id="math-coding-instance" tabindex="-1"><a class="header-anchor" href="#math-coding-instance">#</a> math-coding instance</h2>
 <p>In math-coding:</p>
-<p><pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>agent mode   ∈ { skip, light, standard, strict }</span></span>
+<p><pre data-block-type="math-formula" class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code><span class="line"><span>agent mode   ∈ { skip, light, standard, strict }</span></span>
 <span class="line"><span>agent role   ∈ { developer, designer, product-manager,</span></span>
 <span class="line"><span>                researcher, tech-writer }</span></span>
 <span class="line"><span></span></span>
@@ -62,11 +62,11 @@ light     — commit message only
 standard  — full 5-file packet (most changes)
 strict    — packet + theory link + applications[]</p>
 <p>Default by role:
-developer          →  standard
-designer           →  light
-product-manager    →  light
-researcher         →  strict
-tech-writer        →  skip (or light)</p>
+<div class="math math-block" data-formula="developer          →  standard" data-formula-tex="developer          \to  standard" aria-label="to" data-source="theories/agent.md">\[developer          \to  standard\]</div>
+<div class="math math-block" data-formula="designer           →  light" data-formula-tex="designer           \to  light" aria-label="to" data-source="theories/agent.md">\[designer           \to  light\]</div>
+<div class="math math-block" data-formula="product-manager    →  light" data-formula-tex="product-manager    \to  light" aria-label="to" data-source="theories/agent.md">\[product-manager    \to  light\]</div>
+<div class="math math-block" data-formula="researcher         →  strict" data-formula-tex="researcher         \to  strict" aria-label="to" data-source="theories/agent.md">\[researcher         \to  strict\]</div>
+<div class="math math-block" data-formula="tech-writer        →  skip (or light)" data-formula-tex="tech-writer        \to  skip (or light)" aria-label="to" data-source="theories/agent.md">\[tech-writer        \to  skip (or light)\]</div></p>
 <h2 id="what-an-agent-does" tabindex="-1"><a class="header-anchor" href="#what-an-agent-does">#</a> What an agent does</h2>
 <p>The agent's trace is its proof term. The convention treats
 the trace as an executable. The verifier evaluates the
