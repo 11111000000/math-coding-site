@@ -1,6 +1,11 @@
-# Generated
-/book/
-/public/
+node_modules/
+dist/
+
+# Submodules are not ignored — math-coding-v0.618/ is the source content.
+# But its own submodules (like core/, tests/) are not relevant to the site.
+math-coding-v0.618/.git/
+math-coding-v0.618/core/
+math-coding-v0.618/tests/
 
 # Editor
 .idea/
@@ -9,7 +14,3 @@
 # OS
 .DS_Store
 Thumbs.db
-
-# mdbook
-*.pdb
-mdbook-linkcheck/

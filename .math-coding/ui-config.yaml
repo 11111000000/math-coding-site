@@ -1,0 +1,94 @@
+version: 1
+
+project:
+  name: math-coding
+  tagline: Curry-Howard convention for AI coding agents
+  description: |
+    A convention where every non-trivial decision is a packet —
+    a directory with exactly five files. The packet is the
+    proposition; the verifier is the type-check; axiom
+    Self-Application closes the loop.
+
+site:
+  title: math-coding
+  base_url: https://11111000000.github.io/math-coding-site/
+  locale: en
+  theme:
+    default: auto
+    syntax: github-dark
+  port: 4321
+  live_reload: true
+
+renderers:
+  markdown:
+    engine: markdown-it
+    plugins:
+      - anchor
+      - toc
+      - wikilinks
+      - katex
+      - mermaid
+      - dataview
+      - shiki
+  math:
+    engine: katex
+    display_mode: auto
+  shell:
+    engine: shiki
+  yaml:
+    engine: shiki
+
+plugins:
+  tla:
+    enabled: true
+    state_diagram: true
+    tlc_check: false
+  coq:
+    enabled: true
+    proof_tree: true
+    coqdoc: false
+  bpmn:
+    enabled: true
+    engine: bpmn-js
+  alloy:
+    enabled: false
+  mermaid:
+    enabled: true
+    render: client
+
+graph:
+  algorithm: force-2
+  iterations: 200
+  show_lifecycle: true
+  show_axiom_chain: true
+
+search:
+  enabled: true
+  engine: lunr
+  shortcut: "/"
+
+keyboard:
+  enabled: true
+  preset: vim
+
+build:
+  out: dist
+  base_url_relative: true
+  sitemap: true
+  rss: false
+  pwa: false
+
+source:
+  include:
+    - math/
+    - docs/
+    - theories/
+    - extensions/
+    - README.md
+    - AGENTS.md
+    - CHANGELOG.md
+    - LICENSE
+  exclude:
+    - core/
+    - tests/
+    - .git/
