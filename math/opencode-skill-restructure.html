@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | opencode-skill-restructure</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>opencode-skill-restructure</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom"></span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>The opencode skill for math-coding is one file (`SKILL.md`, 117 lines). This is too long for an entry point: every LLM agent reads it on load. The skill is split into one entry file (≤50 lines, with the seven axioms) and four reference </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>A single-file skill is simple. The agent reads one file and is done. Splitting it into five files requires the agent to navigate, which is friction. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>`SKILL.md` is the entry point: 7 axioms, 5 files, 3 modes, 6 lifecycle states, 8 commands. ~50 lines. `references/axioms.md` — full axiom statements (loaded </p>
+</section>
+<section><h3>Body</h3>
+<h2>opencode-skill-restructure</h2>
+<h3>Thesis</h3>
+<p>references/ on demand. agent reads SKILL.md to learn the protocol; the agent reads files (axioms, theories, lifecycle, spec examples). The file (≤50 lines, with the seven axioms) and four reference agent reads it on load. The skill is split into one entry 117 lines). This is too long for an entry point: every LLM The opencode skill for math-coding is one file (`SKILL.md`, </p>
+<h3>Antithesis</h3>
+<p>agent to navigate, which is friction. and is done. Splitting it into five files requires the A single-file skill is simple. The agent reads one file </p>
+<p>**loaded on demand**, when the agent has a question. **cheaper** in the common case, and the references are load. A 50-line entry uses ~1,000 tokens. The split is the skill. A 117-line file uses ~2,500 context tokens at But the agent pays this friction **every time** it reads </p>
+<h3>Synthesis</h3>
+<p>6 lifecycle states, 8 commands. ~50 lines. `SKILL.md` is the entry point: 7 axioms, 5 files, 3 modes, </p>
+<p>when the agent cites an axiom). `references/axioms.md` — full axiom statements (loaded </p>
+<p>agent asks about a theory). `references/theories.md` — eight theories (loaded when the </p>
+<p>lifecycle). use which state (loaded when the agent changes a packet's `references/lifecycle.md` — FSM states, transitions, when to </p>
+<p>real spec. (Loaded when the agent creates a new packet.) cache-ttl example. Shows how the seven axioms appear in a `examples/cache-ttl-spec.yaml` — full example spec for the </p>
+<p>for X&quot; at each relevant point. The skill is **discoverable**: SKILL.md says &quot;see references/X </p>
+<h3>Worked example</h3>
+<p>An agent wants to create a new packet for &quot;add caching&quot;: </p>
+<p>7. Agent reads `references/examples/cache-ttl-spec.yaml` to see a full example. 6. Agent reads `references/lifecycle.md` to set `lifecycle: working`. 5. Five files appear in `math/my-caching/`. 4. Agent invokes `sh math-coding create my-caching --from -` with the spec. 3. Agent produces a spec. 2. SKILL.md says: &quot;use `create --from -` with a spec&quot;. 1. Reads `SKILL.md` (50 lines, 1,000 tokens). </p>
+<p>what it needs, when it needs it. The agent **does not** read all 117 lines. The agent reads </p>
+<h3>Surface impact</h3>
+<p>(new), `extensions/agents/opencode/examples/*.yaml` (new) into entry + references), `extensions/agents/opencode/references/*.md` touches: `extensions/agents/opencode/SKILL.md` (split </p>
+<h3>Proof</h3>
+<p>the same convention; `sh math-coding probe` still exits 0. Self-Application) still holds: the split skill still describes are loaded only on demand. The convention's axiom A6 (axiom `SKILL.md` after the split is ≤50 lines. The references </p>
+<h2>Refinement: opencode-skill-restructure</h2>
+<h3>State</h3>
+<p>  Examples/ has 1 example spec. The agent reads what it needs. - post: SKILL.md is ≤50 lines. References/ has 4 files. - pre: SKILL.md is 117 lines. Every agent reads all of it. </p>
+<h3>Operation</h3>
+<p>- ~10 lines of context - 8 commands (1 line each) - 6 lifecycle states (1 line each) - 3 modes (1 line each) - 5 files (1 line each) - 7 axioms (1-2 lines each) `SKILL.md`: </p>
+<p>- Axiom-by-axiom definitions - Full axiom statements (~10-20 lines each) `references/axioms.md`: </p>
+<p>- Theory-to-axiom mapping - 8 theories (~10-15 lines each) `references/theories.md`: </p>
+<p>- How to transition - When to use which state - FSM (states, transitions, I(s) for each state) `references/lifecycle.md`: </p>
+<p>  test_obligation, runtime_check   assumptions, state, operation, mapping, invariant,   surface_impact, proof, problem, outcome, constraints, - Demonstrates: thesis, antithesis, synthesis, - Full YAML spec for a cache-ttl packet `examples/cache-ttl-spec.yaml`: </p>
+<h3>Mapping</h3>
+<p>| `examples/cache-ttl-spec.yaml` | creates a new packet from a spec | | `references/lifecycle.md` | changes a packet's lifecycle (sketch → working → verified) | | `references/theories.md` | asks about a theory (e.g. &quot;what is Curry-Howard?&quot;) | | `references/axioms.md` | cites an axiom (e.g. &quot;this implements axiom Process&quot;) | |-----------|---------------------| | reference | loaded when agent | </p>
+<h3>Invariant preservation</h3>
+<p>- The skill is loadable by opencode. - The skill is plain text (axiom Material Basis). - The convention is unchanged. axiom A6 still holds. </p>
+<h3>Test obligation</h3>
+<p>`sh math-coding probe` still exits 0. The entry file is ≤50 lines. The references are present. Manual test: the skill loads successfully in opencode. </p>
+<h3>Runtime check</h3>
+<p>--- None. The skill is loaded at agent-start time. </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

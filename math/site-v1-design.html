@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | site-v1-design</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1><span class="axiom">site-v1-design</span></h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Substrate</dt><dd><code>shell</code></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>The v1.0 documentation site is plain HTML + CSS rendered from math/&lt;name&gt;/packet.md at build time, with no JavaScript framework and no client-side dependencies.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>v0.993 had a Pandoc-based site build that required pandoc installed on the host. Pandoc is heavyweight and added a third-party dependency to the convention's A3 (Material Basis) property.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>Each packet's packet.md is read by an OCaml script that produces a static HTML page. CSS lives in site/assets/tokens.css (no CDN, no JS). Build is one `dune build` invocation. A single HTML index.html lists all packets with axiom + proposition + status.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>git history, one binary. No third-party templating, no JS framework. Documentation follows the same discipline as code: plain text, </p>
+<h3>What this is NOT</h3>
+<p>- Not a single-page app. Every page is a real HTML file with real content. - Not a CMS. The site IS the math/ directory. - Not a static site generator (Jekyll, Hugo). Just a 200-line OCaml script. </p>
+<h3>Run</h3>
+<p>./math-coding site           # regenerates dist/ dune build ```sh </p>
+<pre><code>
+## Notes
+
+Total build artifact: ~150 KiB HTML+CSS. CSS variables for paper+ink
+palette. One accent per epistemic/lifecycle instrument: axiom (blue),
+antithesis (crimson), synthesis (green), proof (sepia).
+
+Pages emitted per packet:
+- index.html — axiom index with status
+- math/&lt;name&gt;.html — full packet page with proposition/notes
+- axioms.html — seven axioms overview
+- installing.html — how to install math-coding v1.0
+
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

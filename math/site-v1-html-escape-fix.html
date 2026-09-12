@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | site-v1-html-escape-fix</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>site-v1-html-escape-fix</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>html_escape must emit every character, escaping only &amp;, &lt;, &gt;, \&quot;; earlier version dropped non-special characters via `flush_range` without appending, producing empty `&lt;title&gt;` and `&lt;h1&gt;` tags.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Initial html_escape implementation in tools/build_site.ml used `flush_range i (i+1)` followed by `loop (i + 1)` for the wildcard case — this advanced the read pointer but never added the character to the buffer. All standard text was silently discarded; only &amp;, &lt;, &gt;, \&quot; survived.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>Fixed by replacing `flush_range i (i+1); loop (i + 1)` with `Buffer.add_char buf c; loop (i + 1)`. Added a regression check in run.sh that greps for `&lt;title&gt;math-coding | &lt;/title&gt;` and fails if any are present. The bug would have been caught earlier with a unit test on html_escape; documenting it here so future readers learn.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>unit-tested for the unconditional case. generalises: any function that conditionally emits bytes must be Stop empty HTML tags from a broken escape function. The lesson </p>
+<h3>What this is NOT</h3>
+<p>- Not a security fix. Empty tags render fine; they just lose content.   write per non-special character. - Not a performance optimisation. The fix is one extra buffer </p>
+<h3>Test cases</h3>
+<p>   appears verbatim in the rendered `&lt;title&gt;`. 4. Round-trip: a packet name passes through html_escape and 3. `html_escape &quot;a&amp;b&quot;` returns `&quot;a&amp;amp;b&quot;`. 2. `html_escape &quot;&lt;a&gt;&quot;` returns `&quot;&amp;lt;a&amp;gt;&quot;`. 1. `html_escape &quot;hello&quot;` returns `&quot;hello&quot;`. </p>
+<h3>Run</h3>
+<p>bash math/site-v1-build-toolchain/run.sh ./math-coding site ```sh </p>
+<h2>prints: &quot;site build OK: 45 pages&quot;</h2>
+<pre><code>
+## Notes
+
+The bug was masked because `html_escape` was only called on packet
+names that had no special characters in the visible output. It
+would have surfaced if any packet name contained `&amp;`, `&lt;`, or `&gt;`.
+
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

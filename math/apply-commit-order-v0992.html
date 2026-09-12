@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | apply-commit-order-v0992</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>apply-commit-order-v0992</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  sh math-coding apply &lt;name&gt; detects uncommitted changes in the packet directory and refuses to record a SHA witness that doesn't reflect the actual code state. Apply must run AFTER commit. The check uses `git status --porcelain` to catch both untracked and modified files (git diff alone ignores untracked). The new --force-apply flag bypasses the warning for advanced users. SKILL.md workflow now explicitly documents the commit-before-apply order. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Adding a check changes existing workflow — agents who apply before commit (anti-pattern but previously worked) now fail. Better to be permissive. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  The check enforces axiom A5 discipline: witness must point to committed state, not working tree. Without the check, drift accumulates silently (witness SHA doesn't match code). One observed case of this drift in this very branch (cad685a) required manual refresh — the check prevents future occurrences. </p>
+</section>
+<section><h3>Body</h3>
+<h2>apply-commit-order-v0992</h2>
+<h3>Thesis</h3>
+<p>  sh math-coding apply &lt;name&gt; detects uncommitted changes in the packet directory and refuses to record a SHA witness that doesn't reflect the actual code state. Apply must run AFTER commit. The check uses `git status --porcelain` to catch both untracked and modified files (git diff alone ignores untracked). The new --force-apply flag bypasses the warning for advanced users. SKILL.md workflow now explicitly documents the commit-before-apply order. </p>
+<h3>Antithesis</h3>
+<p>  Adding a check changes existing workflow — agents who apply before commit (anti-pattern but previously worked) now fail. Better to be permissive. </p>
+<h3>Surface impact</h3>
+<p>  - extensions/agents/&lt;agent&gt;/SKILL.md — regenerated with new workflow text   - extensions/agents/canon/SKILL.body.template.md — workflow doc update   - core/author/apply-packet.sh — uncommitted-changes check + --force-apply flag </p>
+<h3>Synthesis</h3>
+<p>  The check enforces axiom A5 discipline: witness must point to committed state, not working tree. Without the check, drift accumulates silently (witness SHA doesn't match code). One observed case of this drift in this very branch (cad685a) required manual refresh — the check prevents future occurrences. </p>
+<h3>Worked example</h3>
+<p>  Without commit (uncommitted apply): </p>
+<p>  ```   1   $ echo $?            (use --force-apply to override this warning)            (run: git add math/my-feature &amp;&amp; git commit -m '...')            apply records the committed state; commit before applying.            ?? math/my-feature/   warning: packet directory has uncommitted changes relative to working tree:   $ sh math-coding apply my-feature   ``` </p>
+<p>  After commit: </p>
+<p>  ```     sha: &lt;commit-sha&gt;     lifecycle: applied   Applied: my-feature   $ sh math-coding apply my-feature   $ git add math/my-feature/ &amp;&amp; git commit -m &quot;...&quot;   ``` </p>
+<p>  Override (advanced): </p>
+<p>  ```   $ sh math-coding apply my-feature --force-apply   # or   $ FORCE_APPLY=1 sh math-coding apply my-feature   ``` </p>
+<h3>Proof</h3>
+<p>  - SKILL.md contains &quot;Commit the packet directory before applying&quot;   - Test: FORCE_APPLY=1 apply → succeeds   - Test: create uncommitted packet, apply → warning + exit 1   - sh math-coding verify → 333 checks, 0 errors   - sh math-coding probe → 0 errors, axiom A6 PROVEN </p>
+<h2>Refinement: apply-commit-order-v0992</h2>
+<h3>State</h3>
+<p>- post: apply-packet.sh checks `git status --porcelain` for the packet directory. If uncommitted files exist, prints warning listing them and exits 1. Override: --force-apply flag or FORCE_APPLY=1 env var. SKILL.md workflow explicit about commit-before-apply order. - pre:  apply-packet.sh records the SHA at the moment of apply. If the packet directory has uncommitted changes, the SHA may not reflect the actual code state. Drift accumulates silently. </p>
+<h3>Operation</h3>
+<p>  4. Verify all checks pass.   3. Rebuild SKILL.md for all agents (opencode/claude/cursor/universal).   2. Update extensions/agents/canon/SKILL.body.template.md: workflow step 7 expanded with commit command and axiom A5 reasoning.      - If uncommitted: print warning with file list, exit 1 unless FORCE_APPLY      - After SHA validation, check `git status --porcelain -- math/&lt;name&gt;/`      - Add --force-apply flag to arg parser   1. Modify core/author/apply-packet.sh: </p>
+<h3>Invariant preservation</h3>
+<p>  Applied packets still have SHA witness pointing to real commit. axiom A6 holds. The check is conservative: refuses unless --force-apply is given. </p>
+<h3>Mapping (spec → impl)</h3>
+<p>  impl:  core/author/apply-packet.sh, git status --porcelain check   spec:  uncommitted-changes detection </p>
+<p>  impl:  arg parser + FORCE_APPLY env var   spec:  --force-apply override </p>
+<p>  impl:  canon/SKILL.body.template.md workflow step 7   spec:  SKILL.md workflow updated </p>
+<h3>Test obligation</h3>
+<p>  6. All agent SKILL.md --check exit 0.   5. SKILL.md regenerated content includes &quot;Commit the packet directory before applying&quot;.   4. Apply with FORCE_APPLY=1 → succeeds.   3. Apply on uncommitted packet → warning + exit 1.   2. `sh math-coding verify` exits 0.   1. `sh math-coding probe` exits 0. </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

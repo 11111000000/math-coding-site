@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | cursor-skills-v0992</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>cursor-skills-v0992</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  math-coding skill is built for Cursor via extensions/agents/cursor/. SKILL.md uses Cursor's plain .mdc-compatible frontmatter (name, description). math-agent.md supports mode: subagent. install-skill.sh --agent=cursor installs SKILL.md to ~/.cursor/skills/math-coding/. Cursor's hook path is documented but not actively wired in v0.992. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Cursor has multiple skill formats: .mdc (legacy rules) and skills/&lt;name&gt;/SKILL.md (new). Picking one is guesswork; the format may shift. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  Cursor skills location (skills/&lt;name&gt;/SKILL.md) is the current Cursor convention per public docs. If Cursor later moves to a different format, the build script + AGENT_TARGETS need updating — but the canon/ + per-agent preamble split means only the preamble and TARGETS change, not the body. </p>
+</section>
+<section><h3>Body</h3>
+<h2>cursor-skills-v0992</h2>
+<h3>Thesis</h3>
+<p>  math-coding skill is built for Cursor via extensions/agents/cursor/. SKILL.md uses Cursor's plain .mdc-compatible frontmatter (name, description). math-agent.md supports mode: subagent. install-skill.sh --agent=cursor installs SKILL.md to ~/.cursor/skills/math-coding/. Cursor's hook path is documented but not actively wired in v0.992. </p>
+<h3>Antithesis</h3>
+<p>  Cursor has multiple skill formats: .mdc (legacy rules) and skills/&lt;name&gt;/SKILL.md (new). Picking one is guesswork; the format may shift. </p>
+<h3>Surface impact</h3>
+<p>  - core/install/install-skill.sh — dry-run agent path becomes per-agent   - meta/build-skill.sh — AGENTS list extended   - extensions/agents/cursor/SKILL.md + math-agent.md (generated)   - extensions/agents/cursor/math-agent.preamble.yaml (new) — math-agent frontmatter with mode: subagent   - extensions/agents/cursor/SKILL.preamble.md (new) — Cursor-specific frontmatter </p>
+<h3>Synthesis</h3>
+<p>  Cursor skills location (skills/&lt;name&gt;/SKILL.md) is the current Cursor convention per public docs. If Cursor later moves to a different format, the build script + AGENT_TARGETS need updating — but the canon/ + per-agent preamble split means only the preamble and TARGETS change, not the body. </p>
+<h3>Worked example</h3>
+<p>  After install: </p>
+<p>  Installed math-coding skill to ~/.cursor/skills/math-coding   $ sh math-coding install-skill --agent=cursor --with-agent   ``` </p>
+<p>  ```   # Cursor skill is loaded automatically by `.cursor/skills/` discovery. </p>
+<h3>Proof</h3>
+<p>  - cursor SKILL.md body byte-identical to opencode SKILL.md body (after frontmatter strip)   - `sh math-coding install-skill --dry-run --agent=cursor --with-agent` → `~/.cursor/skills/math-coding` target, both files listed   - `sh meta/build-skill.sh cursor --check` → ok   - `sh math-coding probe` → 0 errors, axiom A6 PROVEN </p>
+<h2>Refinement: cursor-skills-v0992</h2>
+<h3>State</h3>
+<p>- post: extensions/agents/cursor/{SKILL.preamble.md, math-agent.preamble.yaml, SKILL.md, math-agent.md} exist. Generated from canon via build-skill.sh with cursor-specific frontmatter. install-skill.sh --agent=cursor --with-agent installs SKILL.md + math-agent to ~/.cursor/skills/math-coding/. - pre:  extensions/agents/cursor/ did not exist. install-skill.sh --agent=cursor had TARGET_PATH declared (~/.cursor/skills) but no SKILL.md to copy. </p>
+<h3>Operation</h3>
+<p>  6. Run sh math-coding install-skill --dry-run --agent=cursor --with-agent — verify output paths.   5. Run sh meta/build-skill.sh cursor — generates SKILL.md and math-agent.md.   4. Fix install-skill.sh dry-run: agent source path becomes per-agent (`extensions/agents/$AGENT/math-agent.md`).   3. Add 'cursor' to AGENTS= in meta/build-skill.sh.   2. Write extensions/agents/cursor/math-agent.preamble.yaml (mode: subagent).   1. Write extensions/agents/cursor/SKILL.preamble.md with Cursor-compatible frontmatter (name, description). </p>
+<h3>Invariant preservation</h3>
+<p>  cursor SKILL.md body matches opencode SKILL.md body (diff after frontmatter strip is empty). axiom A6 holds. </p>
+<h3>Mapping (spec → impl)</h3>
+<p>  impl:  extensions/agents/cursor/SKILL.preamble.md lines 1-4   spec:  cursor SKILL.md has Cursor-compatible frontmatter </p>
+<p>  impl:  extensions/agents/cursor/math-agent.preamble.yaml   spec:  cursor math-agent supports mode: subagent </p>
+<h3>Test obligation</h3>
+<p>  5. cursor SKILL.md body byte-identical to opencode SKILL.md body (after frontmatter strip).   4. `sh math-coding install-skill --dry-run --agent=cursor --with-agent` prints cursor paths.   3. `sh meta/build-skill.sh --list` includes &quot;cursor&quot;.   2. `sh meta/build-skill.sh cursor --check` exits 0.   1. `sh math-coding probe` exits 0. </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | packet-lifecycle</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>packet-lifecycle</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom"></span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>A packet lives through seven phases — from a rough idea to archival — and each transition leaves a SHA witness. Amendments add entries to `applications[]`. Supersession spawns a new packet. Re-application is a new packet that </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>If we edited packets in place, the convention would lose its append-only ledger. A &quot;fixed&quot; packet would contradict its own `applications[].sha`. Reviewers would not know which version of the packet they were looking at. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>A packet is **append-only at the commit level** but **evolving at the meaning level**. Two distinct kinds of change: </p>
+</section>
+<section><h3>Body</h3>
+<h2>packet-lifecycle</h2>
+<p>and [[docs/axioms.md#a5-accounting-epistemic|axiom Accounting]]. in [[docs/axioms.md#a4-process-temporal|axiom Process]] This packet realises the lifecycle discipline described </p>
+<h3>Thesis</h3>
+<p>appended. points back. Nothing is edited in place; everything is spawns a new packet. Re-application is a new packet that Amendments add entries to `applications[]`. Supersession to archival — and each transition leaves a SHA witness. A packet lives through seven phases — from a rough idea </p>
+<h3>Antithesis</h3>
+<p>which version of the packet they were looking at. its own `applications[].sha`. Reviewers would not know its append-only ledger. A &quot;fixed&quot; packet would contradict If we edited packets in place, the convention would lose </p>
+<p>explode. A typo in `refinement.md` would be a new packet. If we treated every change as a new packet, the tree would </p>
+<h3>Synthesis</h3>
+<p>change: **evolving at the meaning level**. Two distinct kinds of A packet is **append-only at the commit level** but </p>
+<p>  richer. Use this for fixes, refactors, additional tests.   packet's proposition is unchanged; the evidence is   **amendment** — adds a SHA to `applications[]`. The </p>
+<p>  changes.   the successor. Use this when the proposition itself   `lifecycle: superseded`; its `supersession:` block names   **supersession** — creates a new packet. The old packet's </p>
+<p>former is a commit, the latter is a new directory. extends evidence, a supersession replaces the claim. The The boundary between the two is sharp: an amendment </p>
+<h3>How a packet looks over time</h3>
+<pre><code>t=0  sh math-coding create packet-foo --from spec.yaml
+     # lifecycle: sketch, applications: []
+
+t=1  first commit with code
+     # lifecycle: working, applications: []
+     # sh math-coding verify → ok
+
+t=2  fix a typo, add a test
+     # applications: [{sha: abc123, files: [src/foo.py]}]
+     # applications: [{sha: def456, files: [src/foo.py, tests/]}]
+     # lifecycle: working
+
+t=3  code is solid, tests pass, axiom Self-Application verified
+     # lifecycle: verified
+     # applications: [{sha: ghi789, ...}]
+     # sh math-coding probe → exit 0
+
+t=4  realize the proposition was wrong
+     # create math/packet-foo-v2/ with supersession
+     # math/packet-foo/ → lifecycle: superseded
+     # math/packet-foo/supersession: math/packet-foo-v2/
+
+t=5  nobody needs packet-foo anymore
+     # math/packet-foo/ → lifecycle: archived
+</code></pre>
+<h3>What this is NOT</h3>
+<p>  commit with a SHA in `applications[]`. Nothing more. - **Not an excuse for ceremony.** An amendment is one   Spawn a new one with `supersession:`.   proposition changes, do not rename the old packet. - **Not a renaming convention.** When a packet's   changes.   tickets. This is the **discipline** of how a packet - **Not a workflow tool.** No kanban, no sprints, no </p>
+<h3>A worked example</h3>
+<p>remaining `working` (because the proposition was the same). entry; the lifecycle moved from `working` to itself The packet's `applications[]` array grew from empty to one the proposition was unchanged, the evidence was richer. decision contained a wikilink. Each step was an amendment: substantive. After the backlinks commit (12ece14), the formal-statement commit (ee80bb4), the decision was packet's `decision.md` was the placeholder. After the Consider `math/01-care/`. After the genesis commit, the </p>
+<p>witness. The convention used the convention to fix itself. amendment to the proposition; it was a correction of the entry; the lifecycle remained `working`. This was not an refreshed. The packet's `applications[]` array had a new After the drift-check caught it (dc68f8e), the SHA was commit, the `applications[]` array contained a stale SHA. Consider `math/06-self-application/`. After the genesis </p>
+<p>records both. evidence changes via amendment (new SHA). The convention proposition changes via supersession (new packet); the In both cases, the lifecycle is the discipline. The </p>
+<h3>Surface impact</h3>
+<p>`core/check/drift-check.sh` (axiom Accounting), the verifier checks in (axiom Accounting), the SHA witness in `applications[]` lifecycle FSM (axiom Process), the supersession DAG touches: how every packet in `math/` evolves — the </p>
+<h3>Proof</h3>
+<p>at commit time. (applied, lookahead, drift). The discipline is enforced `sh core/check/drift-check.sh` reports three buckets Self-Application's check 5/6 confirms rejects `verified` packets without SHA entries. axiom enforcement is the line in `core/check/verify.sh` that The evidence is the lifecycle FSM itself. The specific </p>
+<h2>Refinement: packet-lifecycle</h2>
+<h3>State</h3>
+<p>  change leaves a SHA; supersession spawns a new packet. - post: a packet is append-only at commit level; every   history unknowable. - pre: a packet may be edited in place; witness meaningless; </p>
+<h3>Operation</h3>
+<p>   This writes five files. lifecycle: sketch.    &lt;spec.yaml&gt;` (or `init &lt;name&gt;` for legacy template mode). 1. Create a packet via `sh math-coding create &lt;name&gt; --from </p>
+<p>   permissive).    The verifier accepts placeholder content (sketch is 2. Fill in the five files with content matching the spec. </p>
+<p>   may emit warnings but should not block.    `applications: []` is allowed at working. `verify.sh` 3. Move to working: add the first commit with code. </p>
+<p>   `applications[]`. lifecycle: verified.    (tests pass, structure clean). Add the first SHA to 4. Move to verified: ensure axiom Self-Application holds for this packet </p>
+<p>   evidence is richer.    `applications[]`. The proposition is unchanged; the 5. Amendments: each new commit adds a new entry to </p>
+<p>   superseded. **Do not edit the old packet.**    pointing back. The old packet's lifecycle becomes    create `math/&lt;name&gt;-v2/` with a `supersession:` block 6. Supersession: when the proposition itself changes, </p>
+<p>   references it, move to archived.    packet is superseded but still referenced. Once nothing 7. Deprecation: lifecycle becomes deprecated when the </p>
+<h3>Mapping</h3>
+<p>| delete | archival | lifecycle: archived, file remains | | rename | not allowed | (use supersession instead) | | proposition changes | supersession | +1 new directory, no edits to old | | new test | amendment | +1 commit, +1 applications entry | | typo fix | amendment | +1 commit, +1 applications entry | |-------------|-----------|----------------| | change kind | mechanism | git footprint | </p>
+<h3>Invariant preservation</h3>
+<p>  SHA points to a commit where the listed files match HEAD.   must find at least one entry in `applications[]` whose - For every packet with `lifecycle: verified`, the verifier </p>
+<p>  exist as a directory under math/. - For every `supersession:` block, the named successor must </p>
+<p>  entries may be added.   `lifecycle: archived`, `applications[]` is frozen: no new - For every packet with `lifecycle: superseded` or </p>
+<h3>Test obligation</h3>
+<p>  either matches HEAD (applied) or is unknown (lookahead). - `sh core/check/drift-check.sh` — every `applications[].sha`   resolve. - axiom Self-Application — the verifier checks `supersession:` references </p>
+<h3>Runtime check</h3>
+<p>--- None. The lifecycle is enforced at commit time. </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

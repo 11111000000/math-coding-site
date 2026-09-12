@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | doc-version-sync-v0991</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>doc-version-sync-v0991</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  README.md and AGENTS.md accurately describe the v0.991   dispatcher, packet lifecycle, and available commands. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Documentation version drift is harmless; users who need the   real interface can read math-coding dispatcher source or run   help. Updating README/AGENTS.md is cosmetic and risks   introducing new inconsistencies. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>README.md and AGENTS.md are the first-contact surface for humans and agents. Drift between these files and the code produces real friction: README mentions `init` and `sketch → verified`, while the dispatcher only supports </p>
+</section>
+<section><h3>Body</h3>
+<h2>doc-version-sync-v0991</h2>
+<h3>Thesis</h3>
+<p>  dispatcher, packet lifecycle, and available commands.   README.md and AGENTS.md accurately describe the v0.991 </p>
+<h3>Antithesis</h3>
+<p>  introducing new inconsistencies.   help. Updating README/AGENTS.md is cosmetic and risks   real interface can read math-coding dispatcher source or run   Documentation version drift is harmless; users who need the </p>
+<h3>Synthesis</h3>
+<p>changing any behavior. The existing test suite is the witness. documents with v0.991 reduces onboarding errors without `create` and `draft → applied → retired`. Synchronizing the `sketch → verified`, while the dispatcher only supports produces real friction: README mentions `init` and humans and agents. Drift between these files and the code README.md and AGENTS.md are the first-contact surface for </p>
+<h3>Surface impact</h3>
+<p>- does not touch: core/, theories/, math/ axiom packets - touches: 5 epistemic markers (assumptions.yaml) - touches: AGENTS.md (agent runtime hint) - touches: README.md (public landing page) </p>
+<h3>Proof</h3>
+<p>(definitional): PROVEN&quot;. `sh math-coding probe` exits 0 with &quot;axiom Self-Application edit, `sh tests/run.sh` reports 44 PASS / 0 FAIL and against the convention's own state. After the documentation The evidence is `tests/run.sh`, which runs 44 self-tests </p>
+<h2>Refinement: doc-version-sync-v0991</h2>
+<h3>State</h3>
+<p>  commands and lifecycle states. - post: README.md and AGENTS.md claim v0.991 and list current   commands (`init`, `sketch → verified`). - pre: README.md and AGENTS.md claim v0.854 and list stale </p>
+<h3>Operation</h3>
+<p>4. Leave all code, theories, and axiom packets untouched. 3. Rewrite AGENTS.md analogously.      `abandoned`/`archived`/`superseded` as side states    - lifecycle to `draft → applied → retired` with    - quick start to use `create --from spec.yaml`    - command list to match `math-coding help`    - header version to v0.991 2. Rewrite README.md:    `math/doc-version-sync-v0991/`. 1. Create this standard packet under </p>
+<h3>Mapping</h3>
+<p>- impl: the two markdown files are edited; no script changes - spec: README/AGENTS describe the v0.991 interface </p>
+<h3>Invariant preservation</h3>
+<p>`sh tests/run.sh` remains 44 PASS / 0 FAIL. change: `sh math-coding probe` exits 0 and axiom Self-Application still holds after the documentation </p>
+<h3>Test obligation</h3>
+<p>3. `sh tests/run.sh` reports 44 PASS, 0 FAIL. 2. `sh math-coding probe` reports PROVEN. 1. `sh math-coding verify` reports 0 errors, 0 warnings. </p>
+<h3>Runtime check</h3>
+<p>drift between documentation and code. `sh math-coding probe` in CI or pre-commit to catch future After the packet is applied, periodically re-run </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | witness-external-v0992</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>witness-external-v0992</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  Witness is an external file, not a field in packet.yaml. axiom A5 recursion breaks when refresh commit rewrites applications[]. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  applications[] in packet.yaml keeps everything in one file. Moving to external witness file is one more file to maintain; easy to lose during git operations (rm, mv). </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  External witness is append-only and never modified by packet content changes. Self-reference (packet.yaml::applications[] = packet.yaml) is the recursion source. axiom A5 needs witness to be stable across refresh commits; only an external file achieves this. </p>
+</section>
+<section><h3>Body</h3>
+<h2>witness-external-v0992</h2>
+<h3>Thesis</h3>
+<p>  Witness is an external file, not a field in packet.yaml. axiom A5 recursion breaks when refresh commit rewrites applications[]. </p>
+<h3>Antithesis</h3>
+<p>  applications[] in packet.yaml keeps everything in one file. Moving to external witness file is one more file to maintain; easy to lose during git operations (rm, mv). </p>
+<h3>Synthesis</h3>
+<p>  External witness is append-only and never modified by packet content changes. Self-reference (packet.yaml::applications[] = packet.yaml) is the recursion source. axiom A5 needs witness to be stable across refresh commits; only an external file achieves this. </p>
+<h2>Refinement: witness-external-v0992</h2>
+<h3>State</h3>
+<p>- post:   Each packet has a witness file (space-separated SHAs) alongside packet.yaml. Drift-check reads witness file; refresh commit does not invalidate witness. - pre: &lt;state before implementation&gt; </p>
+<h3>Operation</h3>
+<p>  Migration: meta/migrate-witnesses.sh reads applications[] from each packet.yaml, writes witness file with SHAs, removes applications[]. Apply-packet.sh: append to witness file instead of editing applications[]. Verify/drift-check: read witness file. </p>
+<h3>Invariant preservation</h3>
+<p>  - First SHA in witness = canonical applied state   - witness content: space-separated valid git SHAs, append-only   - witness file exists for applied packets (axiom + non-axiom)   - packet.yaml has NO applications[] field </p>
+<h3>Test obligation</h3>
+<p>  sh tests/witness.sh passes for all applied packets under math/. Each witness file: exists, contains valid git SHAs, no orphan packet.yaml:applications[]. </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

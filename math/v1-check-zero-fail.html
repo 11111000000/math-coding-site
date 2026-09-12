@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | v1-check-zero-fail</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1><span class="axiom">v1-check-zero-fail</span></h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Substrate</dt><dd><code>shell</code></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>math-coding v1.0 check exits 0 on all 43 packets in math/, probe reports 215 pass / 0 fail; build is deterministic via nix flake.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>YAML inline-list notation [a, b] was stored as one string, not a list, causing check to false-fail on paths like [src/lib/check.ml]; Sys.readdir returned hidden files (.).</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>Three coupled fixes: parser detects [ ... ] brackets in inline lists and splits accordingly; check_files_exist resolves relative paths against project root (two levels above pkt.path); probe skips hidden entries starting with '.'. Result: 215 pass, 43 warn (all draft-witness missing), 0 fail across 43 packets. All 7 unit + 4 QCheck property tests pass.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>Make v1.0 quality checkable and reproducible. </p>
+<h3>What this is NOT</h3>
+<p>  quality; we have not added new tests, only fixed existing ones. - Not a coverage claim. The 9 -&gt; 0 fail reduction is one shape of </p>
+<h3>Run</h3>
+<p>dune test _build/default/src/main.exe probe _build/default/src/main.exe check ```sh </p>
+<pre><code>
+All three should report 0 fail / 0 error.
+
+## Notes
+
+43 warnings are all `WARN: no witness; lifecycle is draft` —
+intentional for draft packets. Move to `applied` by adding a
+witness SHA once implementation lands.
+
+## Test coverage
+
+- 4 Alcotest unit tests (substrate_of_string, marker_of_string,
+  parse_packet_frontmatter, lifecycle_no_witness)
+- 3 new parser tests (inline_list, comma_list, empty_brackets)
+- 4 QCheck properties (substrate_inverse, marker_inverse,
+  substrate_distinct, parse_proposition)
+
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

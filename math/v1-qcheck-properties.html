@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | v1-qcheck-properties</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1><span class="axiom">v1-qcheck-properties</span></h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Substrate</dt><dd><code>pbt</code></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>QCheck properties verify that the OCaml runtime obeys its own invariants: substrate inverse, marker inverse, parse preserves proposition, eight substrates are distinct.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Unit tests cover examples; they cannot prove laws. The runtime might be consistent on tested inputs but inconsistent elsewhere.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>Four QCheck properties run 100 random inputs each: substrate_of_string is inverse of substrate_to_string; marker_of_string is inverse of marker_to_string; all 8 substrates are distinct; parse_packet preserves proposition. This catches bugs in the type system itself.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>Make the runtime test itself, not just examples of behaviour. </p>
+<h3>What this is NOT</h3>
+<p>- Not a guarantee. 100 random inputs cannot cover the state space.   tests cover specific edge cases. - Not a substitute for unit tests. QCheck covers properties; unit </p>
+<h3>Run</h3>
+<p>dune test ```sh </p>
+<h2>Runs both test_packet (Alcotest) and test_properties (QCheck).</h2>
+<pre><code>
+## Properties
+
+1. `prop_substrate_inverse` — `substrate_to_string (substrate_of_string s) = s`.
+2. `prop_marker_inverse` — `marker_to_string (marker_of_string s) = s`.
+3. `prop_substrate_distinct` — all 8 substrates have distinct string forms.
+4. `prop_parse_proposition` — parse preserves proposition text.
+
+## Notes
+
+QCheck is a property-based testing library for OCaml, similar to
+Haskell's QuickCheck. Generates 100 random inputs per property.
+Runs in `dune test`.
+
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

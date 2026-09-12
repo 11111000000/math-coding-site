@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | 05-accounting</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>05-accounting</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">A5</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>Knowledge must be marked. Verdicts must be named. Changes must be witnessed. Modes must be honest about scope. Four instruments: </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Without epistemic markers, every claim is &quot;fact&quot; and nothing is checked. Without verdict outcomes, the verifier says &quot;looks fine&quot; </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>axiom Accounting fixes four instruments of accounting. axiom Self-Application verifies that they are applied to the convention's own packets. </p>
+</section>
+<section><h3>Body</h3>
+<h2>05-accounting</h2>
+<p>This packet realises [[docs/axioms.md#a5-accounting-epistemic|axiom Accounting]]. </p>
+<h3>Thesis</h3>
+<p>must be witnessed. Modes must be honest about scope. Knowledge must be marked. Verdicts must be named. Changes </p>
+<p>Four instruments: </p>
+<p>  modes (3)               — how much ceremony   supersession DAG        — what replaced what   SHA witness             — what changed   verdict outcomes (5)    — what the verifier says   epistemic markers (5)   — what we know </p>
+<h3>Epistemic markers (axiom Accounting)</h3>
+<pre><code>B : Prop × Agent → [0, 1]
+
+  fact        — B(P, agent) ≥ 0.95    we have evidence
+  hypothesis  — 0.5 &lt; B &lt; 0.95       we suspect, not proof
+  judgment    — B ∈ {0, 1}            we decided, do not argue
+  unknown     — B = 0                  we do not know
+  proven      — end-to-end verified by convention's own tools
+</code></pre>
+<p>marked `unknown` honestly is honest. A claim marked `fact` without evidence is a lie. A claim The five markers are the discipline of care (axiom Care). </p>
+<h3>Verdict outcomes (axiom Accounting)</h3>
+<pre><code>Spec ⊨ P
+
+  VERIFIED                    proof accepted under test
+  NEEDS_REVISION              counterexample or missing piece
+  UNVERIFIABLE:TOOL_MISSING  required tool unavailable
+  UNVERIFIABLE:DEFERRED       data not yet available
+  UNVERIFIABLE:OUT_OF_SCOPE   human review required
+</code></pre>
+<p>mode axiom Accounting forbids. Anything outside these five is &quot;looks fine&quot; — the failure </p>
+<h3>SHA witness (axiom Accounting)</h3>
+<pre><code>applications: List[(SHA × List[FilePath])]
+
+  - sha:    abc123
+    by:     agent
+    date:   2026-07-15
+    pressure: feature
+    files:  [src/foo.py]
+</code></pre>
+<p>a witness without evidence. Accounting forbids an entry without a SHA: that would be commit. The files are what the commit changed. axiom Each entry is a concrete proof term. The SHA points to a </p>
+<h3>Supersession DAG (axiom Accounting)</h3>
+<pre><code>supersession: P_old ⊥ P_new
+</code></pre>
+<p>The successor exists as a directory under `math/`. is replaced, its `supersession:` block names the successor. order: irreflexive, asymmetric, transitive. When a packet P_old and P_new are packets. The relation is a strict partial </p>
+<h3>Modes (axiom Accounting)</h3>
+<pre><code>  light    — commit message only
+  standard — full 5-file packet
+  strict   — packet + theory link + applications[] + surface impact
+</code></pre>
+<p>A `strict` change is architectural. `light` change is a typo. A `standard` change is a feature. Three modes cover the spectrum without explosion. A </p>
+<h3>Antithesis</h3>
+<p>nothing is checked. Without epistemic markers, every claim is &quot;fact&quot; and </p>
+<p>or nothing at all. Without verdict outcomes, the verifier says &quot;looks fine&quot; </p>
+<p>reviewer is guessing. Without SHA witness, every change is anonymous and every </p>
+<p>convention accumulates ghosts. Without supersession DAG, packets never retire. The </p>
+<p>typos. Or every change has no ceremony — even architecture. Without modes, every change has the same ceremony — even </p>
+<h3>Synthesis</h3>
+<p>the convention's own packets. axiom Self-Application verifies that they are applied to axiom Accounting fixes four instruments of accounting. </p>
+<p>are empty forms. With care, they catch drift. operational face of care (axiom Care). Without care, they witness, supersession DAG, and three modes are the The five epistemic markers, five verdict outcomes, SHA </p>
+<h3>How A5 appears in a packet (worked example)</h3>
+<p>five instruments is concretely realised here: Consider this packet, `math/05-accounting/`. Each of the </p>
+<p>**1. Epistemic markers** — `assumptions.yaml`: </p>
+<p>    [0, 1].     mutually exclusive and exhaustive for the range     (fact/hypothesis/judgment/unknown/proven) are     See theories/epistemic.md. The five markers   evidence: |   confidence: 0.95   epistemology: fact   status: agent-inferred   statement: &quot;five epistemic markers capture every belief&quot; - id: A1 ```yaml </p>
+<pre><code>
+The marker is `fact` because the claim is derived from the
+theory file; the evidence cites the theory.
+
+**2. Verdict outcomes** — produced by `core/check/verify.sh`:
+
+</code></pre>
+<p>  axiom Self-Application: PROVEN   errors: 0 === summary === verify: 74 checks, 0 errors </p>
+<pre><code>
+When verify.sh exits 0, the verdict is `VERIFIED`. When
+exit 1, `NEEDS_REVISION`. The convention does not produce
+&quot;looks fine&quot; — the verdict is named.
+
+**3. SHA witness** — `packet.yaml:applications[]`:
+
+```yaml
+applications:
+  - sha: 576d803
+    by: agent
+    date: 2026-07-15
+    pressure: feature
+    files: [math/05-accounting/decision.md]
+</code></pre>
+<p>succeeds. The witness is concrete, not symbolic. The SHA points to a real commit; `git cat-file -e 576d803` </p>
+<p>and this packet's lifecycle becomes `superseded`. packet is created with `supersession: math/05-accounting/`, If the proposition of this packet changes, a successor when superseded). None here; this packet is in `working`. **4. Supersession DAG** — `packet.yaml:supersession` (only </p>
+<p>packet plus theory-link evidence in the proof. (mode: standard), because it requires the full 5-file by `decision.md:Pressure`. This packet is `rigor: property` **5. Modes** — declared in `packet.yaml:rigor` and chosen </p>
+<h3>Surface impact</h3>
+<p>(deprecated packets), decision.md:Pressure (mode choice) applications[].sha (the witness), packet.yaml:supersession packet.yaml:verifier (the verifying script), packet.yaml: touches: assumptions.yaml:epistemology (5 markers), </p>
+<h3>Proof</h3>
+<p>applied correctly. the verifier exits 0 when all four instruments are is the proof. axiom Self-Application's check 4/6 confirms epistemology markers (anything outside the five-marker set) line in `core/check/verify.sh` that rejects invalid The evidence is the verifier's enforcement. The specific </p>
+<h2>Refinement: 05-accounting</h2>
+<h3>State</h3>
+<p>  Every verdict has a defined name.   Every belief carries a marker. Every change carries a SHA. - post: convention with five epistemic instruments.   fuzzy.   unmarked, verdicts informal, changes anonymous, modes - pre: convention without epistemic discipline — assumptions </p>
+<h3>Operation</h3>
+<p>Enforce five instruments: </p>
+<p>   `decision.md:Pressure`. 5. **Three modes**: light, standard, strict — chosen by    successors. 4. **Supersession DAG**: deprecated packets reference their 3. **SHA witness** in packet.yaml:applications[].    `UNVERIFIABLE:DEFERRED`, `UNVERIFIABLE:OUT_OF_SCOPE`.    `NEEDS_REVISION`, `UNVERIFIABLE:TOOL_MISSING`, 2. **Verdict outcomes** in verifier output: `VERIFIED`,    `fact`, `hypothesis`, `judgment`, `unknown`, `proven`. 1. **Epistemic markers** in assumptions.yaml: </p>
+<h3>Mapping</h3>
+<p>| mode | packet.yaml:decision + lifecycle | | supersession | packet.yaml:supersession | | SHA witness | packet.yaml:applications[].sha | | verdict | verifier stdout, packet.yaml:verifier | | epistemic markers | assumptions.yaml:epistemology | |------------|----------------| | instrument | where it lives | </p>
+<h3>Invariant preservation</h3>
+<p>- No `deprecated` packet may point to a non-existent successor. - No `verified` packet may carry an empty `applications:`. - No assumption may omit its epistemic marker. </p>
+<h3>Test obligation</h3>
+<p>  empty witnesses, dangling supersession references. - axiom Self-Application — verifier rejects malformed epistemic markers, </p>
+<h3>Runtime check</h3>
+<p>---   accounting. - axiom Self-Application — convention verifies its own epistemic </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

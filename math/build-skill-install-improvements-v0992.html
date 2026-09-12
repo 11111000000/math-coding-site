@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | build-skill-install-improvements-v0992</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>build-skill-install-improvements-v0992</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  meta/build-skill.sh uses mktemp for gen_block output (avoids shell-quoting in awk), a shared ensure_trailing_newline helper (POSIX-portable newline check via od -tx1), and an if/then arg parser. Sanity check warns when AGENTS= drifts from install-skill.sh AGENT_TARGETS. install-skill.sh warns when --with-hooks is used with non-opencode agents (opencode-only in v0.992). </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Original build-skill.sh worked. Refactor introduces regression risk. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  Refactor addresses code-review recommendations: mktemp for gen_block (avoids shell-quoting pitfalls), portable newline check (od -tx1 not locale-dependent), if/then arg parser (clearer), sanity check between registries. All changes preserve byte-identical output (regression test). </p>
+</section>
+<section><h3>Body</h3>
+<h2>build-skill-install-improvements-v0992</h2>
+<h3>Thesis</h3>
+<p>  meta/build-skill.sh uses mktemp for gen_block output (avoids shell-quoting in awk), a shared ensure_trailing_newline helper (POSIX-portable newline check via od -tx1), and an if/then arg parser. Sanity check warns when AGENTS= drifts from install-skill.sh AGENT_TARGETS. install-skill.sh warns when --with-hooks is used with non-opencode agents (opencode-only in v0.992). </p>
+<h3>Antithesis</h3>
+<p>  Original build-skill.sh worked. Refactor introduces regression risk. </p>
+<h3>Surface impact</h3>
+<p>  - core/install/install-skill.sh — hooks skipped for non-opencode agents; dry-run message updated   - meta/build-skill.sh — refactor: ensure_trailing_newline helper, mktemp for gen_block, if/then arg parser, sanity check </p>
+<h3>Synthesis</h3>
+<p>  Refactor addresses code-review recommendations: mktemp for gen_block (avoids shell-quoting pitfalls), portable newline check (od -tx1 not locale-dependent), if/then arg parser (clearer), sanity check between registries. All changes preserve byte-identical output (regression test). </p>
+<h3>Worked example</h3>
+<p>  Before: </p>
+<p>  ```       hook: /path/to/extensions/hooks/pre-tool-use.sh   # misleading   ...   $ sh math-coding install-skill --dry-run --agent=cursor --with-hooks   ```sh </p>
+<p>  After: </p>
+<p>  ```       hook: SKIPPED (--with-hooks is opencode-only in v0.992)   ...   $ sh math-coding install-skill --dry-run --agent=cursor --with-hooks   ```sh </p>
+<p>  Also: drift detection between build-skill.sh AGENTS= and install-skill.sh AGENT_TARGETS=. Adding a new agent to one without the other now triggers a warning at build time. </p>
+<h3>Proof</h3>
+<p>  - dry-run for cursor with --with-hooks shows SKIPPED   - cmp pre-refactor SKILL.md / math-agent.md vs post-refactor → identical   - sh meta/build-skill.sh opencode --check → ok   - sh math-coding probe → 0 errors, axiom A6 PROVEN </p>
+<h2>Refinement: build-skill-install-improvements-v0992</h2>
+<h3>State</h3>
+<p>- post: build-skill.sh uses mktemp for gen_block, ensure_trailing_newline helper, if/then arg parser, sanity check between AGENTS and AGENT_TARGETS. install-skill.sh skips hooks for non-opencode agents with a warning. - pre:  build-skill.sh used `block=&quot;$(gen_block)&quot;` (shell-quoting risk in awk). Trailing newline logic was duplicated in two functions and used `od -An -c` (locale-dependent). Arg parser used `[ $# -eq 0 ] || { ... }` (hard to read). install-skill.sh hooked into ~/.config/opencode/hooks regardless of agent, no warning for non-opencode. </p>
+<h3>Operation</h3>
+<p>  7. Run sh math-coding probe — expect 0 errors.   6. Run sh meta/build-skill.sh — verify all output files match pre-refactor (cmp).   5. Update install-skill.sh: hook install wrapped in `if [ &quot;$AGENT&quot; = &quot;opencode&quot; ]`; dry-run message reflects the same.   4. Add sanity check that loops AGENTS= and verifies each is in install-skill.sh AGENT_TARGETS=.   3. Replace `[ $# -eq 0 ] || { ... }` arg parser with explicit if/then chain.   2. Replace `block=&quot;$(gen_block)&quot;` with mktemp-based gen_block_to_file, passed to awk via -v block_file.   1. Add ensure_trailing_newline() helper at the top of build-skill.sh. </p>
+<h3>Invariant preservation</h3>
+<p>  canon body unchanged. per-agent preambles unchanged. Generated SKILL.md and math-agent.md byte-identical to pre-refactor. axiom A3 (plain text + POSIX) preserved. </p>
+<h3>Mapping (spec → impl)</h3>
+<p>  impl:  meta/build-skill.sh lines 207-242 (gen_block_to_file + process_body)   spec:  mktemp for gen_block </p>
+<p>  impl:  meta/build-skill.sh lines 79-85   spec:  ensure_trailing_newline helper </p>
+<p>  impl:  meta/build-skill.sh lines 60-87   spec:  if/then arg parser </p>
+<p>  impl:  meta/build-skill.sh lines 101-107   spec:  sanity check between registries </p>
+<p>  impl:  core/install/install-skill.sh lines 232-255   spec:  install-skill.sh hooks for opencode only </p>
+<h3>Test obligation</h3>
+<p>  6. `sh math-coding install-skill --dry-run --with-hooks` still shows hook path for opencode.   5. `sh math-coding install-skill --dry-run --agent=cursor --with-hooks` prints &quot;hook: SKIPPED&quot;.   4. cmp pre-refactor vs post-refactor: SKILL.md and math-agent.md identical for opencode.   3. `sh meta/build-skill.sh` builds all agents without errors.   2. `sh meta/build-skill.sh opencode --check` exits 0.   1. `sh math-coding probe` exits 0. </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

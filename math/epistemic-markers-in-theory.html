@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | epistemic-markers-in-theory</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>epistemic-markers-in-theory</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom"></span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>The five epistemic markers (fact, hypothesis, judgment, unknown, proven) appear in `theories/epistemic.md`. The theory of epistemic markers **contains** the markers it defines. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>If the theory file omits a marker, axiom Accounting's implementation is silent. axiom Accounting is implemented in `core/check/verify.sh`, which checks for marker **membership** in the allowed set. If the allowed set is </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>`tests/run.sh` Case 17 asserts that all five markers appear in `theories/epistemic.md`: ``` </p>
+</section>
+<section><h3>Body</h3>
+<h2>epistemic-markers-in-theory</h2>
+<h3>Thesis</h3>
+<p>defines. theory of epistemic markers **contains** the markers it unknown, proven) appear in `theories/epistemic.md`. The The five epistemic markers (fact, hypothesis, judgment, </p>
+<h3>Antithesis</h3>
+<p>missing marker as invalid. stale (missing a marker), the verifier silently accepts the **membership** in the allowed set. If the allowed set is in `core/check/verify.sh`, which checks for marker implementation is silent. axiom Accounting is implemented If the theory file omits a marker, axiom Accounting's </p>
+<p>theory file manually. &quot;hypothesis&quot;) would not be caught unless someone reads the A typo in the theory (e.g. &quot;hypothises&quot; instead of </p>
+<h3>Synthesis</h3>
+<p>appear in `theories/epistemic.md`: `tests/run.sh` Case 17 asserts that all five markers </p>
+<pre><code>if grep -q &quot;fact&quot; &quot;$REPO_ROOT/theories/epistemic.md&quot; &amp;&amp; \
+   grep -q &quot;hypothesis&quot; &quot;$REPO_ROOT/theories/epistemic.md&quot; &amp;&amp; \
+   grep -q &quot;judgment&quot; &quot;$REPO_ROOT/theories/epistemic.md&quot; &amp;&amp; \
+   grep -q &quot;unknown&quot; &quot;$REPO_ROOT/theories/epistemic.md&quot; &amp;&amp; \
+   grep -q &quot;proven&quot; &quot;$REPO_ROOT/theories/epistemic.md&quot;; then
+    PASS
+else
+    FAIL
+fi
+</code></pre>
+<p>typos, missing words, and accidental deletions. The test is **content-based**, not structural. It catches </p>
+<h3>Worked example</h3>
+<p>canonical** markers are in the theory file. catches this only if it also asserts that the **five extended; the verifier accepts &quot;conjecture&quot;. The test it to `theories/epistemic.md`. axiom Accounting's spec is allowed set in `convention-spec.yaml` but forgets to add A contributor adds a new marker &quot;conjecture&quot; to the </p>
+<p>update, which is **explicit** and **visible** in a commit. present. Future extensions (new markers) require a test five** markers are present, not that **only** the five are This test is **conservative**: it asserts the **canonical </p>
+<h3>Surface impact</h3>
+<p>of epistemic markers) `tests/run.sh` (Case 17), axiom Accounting (the theory touches: `theories/epistemic.md` (canonical content), </p>
+<h3>Proof</h3>
+<p>blocked (in CI), and the convention stays self-consistent. theory file loses a marker, the test fails, the commit is The test runs at every commit (CI and locally). If the </p>
+<h2>Refinement: epistemic-markers-in-theory</h2>
+<h3>State</h3>
+<p>  Typo caught at commit time. - post: a self-test asserts the five markers are present.   caught.   (manually verified at genesis). A typo would not be - pre: theories/epistemic.md contains five markers </p>
+<h3>Operation</h3>
+<p>`tests/run.sh` Case 17: </p>
+<pre><code>markers_found=0
+for m in fact hypothesis judgment unknown proven; do
+    if grep -q &quot;$m&quot; &quot;$REPO_ROOT/theories/epistemic.md&quot;; then
+        markers_found=$((markers_found + 1))
+    fi
+done
+if [ &quot;$markers_found&quot; = &quot;5&quot; ]; then
+    PASS
+else
+    FAIL
+fi
+</code></pre>
+<h3>Mapping</h3>
+<p>| proven      | end-to-end verified (axiom A6)          | | unknown     | B(P) = 0                                | | judgment    | B(P) in {0, 1}                          | | hypothesis  | 0.5 &lt; B(P) &lt; 0.95                       | | fact        | B(P) &gt;= 0.95                            | |-------------|-----------------------------------------| | marker      | role                                    | </p>
+<h3>Invariant preservation</h3>
+<p>- axiom Accounting is consistent with its theory. - All five markers are present in theories/epistemic.md. </p>
+<h3>Test obligation</h3>
+<p>(in CI). The convention's theory stays self-consistent. The test runs at every commit. Failure blocks the commit </p>
+<h3>Runtime check</h3>
+<p>--- None. The test runs at commit time. </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

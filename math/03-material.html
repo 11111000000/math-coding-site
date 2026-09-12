@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | 03-material</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>03-material</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">A3</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>The convention lives in plain text, in git, and runs on a POSIX shell. No other substrate is required. Three pillars: </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>A convention that depends on a language, framework, IDE, or vendor outlives its usefulness only as long as that substrate survives. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>A3 fixes the material basis of math-coding:   packet.yaml      — plain text   decision.md      — plain text </p>
+</section>
+<section><h3>Body</h3>
+<h2>03-material</h2>
+<p>This packet realises [[docs/axioms.md#a3-material-basis-substrate|axiom Material Basis]]. </p>
+<h3>Thesis</h3>
+<p>POSIX shell. No other substrate is required. The convention lives in plain text, in git, and runs on a </p>
+<p>Three pillars: </p>
+<p>  Anyone with `cat` and an editor can read the convention.   file. No binary blobs. No JSON-with-comments. No XML.   plain text — every artifact is a `.md`, `.yaml`, or `.sh` </p>
+<p>  all available without external services.   history on a new machine. Branches, tags, and reflog are   append-only. Cloning the repository recreates the entire   git — every change carries a SHA. History is </p>
+<p>  sufficient.   No Node. A minimal Linux install with `git` and `sh` is   or `busybox sh`. No `bash` extensions. No Python. No JVM.   POSIX — every script in `core/` runs on `dash`, `bash`, </p>
+<p>decades. preserves the ledger across decades. POSIX runs across reinforcing. Plain text is readable across decades. Git These three pillars are independent but mutually </p>
+<h3>Antithesis</h3>
+<p>substrate survives. or vendor outlives its usefulness only as long as that A convention that depends on a language, framework, IDE, </p>
+<p>on GitHub Actions dies when the project moves to GitLab. when the library is deprecated. A convention that depends A convention that depends on a specific JSON library dies project moves to Python 3.13 and the dependency changes. A convention that depends on Python 3.12 dies when the </p>
+<p>substrates that are older than the convention itself. find the right substrate. The cure is to depend on that depended on a single substrate. The cure is not to The history of software is a graveyard of conventions </p>
+<p>math-coding. They will outlive the convention. pillars are older than most projects that will adopt Plain text (1960s), git (2005), POSIX (1988). These three </p>
+<h3>Synthesis</h3>
+<p>A3 fixes the material basis of math-coding: </p>
+<p>  math-coding      — POSIX shell   .gitignore       — plain text   .git/            — git   README.md        — plain text   AGENTS.md        — plain text   LICENSE          — plain text   core/ops/*.sh    — POSIX shell   core/*.sh        — POSIX shell   theories/*.md    — plain text   refinement.md    — plain text   assumptions.yaml — plain text (yaml subset)   task.md          — plain text   decision.md      — plain text   packet.yaml      — plain text </p>
+<p>itself is a git repository. The history is git's history. Every file is one of: `.md`, `.yaml`, `.sh`. The convention </p>
+<h3>A worked example: what breaks if A3 fails</h3>
+<p>in practice, even though every commit was green. inaccessible. The convention has lost one of its axioms contributor only has LibreOffice. The specification is now contributor's `.docx` is from Office 365 and the new a new contributor cannot read the file because the review because reviewers do not open it. Three years later, specification of one of the axioms. The file passes code Suppose a contributor commits a `.docx` file containing the </p>
+<p>contribution. The rule catches what the verifier cannot. reviewing the file, sees the rule, and rejects the binary only. The next reviewer reads the convention before catches it. The convention's `AGENTS.md` says: plain text verifiers check structure, not format — but the *convention* (`core/check/verify.sh`) would not catch a binary file — This is the failure mode A3 forbids. The verifier </p>
+<p>axiom Self-Application. host; the bug is caught the next time the convention runs exit non-zero if the convention were installed on such a The `tests/run.sh` axiom-Self-Application self-application would The convention has lost its material basis in practice. where Homebrew has not been updated — the script fails. 3.12 — a fresh container, an old server, a macOS system But the script is not POSIX. On a host without Python is satisfied. The script is in git; history is preserved. requires Python 3.12. The script is plain text; the rule Suppose a contributor writes a `core/install.sh` that </p>
+<p>explicit. substrates. A3 forbids them by making the substrate failure modes of conventions that depended on These two examples are not hypothetical. They are </p>
+<h3>Surface impact</h3>
+<p>in `core/*.sh`) (packet.yaml:applications[].sha), shell runtime (POSIX sh touches: file extensions (.md/.yaml/.sh), git history </p>
+<h3>Proof</h3>
+<p>git, POSIX) hold at this commit. result is the witness that the three pillars (plain text, against the convention's own state. The 8/8 PASS The evidence is `tests/run.sh` which runs 8 self-tests </p>
+<p>exits non-zero. axiom Self-Application holds only as long as A3 holds. 8 self-tests fails. The convention detects the drift and non-POSIX script, or a non-git change, one or more of the If a future commit introduces a binary file, a </p>
+<h2>Refinement: 03-material</h2>
+<h3>State</h3>
+<p>  git, runtime in POSIX. All three pillars preserved. - post: convention artifacts in plain text, history in   runtimes — unreadable in twenty years. - pre: convention artifacts scattered across formats and </p>
+<h3>Operation</h3>
+<p>only history mechanism. Enforce POSIX in every core/ script. Enforce plain-text in every packet. Enforce git as the </p>
+<h3>Mapping</h3>
+<p>| runtime | POSIX shell (dash, ash, busybox sh) | | history | git (SHA, reflog, tag) | | packet artifacts | plain-text (.yaml, .md) | |---------|-----------| | concern | substrate | </p>
+<h3>Invariant preservation</h3>
+<p>- Every change must carry a git SHA in `applications:`. - No core/ script may depend on bash, Python, or JVM. - No packet may include a binary blob. </p>
+<h3>Test obligation</h3>
+<p>- shellcheck or POSIX-only check on every core/ script. </p>
+<h3>Runtime check</h3>
+<p>--- - axiom Self-Application — convention verifies its own material basis. </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

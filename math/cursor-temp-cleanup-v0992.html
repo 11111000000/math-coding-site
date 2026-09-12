@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | cursor-temp-cleanup-v0992</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>cursor-temp-cleanup-v0992</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  Cursor math-agent frontmatter drops `temperature: 0.3`. Cursor agent system supports `mode: subagent` (verified via Cursor docs) but `temperature:` is not part of Cursor's documented agent frontmatter schema. Removing `temperature:` avoids potential silent rejection by Cursor and keeps frontmatter within documented schema. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Removing temperature may reduce reproducibility if Cursor previously interpreted it. If Cursor ignores unknown fields, leaving temperature was harmless. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  Drop temperature for safety: schema-clean frontmatter &gt; potentially-rejected field. If Cursor later adds temperature support, the field can be re-added. The trade-off: lose one parameter that Cursor may or may not have honored. </p>
+</section>
+<section><h3>Body</h3>
+<h2>cursor-temp-cleanup-v0992</h2>
+<h3>Thesis</h3>
+<p>  Cursor math-agent frontmatter drops `temperature: 0.3`. Cursor agent system supports `mode: subagent` (verified via Cursor docs) but `temperature:` is not part of Cursor's documented agent frontmatter schema. Removing `temperature:` avoids potential silent rejection by Cursor and keeps frontmatter within documented schema. </p>
+<h3>Antithesis</h3>
+<p>  Removing temperature may reduce reproducibility if Cursor previously interpreted it. If Cursor ignores unknown fields, leaving temperature was harmless. </p>
+<h3>Surface impact</h3>
+<p>  - extensions/agents/cursor/math-agent.md — regenerated   - extensions/agents/cursor/math-agent.preamble.yaml — drop `temperature: 0.3` </p>
+<h3>Synthesis</h3>
+<p>  Drop temperature for safety: schema-clean frontmatter &gt; potentially-rejected field. If Cursor later adds temperature support, the field can be re-added. The trade-off: lose one parameter that Cursor may or may not have honored. </p>
+<h3>Worked example</h3>
+<p>  Before: </p>
+<p>  ```   ---   temperature: 0.3   mode: subagent   description: ...   name: math   ---   ```yaml </p>
+<p>  After: </p>
+<p>  ```   ---   mode: subagent   description: ...   name: math   ---   ```yaml </p>
+<h3>Proof</h3>
+<p>  - cursor math-agent.md regenerated, frontmatter matches expected   - sh meta/build-skill.sh cursor --check → ok   - sh math-coding probe → 0 errors, axiom A6 PROVEN </p>
+<h2>Refinement: cursor-temp-cleanup-v0992</h2>
+<h3>State</h3>
+<p>- post: extensions/agents/cursor/math-agent.preamble.yaml has only `mode: subagent`. Generated math-agent.md frontmatter matches. - pre:  extensions/agents/cursor/math-agent.preamble.yaml has `mode: subagent` and `temperature: 0.3`. </p>
+<h3>Operation</h3>
+<p>  3. Verify --check exits 0 and probe exits 0.   2. Run sh meta/build-skill.sh cursor to regenerate math-agent.md.   1. Edit extensions/agents/cursor/math-agent.preamble.yaml: remove `temperature: 0.3`. </p>
+<h3>Invariant preservation</h3>
+<p>  Cursor SKILL.md frontmatter unchanged (already clean). cursor math-agent retains `mode: subagent`. axiom A6 holds. </p>
+<h3>Mapping (spec → impl)</h3>
+<p>  impl:  extensions/agents/cursor/math-agent.preamble.yaml lines 1-5 (YAML)   spec:  temperature removed </p>
+<h3>Test obligation</h3>
+<p>  3. cursor math-agent.md frontmatter contains only name, description, mode.   2. `sh meta/build-skill.sh cursor --check` exits 0.   1. `sh math-coding probe` exits 0. </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

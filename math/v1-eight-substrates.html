@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | v1-eight-substrates</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>v1-eight-substrates</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>Eight substrates (none, shell, pbt, tla+, coq, alloy, bpmn, pbt-prism) describe how strongly a proposition is verified; the LLM chooses based on decision-rules.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Reducing to three substrates (none, shell, pbt) hides the option of formal verification from LLM users, who can learn TLA+ when told it's the right tool.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>List all eight substrates with rules for choosing. Real verification is implemented for `none`, `shell`, `pbt` in v1.0. The other five are typed in the runtime; the CLI reports `tool not installed, SKIP` until external checkers are wired.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>fits the proposition. resistance to formal methods; they only need to be told which one Keep all eight substrates visible. LLM users do not have cognitive </p>
+<h3>What this is NOT</h3>
+<p>- Not a guarantee that all eight are fully implemented in v1.0. - Not a recommendation to use formal verification everywhere. </p>
+<h3>Decision rules</h3>
+<p>See `docs/substrate-decision-rules.md`. Summary: </p>
+<p>- `pbt-prism`: probabilistic. - `bpmn`: workflow. - `alloy`: relational constraints. - `coq`: formal proof, critical invariants. - `tla+`: state machine, concurrency. - `pbt`: property-based, many cases. - `shell`: one shell command verifies. - `none`: cosmetic, no executable check. </p>
+<h3>Run (none)</h3>
+<p>This packet has substrate: none. </p>
+<h3>Notes</h3>
+<p>for shell/pbt/tla+/coq/alloy/bpmn. For pbt-prism, skipped. any value. OCaml runtime checks substrate-specific file presence LLM picks the substrate that matches the proposition. CLI accepts </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

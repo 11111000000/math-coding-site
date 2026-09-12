@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | 06-self-application</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>06-self-application</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">A6</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>The convention applies to itself. Every axiom above is realised as a packet under `math/`. The verifier that checks those packets is itself the subject of a packet. The probe that proves axiom Self-Application holds is </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>A convention that cannot verify itself relies on external authority — a maintainer, a reviewer, a runtime. That authority can disappear; the convention then rots in silence. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>axiom Self-Application closes the loop. The proof obligation is ``` </p>
+</section>
+<section><h3>Body</h3>
+<h2>06-self-application</h2>
+<p>This packet realises [[docs/axioms.md#a6-self-application-meta|axiom Self-Application]]. </p>
+<h3>Thesis</h3>
+<p>axiom Self-Application made operational. The probe that proves axiom Self-Application holds is checks those packets is itself the subject of a packet. realised as a packet under `math/`. The verifier that The convention applies to itself. Every axiom above is </p>
+<p>Formally: </p>
+<pre><code>A6.  ∀ packet P ∈ math/* :
+        ∀ axiom A_i (i ∈ {0,..,5}) :
+          P satisfies A_i
+</code></pre>
+<p>itself a witness in `applications[]`. themselves subjects of packets. The verifier exit-code is seven axioms are seven packets. The `core/` scripts are axiom Self-Application is the closing of the loop. The </p>
+<p>state and found itself consistent. returns 0, the convention has applied itself to its own `sh core/self/probe.sh` is the proof: when the script </p>
+<h3>Antithesis</h3>
+<p>silence. authority can disappear; the convention then rots in authority — a maintainer, a reviewer, a runtime. That A convention that cannot verify itself relies on external </p>
+<p>leaves, the principles leave. are held in the maintainer's head; when the maintainer checks whether the principles are followed. The principles asserts &quot;we follow these principles&quot; and no script that Many conventions are exactly this. They have a README that </p>
+<p>structure. more than CI. It is the convention observing its own that the axioms are coherent. axiom Self-Application is sufficient. CI can check that tests pass; it cannot check that runs after every commit. This is necessary but not Some conventions try to test themselves via a CI pipeline </p>
+<h3>Synthesis</h3>
+<p>obligation is axiom Self-Application closes the loop. The proof </p>
+<pre><code>sh core/self/probe.sh  →  exit 0
+</code></pre>
+<p>The probe runs six checks: </p>
+<p>  [6/6]  axiom packets form a dependency chain   [5/6]  core/check/drift-check.sh detects no drift   [4/6]  core/check/verify.sh exits 0   [3/6]  theories/ contains eight theories   [2/6]  docs/axioms.md lists seven axioms   [1/6]  every math/&lt;pkt&gt;/ has five files </p>
+<p>evaluates the conjunction. If all six hold, exit 0. of the six predicates is axiom Self-Application. The probe Each check is a predicate (axiom Process). The conjunction </p>
+<p>probe's exit code is the witness). verified because the probe runs; axiom Accounting: the proof term; axiom Process: the script's lifecycle is Self-Application (axiom Curry-Howard: a script is a Self-Application is a script written under axiom Self-Application itself. The script that proves axiom The proof of axiom Self-Application is axiom </p>
+<h3>What this means in practice</h3>
+<p>the verdict. fixtures. The probe is the test runner. The exit code is against itself. The seven axiom packets are the test When you run `sh math-coding probe`, the convention runs </p>
+<p>holds again. tells you. You fix the probe. axiom Self-Application Self-Application, the probe exits non-zero. The convention If you change `core/self/probe.sh` and break axiom </p>
+<p>convention tells you. You align the theory with the packet. what axiom packets cite, the probe exits non-zero. The If you change a theory file and the theory drifts from </p>
+<p>that observes itself. The convention is not a static document. It is a system </p>
+<h3>A worked example</h3>
+<p>immediately: packet-lifecycle). The convention caught the drift `applications[]` became stale for two packets (A6 and each axiom packet's `decision.md`, the recorded SHA in When the backlinks commit (12ece14) introduced edits to </p>
+<pre><code>$ sh math-coding drift-check
+DRIFT: 06-self-application application 9fd84a9... stale
+DRIFT: packet-lifecycle application 9fd84a9... stale
+applied: 6, lookahead: 0, drift: 2
+</code></pre>
+<p>refreshed the SHA; the drift cleared; axiom Self-Application held again. detected that its own witness was stale. Two fix commits This is axiom Self-Application in action. The convention </p>
+<pre><code>$ sh math-coding drift-check
+applied: 8, lookahead: 0, drift: 0
+</code></pre>
+<p>convention recorded it happening. observation. axiom Self-Application is real because the The convention observed its own drift and recorded the </p>
+<h3>Surface impact</h3>
+<p>  [6/6] axiom dependency chain closed (axiom Process)   [5/6] drift-check.sh exit 0 (axiom Accounting)   [4/6] verify.sh exit 0 (axiom Curry-Howard)   [3/6] eight theories in theories/ (axiom Process)   [2/6] seven axioms in docs/axioms.md (axiom Process)   [1/6] 5 files per packet (axiom Curry-Howard) touches: the six checks in `core/self/probe.sh`: </p>
+<h3>Proof</h3>
+<p>applications[] SHA witnesses resolve to real commits. the core/ scripts run on a minimal POSIX shell, the docs/axioms.md cohere with the theories in theories/, structure their verifier demands, the axioms in exits 0 ⟺ the convention's own packets satisfy the The proof is the probe itself. `sh core/self/probe.sh` </p>
+<p>Self-Application itself. The proof of axiom Self-Application is axiom </p>
+<h2>Refinement: 06-self-application</h2>
+<h3>State</h3>
+<p>  itself consistent.   convention has applied itself to its own state and found - post: `sh core/self/probe.sh` runs and returns 0. The   mutual coherence.   theories, axioms — but no single act demonstrates their - pre: the convention exists in fragments — packets, scripts, </p>
+<h3>Operation</h3>
+<p>probe.sh performs these checks: </p>
+<p>   the git history. 6. Every application[] SHA resolves to a real commit in    seven axiom packets. 5. theories/ contains the eight theories cited from the    order (A0, A1, A2, A3, A4, A5, A6). 4. docs/axioms.md lists exactly seven axioms in canonical    depends_on:. 3. Every axiom packet references its predecessors in    markers per assumption. 2. Every packet.yaml declares one of the seven epistemic 1. Every math/&lt;pkt&gt;/ has exactly five files. </p>
+<h3>Mapping</h3>
+<p>| SHA witness | for each SHA in applications[], assert git rev-parse succeeds | | theories present | for each theory cited in axiom packets, assert file exists | | axioms doc | grep `^## A[0-9]\.` for exactly seven | | depends_on chain | topological sort; reject cycles | | epistemic markers | grep assumptions.yaml for invalid markers | | five files per packet | `find math -name packet.yaml \| wc -l` matches count of `*/{decision,task,assumptions,refinement}.md` | |--------------|----------------| | A6 obligation | probe.sh check | </p>
+<h3>Invariant preservation</h3>
+<p>  git history.   script that runs against the real filesystem and real - A6 cannot hold vacuously: probe.sh is a POSIX shell - A6 holds across all edits that pass probe.sh. </p>
+<h3>Test obligation</h3>
+<p>  first failing check. - probe.sh exit non-zero = drift; the verdict lists the - probe.sh exit 0 = axiom Self-Application proven. </p>
+<h3>Runtime check</h3>
+<p>--- - axiom Self-Application itself — the convention's own runtime. </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

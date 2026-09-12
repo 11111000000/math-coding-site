@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | site-design</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>site-design</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom"></span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  the math-coding documentation site uses a 5-accent palette   (axiom / proof / antithesis / synthesis / epistemic) over   paper+ink surfaces, with self-hosted Source Serif 4 (display)   and JetBrains Mono (code), in theorem-proof box layouts — </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Animated illustrations, gradient CTAs, decorative hero images,   and emoji-laden design would feel &quot;modern&quot; and signal velocity.   A DAG-of-axioms graphic could summarize the structure visually. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  Visual primitives trace to content primitives:   - 5-accent palette from 5 epistemic/lifecycle instruments     (axiom / proof / antithesis / synthesis / epistemic);   - theorem-box from `**Statement**` heading in decision.md; </p>
+</section>
+<section><h3>Body</h3>
+<h2>site-design</h2>
+<h3>Thesis</h3>
+<p>  Cambridge Tract aesthetic, no decoration, no animation.   and JetBrains Mono (code), in theorem-proof box layouts —   paper+ink surfaces, with self-hosted Source Serif 4 (display)   (axiom / proof / antithesis / synthesis / epistemic) over   the math-coding documentation site uses a 5-accent palette </p>
+<h3>Antithesis</h3>
+<p>  A DAG-of-axioms graphic could summarize the structure visually.   and emoji-laden design would feel &quot;modern&quot; and signal velocity.   Animated illustrations, gradient CTAs, decorative hero images, </p>
+<p>  The signal/noise ratio for serious readers collapses.   dissonance to the reader.   decoration its own axioms forbid demonstrates cognitive   is the failure mode&quot;). A convention that presents itself with   All of these are exactly what axiom A1 forbids (&quot;'looks fine' </p>
+<p>  contributor machines — breaks A3 directly.   mixing with our plain-HTML ethos. Astro would require Node on   manual CSS? Hugo's templates would force Go-template syntax   Could a CMS like Hugo or Astro produce this design with less </p>
+<h3>Synthesis</h3>
+<p>  components.css.   Every color token lives in tokens.css. No magic values in   Every CSS class name follows BEM without abbreviation.     sections.   - dialectic border colors from thesis/antithesis/synthesis   - proof-box from `## Proof` heading, ends with `■` QED-marker;   - theorem-box from `**Statement**` heading in decision.md;     (axiom / proof / antithesis / synthesis / epistemic);   - 5-accent palette from 5 epistemic/lifecycle instruments   Visual primitives trace to content primitives: </p>
+<p>  external CDN, no Google Fonts.   Combined ≈ 138 KB woff2, lazy after initial render, no   - JetBrains Mono (code) — 2 weights (regular/medium).     semibold/bold);   - Source Serif 4 (display) — 4 weights (regular/italic/   Self-hosted fonts: </p>
+<h2>Refinement: site-design</h2>
+<h3>State</h3>
+<p>  Every visual primitive traces to a content primitive.   accent color; 4 lifecycle states -&gt; 4 mono-pill variants.   5 epistemic markers -&gt; 5 text states under one epistemic   thesis/antithesis/synthesis -&gt; 3 distinct box border styles;   structure: 5 packet files -&gt; 5 columns in packet-card layout; - post:   the site visual identity maps 1-to-1 onto the convention - pre: &lt;state before implementation&gt; </p>
+<h3>Operation</h3>
+<p>  Total: ~530 lines CSS + binary font assets.   ------------------------------------------------------------------------   fonts/             woff2 files (~138 KB total).                                   epistemic-marker, wordmark.                                   sha-link, packet-card,                                   dialectic-box, lifecycle-pill,   components.css:    ~250 lines — theorem-box, proof-box,                               measurements, marginalia.                               Grid with container queries;   layout.css:        ~80 lines — 5-column packet grid via CSS                                prefers-color-scheme, [data-theme].   base.css:          ~120 lines — reset, typography hierarchy,                               spacing, font-face declarations.   tokens.css:        ~80 lines — color tokens, type scale, </p>
+<h3>Invariant preservation</h3>
+<p>  prefers-color-scheme + manual [data-theme] override both work.   duration &gt; 100ms; no external (non-self-hosted) assets;   border-radius is at most 2px); no box-shadow; no animation   border-radius is 0 everywhere except lifecycle-pill (where </p>
+<h3>Test obligation</h3>
+<p>       content=&quot;light dark&quot;&gt;.     3. every .html in dist/ has &lt;meta name=&quot;color-scheme&quot;        no transition over 100ms.     2. grep -rE &quot;transition:[[:space:]]*[0-9]+[0-9]{2,}&quot; finds        which is &lt;= 2px.        finds no non-zero border-radius except .lifecycle-pill     1. grep -rE &quot;border-radius:[[:space:]]*[1-9]&quot; site/assets/css/   `sh tests/site-test.sh` checks: </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

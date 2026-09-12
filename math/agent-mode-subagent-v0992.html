@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | agent-mode-subagent-v0992</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>agent-mode-subagent-v0992</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  Math agent in extensions/agents/opencode/math-agent.md is mode: subagent, not primary. Tab cycle stays build/plan; Math is invoked via @math mention or Task tool from a primary agent. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Primary mode lets user switch agent with Tab — more discoverable. Subagent requires @mention, which is friction for users who expect Math in Tab. If user expects Math in Tab cycle, they will be confused and may treat build as broken Math. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  Math is a peer invoked when needed, not a default mode. Discoverability via @math is acceptable because the convention itself is opt-in: users who reach for Math are already inside the math-coding workflow. Build/plan stay clean for normal development. The trade-off is documented in KNOWN_LIMITATIONS.md and in this packet's decision.md so reviewers can audit the choice. </p>
+</section>
+<section><h3>Body</h3>
+<h2>agent-mode-subagent-v0992</h2>
+<h3>Thesis</h3>
+<p>  Math agent in extensions/agents/opencode/math-agent.md is mode: subagent, not primary. Tab cycle stays build/plan; Math is invoked via @math mention or Task tool from a primary agent. </p>
+<h3>Antithesis</h3>
+<p>  Primary mode lets user switch agent with Tab — more discoverable. Subagent requires @mention, which is friction for users who expect Math in Tab. If user expects Math in Tab cycle, they will be confused and may treat build as broken Math. </p>
+<h3>Surface impact</h3>
+<p>  - ~/.config/opencode/agents/math/agent.md (sync target via install-skill)   - KNOWN_LIMITATIONS.md (new entry documenting primary-vs-subagent trade-off)   - extensions/agents/opencode/math-agent.md (frontmatter + prompt) </p>
+<h3>Synthesis</h3>
+<p>  Math is a peer invoked when needed, not a default mode. Discoverability via @math is acceptable because the convention itself is opt-in: users who reach for Math are already inside the math-coding workflow. Build/plan stay clean for normal development. The trade-off is documented in KNOWN_LIMITATIONS.md and in this packet's decision.md so reviewers can audit the choice. </p>
+<h3>Worked example</h3>
+<p>  User adds a new feature. Tab cycle in opencode TUI is build ↔ plan. Math is not in the cycle. User writes `@math help me write a packet for this feature`. Math activates as a subagent, drafts the 7-field spec, runs `sh math-coding create &lt;name&gt; --from -`, exits. User returns to build, commits, runs `apply`. The TUI primary cycle is unchanged. </p>
+<h3>Proof</h3>
+<p>  Evidence is `sh math-coding probe` in source-repo mode (this worktree, on fix/math-agent-subagent-mode branch) which exits 0 after the change. This proves the convention still applies to itself (axiom A6 kept). The subagent-mode change is verified by `opencode debug config` showing `math.mode == &quot;subagent&quot;` and `opencode agent list` omitting math from the primary list. </p>
+<h2>Refinement: agent-mode-subagent-v0992</h2>
+<h3>State</h3>
+<p>- post: Math agent has `mode: subagent` in frontmatter. Tab cycle is build/plan only. Prompt explicitly states Math is invoked via @math or Task tool. Switching to Math is no longer possible; user invokes Math explicitly. - pre:  Math agent has no `mode:` field, defaulting to `all`. Tab cycle includes Math. Prompt frames agent as &quot;peer who suggests&quot; with 5 negative instructions. Switch to Math causes opencode to take on advisor role rather than act. </p>
+<h3>Operation</h3>
+<p>  6. Append note to KNOWN_LIMITATIONS.md documenting the primary-vs-subagent trade-off.   5. Sync to target: `sh math-coding install-skill --with-agent`.   4. Rewrite &quot;What you DO NOT do&quot; section (lines 74-80): consolidate 5 negative instructions into 1-2 positive lines.   3. Rewrite table &quot;When to engage&quot; (lines 16-23): remove &quot;Silent. No action needed.&quot; for read; change &quot;Suggest&quot; to &quot;Help write the packet directly when user agrees&quot;; change &quot;Require&quot; to &quot;Ask once for clarity, then draft the spec&quot;.   2. Rewrite prompt lines 6-12: declare Math is a subagent invoked via @math or Task tool.   1. Add `mode: subagent` to extensions/agents/opencode/math-agent.md frontmatter (line 1-4). </p>
+<h3>Invariant preservation</h3>
+<p>  Math agent has all read tools available. Math agent has no edit/bash permission restrictions. Primary agents build and plan are unchanged in prompt and permissions. Other subagents (general, explore, scout) are unaffected. </p>
+<h3>Mapping (spec → impl)</h3>
+<p>  impl:  extensions/agents/opencode/math-agent.md frontmatter line 3, `mode: subagent`   spec:  Math agent has mode: subagent </p>
+<p>  impl:  opencode debug config shows no math entry in primary agents list   spec:  Tab cycle remains build/plan </p>
+<p>  impl:  prompt line 6-12 explicitly states invocation mechanism   spec:  Math invoked via @math or Task tool </p>
+<h3>Test obligation</h3>
+<p>  5. `sh math-coding drift-check` reports applied + 0 drift.   4. `sh math-coding verify` exits 0.   3. `opencode agent list` does not include math as primary.   2. `opencode debug config` shows `math.mode == &quot;subagent&quot;`.   1. `sh math-coding probe` exits 0 in source-repo mode. </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

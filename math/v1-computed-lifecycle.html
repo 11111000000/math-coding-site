@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | v1-computed-lifecycle</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1><span class="axiom">v1-computed-lifecycle</span></h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Substrate</dt><dd><code>shell</code></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>Lifecycle (draft, applied, drift, stale, retired, abandoned) is computed from git history, not stored as a field.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Stored lifecycle drifts from reality — a packet says 'applied' but witness SHA is invalid, or files in witness don't match manifest.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>Compute lifecycle on every check: no witness → draft; proposition changed → drift; files changed but proposition same → stale; proposition + files match → applied. Optional `status:` field in frontmatter overrides the computation for explicit retire/abandon.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>manual annotation that can lie. Make lifecycle a property of the packet's git history, not a </p>
+<h3>What this is NOT</h3>
+<p>  observed, not assigned. - Not a state machine with legal transitions. Lifecycle is   writes the override into frontmatter. - Not a replacement for explicit retire. CLI `packet edit --status=retired` </p>
+<h3>Run</h3>
+<p>  -e 'Packet.Lifecycle.compute_lifecycle () pkt |&gt; print_int'   src/lib/git.cmo src/lib/lifecycle.cmo \   src/lib/packet.cmo src/lib/parse.cmo \ ocaml -I src/lib unix.cma yaml.cma yojson.cma \ ```sh </p>
+<pre><code>
+This is the OCaml test for lifecycle computation.
+
+## Notes
+
+Six states: `draft`, `applied`, `drift`, `stale`, `retired`,
+`abandoned`. The first four are computed. The last two require
+explicit override via frontmatter `status:` field.
+
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

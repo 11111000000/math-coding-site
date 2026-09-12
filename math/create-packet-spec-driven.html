@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | create-packet-spec-driven</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>create-packet-spec-driven</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom"></span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>A packet can be created from a single YAML spec via one shell call. The agent writes one spec, the convention produces the five files atomically. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>The current `core/author/init-packet.sh` produces only **placeholders** — five files containing &quot;&lt;your thesis here&gt;&quot;. The agent must then **separately** open each file and fill it. This is **eight operations** for one packet: </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>A spec is a YAML document with a fixed shape: ```yaml name: cache-ttl </p>
+</section>
+<section><h3>Body</h3>
+<h2>create-packet-spec-driven</h2>
+<h3>Thesis</h3>
+<p>produces the five files atomically. shell call. The agent writes one spec, the convention A packet can be created from a single YAML spec via one </p>
+<h3>Antithesis</h3>
+<p>init + five writes + verify + commit. and fill it. This is **eight operations** for one packet: here&gt;&quot;. The agent must then **separately** open each file **placeholders** — five files containing &quot;&lt;your thesis The current `core/author/init-packet.sh` produces only </p>
+<p>produce. proposition; it should be **one** atomic operation to not expand them. The five-file packet is **one** atomic A convention should **reduce** the number of operations, </p>
+<h3>Synthesis</h3>
+<p>A spec is a YAML document with a fixed shape: </p>
+<p>runtime_check: &quot;errors to stderr&quot; test_obligation: &quot;tests/contract/test_cache_ttl.spec&quot; invariant: &quot;Cache entries never served beyond TTL.&quot; mapping: &quot;raw bytes -&gt; dict entry&quot; operation: &quot;On read, check TTL. If age &gt; 60s, refresh.&quot;   post: cache hit   pre: cache miss state:     evidence: &quot;SLA allows 60s for /cache&quot;     confidence: 0.95     epistemology: fact     status: user-confirmed     statement: &quot;60s is acceptable for this endpoint&quot;   - id: A1 assumptions:   - Invalidation must be idempotent   - TTL must be configurable constraints: outcome: &quot;After 60s, cache is refreshed.&quot;          changes.&quot; problem: &quot;Stale data is served indefinitely after upstream proof: &quot;tests/contract/test_cache_ttl.spec&quot; surface_impact: &quot;touches: --cache-invalidate [FROZEN]&quot;          endpoint.&quot; synthesis: &quot;TTL is fixed; manual invalidation is a separate antithesis: &quot;Users may need manual invalidation.&quot; thesis: &quot;Cache entries expire after 60 seconds.&quot; mode: standard name: cache-ttl ```yaml </p>
+<pre><code>
+`core/author/create-packet.sh` reads this spec, parses it,
+generates the five files, and exits 0. The agent writes
+**one** spec, the convention writes **five** files.
+
+## Worked example
+
+A human agent wants a packet:
+
+</code></pre>
+<p>  - refinement.md    (state/op/mapping/invariant/test)   - assumptions.yaml (epistemic context)   - task.md          (intent)   - decision.md      (proposition)   - packet.yaml      (manifest) Created packet: math/my-feature $ sh math-coding create my-feature --from /tmp/spec.yaml EOF ... thesis: &quot;The feature does X.&quot; mode: standard name: my-feature $ cat &gt; /tmp/spec.yaml &lt;&lt;'EOF' </p>
+<pre><code>
+One call. Five files. The convention does the rest.
+
+## Surface impact
+
+touches: `core/author/create-packet.sh` (new script),
+`math-coding` dispatcher (new `create` command), the
+five-file packet format (now produced by spec, not by
+init template)
+
+## Proof
+
+The evidence is the test: `tests/run.sh` runs a case that
+calls `create-packet.sh` with a minimal spec, then asserts
+the five files exist and pass `core/check/verify.sh`.
+The test exits 0 iff the spec-driven path produces a valid
+packet. axiom Self-Application holds iff the new path
+satisfies the existing convention — i.e., the new path
+must produce a packet that probe.sh accepts.
+# Refinement: create-packet-spec-driven
+
+## State
+
+- pre: agent writes 1 spec → 1 init call + 5 file edits =
+  8 operations to create a packet.
+- post: agent writes 1 spec → 1 create call = 2 operations
+  (the spec write + the create call). Convention does the rest.
+
+## Operation
+
+`sh math-coding create &lt;name&gt; --from &lt;spec.yaml&gt;` reads the
+spec, parses it, generates the five files atomically. The
+agent writes the spec; the convention fills the packet.
+
+For shell pipelines: `sh math-coding create &lt;name&gt; --from -`
+reads the spec from stdin, enabling heredoc:
+
+</code></pre>
+<p>EOF ... mode: standard name: my-feature sh math-coding create my-feature --from - &lt;&lt;'EOF' </p>
+<pre><code>
+## Mapping
+
+| spec field | packet file |
+|------------|--------------|
+| name | packet.yaml:task_id |
+| mode | (workflow only; not in file) |
+| thesis | decision.md:## Thesis |
+| antithesis | decision.md:## Antithesis |
+| synthesis | decision.md:## Synthesis |
+| surface_impact | decision.md:## Surface impact |
+| proof | decision.md:## Proof |
+| problem | task.md:## Problem |
+| outcome | task.md:## Desired outcome |
+| constraints | task.md:## Constraints |
+| assumptions | assumptions.yaml (list of dicts) |
+| state.pre | refinement.md:## State pre |
+| state.post | refinement.md:## State post |
+| operation | refinement.md:## Operation |
+| mapping | refinement.md:## Mapping |
+| invariant | refinement.md:## Invariant preservation |
+| test_obligation | refinement.md:## Test obligation |
+| runtime_check | refinement.md:## Runtime check |
+
+## Invariant preservation
+
+- All five files exist after `create` exits 0.
+- The produced packet passes `core/check/verify.sh`.
+- The spec's `thesis` appears verbatim in
+  `decision.md:## Thesis`.
+- axiom Self-Application holds for the new packet
+  (probe.sh accepts it).
+- `init-packet.sh` continues to work unchanged.
+
+## Test obligation
+
+`tests/run.sh` adds a case:
+
+</code></pre>
+<p>  assert probe.sh exits 0.   spec, assert five files exist, assert verify.sh exits 0, create-packet-spec-driven: create a packet from a minimal </p>
+<pre><code>
+The test exits 0 iff the new path satisfies the existing
+convention. If the new path produces a packet that probe.sh
+rejects, axiom Self-Application fails.
+
+## Runtime check
+
+None. The creation is commit-time. The runtime check is
+the standard probe.sh axiom-Self-Application invocation
+at every commit.
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

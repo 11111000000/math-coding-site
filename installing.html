@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding v1.0 — installing</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>Installing math-coding v1.0</h1>
+<p>One binary. Plain-text packets. Git history. Nothing else.</p>
+<h3>Prerequisites</h3>
+<p>OCaml 5.x, dune 3.x, opam. Easiest via Nix flake:</p>
+<pre><code>nix develop</code></pre>
+<h3>Install</h3>
+<pre><code>sh scripts/install.sh</code></pre>
+<p>Installs to <code>$XDG_DATA_HOME/math-coding/&lt;ver&gt;/math-coding</code> with a <code>current</code> symlink.</p>
+<h3>Use</h3>
+<p>Wrapper at project root forwards to the shared binary:</p>
+<pre><code>./math-coding check
+./math-coding probe
+./math-coding packet create NAME --proposition=...</code></pre>
+<h3>Packet layout</h3>
+<pre><code>math/&lt;name&gt;/
+├── packet.md        # YAML frontmatter + Markdown body
+├── witness          # YAML list of witness entries
+├── run.sh           # only if substrate: shell
+├── properties/      # only if substrate: pbt
+├── tla/             # only if substrate: tla+
+├── coq/             # only if substrate: coq
+├── alloy/           # only if substrate: alloy
+└── bpmn/            # only if substrate: bpmn</code></pre>
+<h3>Verify axiom Self-Application</h3>
+<pre><code>./math-coding probe</code></pre>
+<p>Each axiom is realized as a packet under <code>math/</code>. The probe verifies that each axiom packet satisfies structural and substantive checks.</p>
+<footer class="site-foot"><p><a href="index.html">index</a></p></footer>
+</body>
+</html>

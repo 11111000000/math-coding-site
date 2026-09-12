@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | build-skill-v0992</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>build-skill-v0992</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">false</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  extensions/agents/opencode/SKILL.md is generated, not hand-authored. Single source for normative content. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  Generated content is opaque; reviewers can't audit. Drift between source and output goes unnoticed without manual comparison. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  The script's --check mode IS the reviewer: CI runs it on every commit. Source SHAs in the AUTO-GENERATED header are witnesses (axiom A5). </p>
+</section>
+<section><h3>Body</h3>
+<h2>build-skill-v0992</h2>
+<h3>Thesis</h3>
+<p>  extensions/agents/opencode/SKILL.md is generated, not hand-authored. Single source for normative content. </p>
+<h3>Antithesis</h3>
+<p>  Generated content is opaque; reviewers can't audit. Drift between source and output goes unnoticed without manual comparison. </p>
+<h3>Synthesis</h3>
+<p>  The script's --check mode IS the reviewer: CI runs it on every commit. Source SHAs in the AUTO-GENERATED header are witnesses (axiom A5). </p>
+<h2>Refinement: build-skill-v0992</h2>
+<h3>State</h3>
+<p>- post:   SKILL.md rebuilds automatically from core/spec/, core/theories/, and KNOWN_LIMITATIONS.md via meta/build-skill.sh. --check mode fails if stale. - pre: &lt;state before implementation&gt; </p>
+<h3>Operation</h3>
+<p>  sh meta/build-skill.sh &lt;agent&gt; reads template, derives compact axiom/FSM/theory/limitations blocks from sources, writes SKILL.md. sh meta/build-skill.sh &lt;agent&gt; --check returns 1 if SKILL.md is stale. </p>
+<h3>Invariant preservation</h3>
+<p>  - --check mode compares against template + sources   - extensions/agents/opencode/SKILL.md has AUTO-GENERATED marker   - core/spec/axioms.md, core/spec/fsm.md, core/theories/*.md, KNOWN_LIMITATIONS.md are single sources </p>
+<h3>Test obligation</h3>
+<p>  sh meta/build-skill.sh opencode &amp;&amp; sh meta/build-skill.sh opencode --check → exit 0 </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

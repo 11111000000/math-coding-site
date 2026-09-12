@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | 04-process</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>04-process</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">A4</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>Process precedes code. The packet is written before the implementation. The lifecycle of a packet is finite and ordered. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>A process that begins with code cannot record intent. The implementation exists; the proposition does not. Six months later, a reviewer asks &quot;why was this written this way?&quot; and receives no answer, because the proposition was never asked. </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>axiom Process fixes the temporal discipline of math-coding. The lifecycle FSM is </p>
+</section>
+<section><h3>Body</h3>
+<h2>04-process</h2>
+<p>This packet realises [[docs/axioms.md#a4-process-temporal|axiom Process]]. </p>
+<h3>Thesis</h3>
+<p>ordered. implementation. The lifecycle of a packet is finite and Process precedes code. The packet is written before the </p>
+<p>Six states: </p>
+<p>                                            superseded                                                 ↑   sketch      → working    → verified → deprecated → archived </p>
+<p>be proven (verified). axiom Process forbids the shortcut. proposition that has never been elaborated (working) cannot The forbidden transition is `sketch → verified`. A </p>
+<p>verified` and no entry in `applications[]` fails the check: The verifier enforces this. A packet with `lifecycle: </p>
+<p>  FAIL: math/&lt;pkt&gt;/: lifecycle=verified but no SHA in applications[] </p>
+<p>skip. the application. The convention does not let the developer The error message names the packet. The developer fixes </p>
+<h3>Antithesis</h3>
+<p>receives no answer, because the proposition was never asked. later, a reviewer asks &quot;why was this written this way?&quot; and implementation exists; the proposition does not. Six months A process that begins with code cannot record intent. The </p>
+<p>&quot;deprecated&quot; packets that are still in use. accumulates &quot;verified&quot; packets that are not verified and mature; nothing ripens; nothing retires. The convention A lifecycle without states is a black hole. Packets appear </p>
+<p>implementation merge. axiom Difference forbids this. collapses axiom Difference: the proposition and the its own documentation&quot;, &quot;tests are the spec&quot;. Each of these Some methods try to make lifecycle implicit — &quot;the code is </p>
+<h3>Synthesis</h3>
+<p>axiom Process fixes the temporal discipline of math-coding. </p>
+<p>The lifecycle FSM is </p>
+<pre><code>M = ⟨ S, s₀, A, →, I ⟩
+</code></pre>
+<p>where </p>
+<p>  I(s)  = invariant for state s   →     = the transitions above            supersede, archive }   A     = { elaborate, commit, prove, deprecate,   s₀    = sketch            archived, superseded }   S     = { sketch, working, verified, deprecated, </p>
+<p>The invariants are: </p>
+<p>                  block names the successor   I(superseded) = applications[] is frozen; supersession:   I(archived)   = applications[] is frozen; file remains   I(deprecated) = applications[] is frozen                   applications[]   I(verified)   = 5 files exist; at least one SHA in   I(working)    = 5 files exist; verifier accepts   I(sketch)     = 5 files exist (any content) </p>
+<p>append-only. axiom Process holds. Every SHA appears in `applications[]`. The ledger is Every transition is a commit. Every commit is a SHA. </p>
+<h3>A packet's life (worked example)</h3>
+<p>Consider `math/01-care/` (axiom Care, see `math/01-care/decision.md`): </p>
+<p>       verifier accepts placeholders (sketch is permissive)        5 placeholder files at lifecycle: sketch   t=0  created via `sh math-coding init 01-care` </p>
+<p>       verify: ok (5 files exist; content accepted)        yet elaborated)        lifecycle: sketch (still — proposition stated, not   t=1  decision.md filled with the thesis </p>
+<p>       at working)        verify: ok (verifier accepts; no application needed        lifecycle: working (proposition fully elaborated)   t=2  task.md, assumptions.yaml, refinement.md filled </p>
+<p>       packet)        probe: ok (axiom Self-Application holds for this        verify: ok (axiom Accounting marker check passes)        applications[] entries, lifecycle: verified   t=3  commit &quot;01-care: fill in 5 files&quot; with 5 new </p>
+<p>       math/01-care-v2/ lifecycle: working        entries); the file remains for audit        math/01-care/ applications[] is frozen (no new        math/01-care/ lifecycle: superseded        math/01-care/        creates math/01-care-v2/ with supersession:   t=4  maintainer realises axiom Care is too abstract; </p>
+<p>       math/01-care/ lifecycle: archived   t=5  nobody references math/01-care/ anymore </p>
+<p>commit is a SHA; every SHA is in applications[]. fixes the discipline: every transition is a commit; every This is the lifecycle the FSM formalises. axiom Process </p>
+<h3>Surface impact</h3>
+<p>packet.yaml:supersession (deprecated packets only) packet.yaml:applications[].sha (every transition), verified/deprecated/archived/superseded), touches: packet.yaml:lifecycle (enum: sketch/working/ </p>
+<h3>Proof</h3>
+<p>when the FSM is respected. Self-Application's check 4/6 confirms the verifier exits 0 verifier exits non-zero with the message above. axiom if a packet claims `verified` without a SHA witness — the without SHA is the proof. If axiom Process is violated — line in `core/check/verify.sh` that rejects `verified` The evidence is the verifier's enforcement. The specific </p>
+<h2>Refinement: 04-process</h2>
+<h3>State</h3>
+<p>  each transition recorded as a git commit. - post: every packet moves through six states in order,   drifting toward claimed correctness without witness. - pre: packets may sit forever in `sketch` or `working`, </p>
+<h3>Operation</h3>
+<p>                              └── superseded ←──┘                               ↑                ↓   sketch → working → verified → deprecated → archived A packet transitions through six states: </p>
+<p>Forbidden: `sketch → verified`. </p>
+<h3>Mapping</h3>
+<p>| superseded | replaced by newer packet | archived | | archived | terminal | none | | deprecated | superseded by another packet | archived | | verified | axiom Self-Application returns 0 | superseded OR deprecated | | working | proposition + first commit | code committed | | sketch | packet created (init-packet.sh) | proposition stated (decision.md) | |-------|-----------------|-----------------| | state | entry condition | exit condition | </p>
+<h3>Invariant preservation</h3>
+<p>  non-empty `applications:` block. - No packet may carry `lifecycle: verified` without a </p>
+<h3>Test obligation</h3>
+<p>- axiom Self-Application — verifier rejects `verified` without witness. </p>
+<h3>Runtime check</h3>
+<p>--- None — FSM transitions are commit-time decisions. </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

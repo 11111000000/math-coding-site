@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | site-fsm-svg</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>site-fsm-svg</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom"></span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>  FSM diagram at /fsm.html is a hand-coded SVG showing 4   lifecycle states (draft / applied / retired / abandoned) with   arrows and per-state invariant annotations, committed as a   static asset. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>  A JS-rendered graph (D3, mermaid.js) would update automatically   if states change. But the FSM is *frozen by axiom A4* — adding   a 5th state would itself be a packet proposal, not a quiet   edit. The maintenance burden of hand-coding is small precisely </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>  Hand-code the SVG once. Site-test.sh grep-checks key strings.   Mermaid-style images are forbidden (rasterization binary asset)   in favor of text-replaceable SVG that grep, git diff, and copy-   paste all see. </p>
+</section>
+<section><h3>Body</h3>
+<h2>site-fsm-svg</h2>
+<h3>Thesis</h3>
+<p>  static asset.   arrows and per-state invariant annotations, committed as a   lifecycle states (draft / applied / retired / abandoned) with   FSM diagram at /fsm.html is a hand-coded SVG showing 4 </p>
+<h3>Antithesis</h3>
+<p>  because the FSM is stable.   edit. The maintenance burden of hand-coding is small precisely   a 5th state would itself be a packet proposal, not a quiet   if states change. But the FSM is *frozen by axiom A4* — adding   A JS-rendered graph (D3, mermaid.js) would update automatically </p>
+<p>  copy-pasteable, git-diffable, grep-able.   or computed paths — non-replicable). Static SVG is   copy-paste (most diagram-rendering libs serialize as canvas   JS-rendered diagrams also hide from search engines and from </p>
+<p>  artifact per FSM change, not a hot-path.   adjust than script-generated output. This is a one-time   SVG with explicit coordinates is more readable and easier to   Could we generate SVG via shell + awk? Yes, but hand-coded </p>
+<h3>Synthesis</h3>
+<p>  paste all see.   in favor of text-replaceable SVG that grep, git diff, and copy-   Mermaid-style images are forbidden (rasterization binary asset)   Hand-code the SVG once. Site-test.sh grep-checks key strings. </p>
+<h2>Refinement: site-fsm-svg</h2>
+<h3>State</h3>
+<p>  →, I⟩.   precisely mirrors `core/spec/fsm.md` notation M = ⟨S, s₀, A,   invariant annotations, and no JavaScript; the diagram - post:   /fsm.html renders the FSM diagram with monospace labels, - pre: &lt;state before implementation&gt; </p>
+<h3>Operation</h3>
+<p>  Total: 1 SVG file + 1 line in HTML linking to it.   ------------------------------------------------------------------------   Standalone file recommended for clarity.   /assets/fsm/fsm.svg via &lt;img&gt; with descriptive alt.   Inline in /fsm.html OR referenced as     - mono font labels via inline font-family.     - 1 legend block,     - 4 invariant text blocks (I(s) per state),     - 5 path arrows (apply, retire, abandon, archive x2),     - 4 rect nodes (draft, applied, retired, abandoned),   fsm.svg: ~80 lines hand-coded SVG with: </p>
+<h3>Invariant preservation</h3>
+<p>  I(retired), I(abandoned)) appear in the SVG.   verbatim; all 4 invariant texts (I(draft), I(applied),   coordinates; edge labels match `core/spec/fsm.md` strings   /assets/fsm/fsm.svg); node positions are explicit pixel   exactly one SVG file for /fsm.html (either inline or </p>
+<h3>Test obligation</h3>
+<p>       directions).        apply, retire, abandon, archive (some apply in both     3. SVG contains all 5 transition labels:        I(draft), I(applied), I(retired), I(abandoned).     2. SVG contains all 4 invariant marker names:        draft, applied, retired, abandoned.     1. SVG file or inline SVG contains all 4 state names:   grep checks in tests/site-test.sh: </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

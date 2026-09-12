@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | 01-care</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>01-care</h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Axiom</dt><dd><span class="axiom">A1</span></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>A developer shipping a 3 AM fix to a production outage cares whether the fix works the first time. A convention that does not record that fix loses the fix at the next handoff. </p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Without care, a convention is ceremony. Agents and humans adopt it superficially, and drift grows in silence. The verifier passes; the code does nothing useful. The five files are filled with placeholder text. The SHA witness </p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>A1 names the motivation behind axiom Difference. Difference creates the gap. Care is what makes closing the gap worthwhile. Without A1, axiom Difference would describe a phenomenon without giving anyone a reason to do anything </p>
+</section>
+<section><h3>Body</h3>
+<h2>01-care</h2>
+<p>This packet realises [[docs/axioms.md#a1-care-motivational|axiom Care]]. </p>
+<h3>Thesis</h3>
+<p>not record that fix loses the fix at the next handoff. whether the fix works the first time. A convention that does A developer shipping a 3 AM fix to a production outage cares </p>
+<p>do when the input is null?&quot; from the developer who does not. distinguishes the developer who asks &quot;what does this code first time a user does something unexpected. Care is what green tests, and reads correctly on review — and breaks the &quot;looks fine&quot; writes code that passes the type-checker, has The opposite of care is &quot;looks fine&quot;. A developer who ships </p>
+<p>checks that it works. works because the developer who writes the structure also no amount of structure helps. With care, even loose structure A1 names care as the motivation of convention. Without care, </p>
+<h3>Antithesis</h3>
+<p>points to a commit that contradicts the proposition. files are filled with placeholder text. The SHA witness verifier passes; the code does nothing useful. The five adopt it superficially, and drift grows in silence. The Without care, a convention is ceremony. Agents and humans </p>
+<p>captured by these agents and humans. convention that does not name care as load-bearing will be care — they optimise for shipping, not for correctness. A plausibility, not for truth. Some humans operate without Some agents operate without care — they optimise for </p>
+<h3>Synthesis</h3>
+<p>about it. phenomenon without giving anyone a reason to do anything worthwhile. Without A1, axiom Difference would describe a creates the gap. Care is what makes closing the gap A1 names the motivation behind axiom Difference. Difference </p>
+<p>are not bureaucracy. They are the discipline of care. who marks `unknown` honestly enacts A1. The five markers `fact` without evidence betrays A1. The agent or developer markers. The agent or developer who marks a hypothesis as Axiom Accounting operationalizes care as five epistemic </p>
+<h3>A worked example</h3>
+<p>approach writes a hash table and calls it done. A1, applied: A junior developer is asked to add a cache. The naive </p>
+<p>     Manual invalidation must be a separate endpoint.&quot;     &quot;Cache entries must expire after 60 seconds.   decision.md:thesis: </p>
+<p>     upstream changes.&quot;     &quot;Without TTL, stale data is served indefinitely after   task.md:problem: </p>
+<p>    - A2: &quot;Upstream supports ETag-based refresh&quot; — hypothesis     - A1: &quot;60s is acceptable for this endpoint&quot; — user-confirmed   assumptions.yaml: </p>
+<p>    &quot;Cache entries never served beyond TTL.&quot;   refinement.md:invariant: </p>
+<p>is wrong, the tests catch that. Care, made operational. code is wrong — but the convention catches that. If the code follows the proposition. If the proposition is wrong, the The proposition is recorded before the code. The code </p>
+<h3>A second worked example: 3 AM fix</h3>
+<p>is to commit the fix and roll back if it breaks. A1, applied: is small — one function, one return value. The naive move A developer is paged at 3 AM. Production is down. The fix </p>
+<p>     a second deploy during an outage is the outage itself.&quot;     &quot;A 3 AM fix must work the first time because the cost of   decision.md:thesis: </p>
+<p>     The fix must land and stay landed.&quot;     &quot;Rollbacks during outages cause additional load and risk.   task.md:problem: </p>
+<p>    - A2: &quot;no caller depends on the old broken behaviour&quot; — hypothesis (needs testing)     - A1: &quot;the fix's effect is local to one function&quot; — fact (verified by reading)   assumptions.yaml: </p>
+<p>    &quot;the fix is no-op for inputs that were already correct&quot;   refinement.md:invariant: </p>
+<p>assumed and why. Care, written down. 4 AM, but the convention tells the next developer what was reasoning. If the assumption is wrong, the bug returns at as `hypothesis`, not `fact`. The next reviewer can see the &quot;no caller depends on the old behaviour&quot; — and to mark it The packet forces the developer to state the assumption </p>
+<h3>Surface impact</h3>
+<p>outcomes (verifier stdout) SHA witness (packet.yaml:applications[].sha), 5 verdict touches: 5 epistemic markers (assumptions.yaml:epistemology), </p>
+<h3>Proof</h3>
+<p>markers outside the five-marker set. marker; the convention's `core/check/verify.sh` rejects packet itself marks every assumption with an epistemic witness, every drift carries a verdict. The evidence: this carries an epistemic marker, every change carries a SHA axiom Accounting operationalizes care: every assumption </p>
+<h2>Refinement: 01-care</h2>
+<h3>State</h3>
+<p>  the developer's stake in its correctness. - post: convention motivated by care — every packet carries   produce packets they do not believe in. - pre: convention without motivation — agents and humans </p>
+<h3>Operation</h3>
+<p>fact, hypothesis, judgment, unknown, proven. discipline. Five epistemic markers (A5) operationalize it: Treat care as the axiomatic foundation of all further </p>
+<h3>Mapping</h3>
+<p>| &quot;I proved this end-to-end&quot; | epistemology: proven | | &quot;I do not know&quot; | epistemology: unknown | | &quot;I decided, don't argue&quot; | epistemology: judgment | | &quot;I think this might be true&quot; | epistemology: hypothesis | | &quot;I verified this&quot; | epistemology: fact | |-------------|-------------------| | care-aspect | operational form | </p>
+<h3>Invariant preservation</h3>
+<p>- No agent may mark `fact` without evidence. - No packet may declare certainty it has not earned. </p>
+<h3>Test obligation</h3>
+<p>- axiom Accounting verification — every assumption has a marker. </p>
+<h3>Runtime check</h3>
+<p>--- None — care is internal. </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>
