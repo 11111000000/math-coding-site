@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | site-v1-build-toolchain</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1><span class="axiom">site-v1-build-toolchain</span></h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Substrate</dt><dd><code>shell</code></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>Build pipeline reuses Math_coding_lib.Parse; ./math-coding site regenerates dist/ with 45 packet pages.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Earlier build_site.ml had a duplicated YAML parser and a buggy html_escape that dropped non-special characters — pages rendered with empty &lt;title&gt; and &lt;h1&gt;. The duplicate parser would drift from the canonical one over time.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>build_site.ml imports Math_coding_lib.Parse.parse_packet and Math_coding_lib.Packet. html_escape emits every char (escape &amp; &lt; &gt; \&quot;). main.ml exposes `./math-coding site` so users regenerate the static site with one command. Site artifacts: index.html (45-packet table with axiom highlighting), axioms.html (seven sections), installing.html (prerequisites + install + use), math/&lt;name&gt;.html per packet.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>parallel tooling chain. Make the site a first-class artefact of the convention, not a </p>
+<h3>What this is NOT</h3>
+<p>  the convention, which lives in math/. - Not a documentation site for the OCaml runtime. It documents   just renders it. - Not a CMS. The site IS the math/ directory; the build tool   file does the whole thing. - Not a static site generator (Jekyll, Hugo, Astro). One OCaml </p>
+<h3>Run</h3>
+<p>ls dist/ ./math-coding site           # regenerates dist/ ```sh </p>
+<pre><code>
+## Notes
+
+The build tool reuses Math_coding_lib.Parse so packet format is
+defined once. Adding a field to packet.yaml requires no changes
+to the site renderer. Adding a substrate type requires only a
+substrate check in src/lib/check.ml; the site picks it up via the
+canonical parser.
+
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>
