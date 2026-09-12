@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | v1-site-deploy-process</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1><span class="axiom">v1-site-deploy-process</span></h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Substrate</dt><dd><code>shell</code></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>Site deployment uses the math-coding-site gh-pages branch as the canonical Pages host; updates go through the deploy-site.yml workflow or a manual clone+push cycle.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>Building the site in a worktree and copying dist/ to a different clone is manual and error-prone. CI workflow on math-coding couldn't cross-push to math-coding-site due to GITHUB_TOKEN scope.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>Two deployment paths: (1) trigger ./math-coding site workflow_dispatch in math-coding repo, which builds OCaml + dist + push via peaceiris/actions-gh-pages to its own gh-pages branch (works for any project that hasn't split pages). (2) When the project's main gh-pages branch is the wrong source, manually clone math-coding-site --branch gh-pages, overwrite with dist/, commit, push, and POST to /pages/builds to trigger a Pages rebuild.</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>not by the math-coding CI workflow. host the rendered site; its gh-pages branch is built by Pages, v0.618 → v1.0 split. The math-coding-site repo exists solely to Document the actual deployment procedure after the math-coding </p>
+<h3>What this is NOT</h3>
+<p>  using /docs as the Pages source path.   unnecessary, fold the site back into the math-coding repo by - Not a long-term arrangement. If math-coding-site ever becomes - Not a one-click solution. Two paths, each with a manual step. </p>
+<h3>Run</h3>
+<p>### Path A: ./math-coding site workflow (preferred) </p>
+<p>gh workflow run deploy-site.yml --repo 11111000000/math-coding ```sh </p>
+<pre><code>
+This:
+  1. Builds the OCaml runtime via nix develop
+  2. Runs sh scripts/install.sh for the shared binary
+  3. Runs ./math-coding site to populate dist/
+  4. Pushes dist/ to the math-coding repo's gh-pages branch
+  5. Triggers Pages build
+
+Pages URL: https://11111000000.github.io/math-coding-site/
+
+### Path B: Manual (when Path A points to wrong URL)
+
+```sh
+# Clone the pages host repo
+git clone --depth 1 --branch gh-pages \
+  https://github.com/11111000000/math-coding-site.git /tmp/mcs
+
+cd /tmp/mcs
+git config user.email &quot;math-coding-bot@users.noreply.github.com&quot;
+git config user.name &quot;math-coding-bot&quot;
+
+# Wipe tracked files and re-add dist
+git ls-files | xargs -r rm -f
+cp -r /home/az/Projects/math-coding/dist/. .
+touch .nojekyll
+git add -A
+git commit -m &quot;v1.0 site: $(git -C math-coding rev-parse --short HEAD)&quot;
+git push origin gh-pages --force
+
+# Trigger Pages rebuild
+gh api repos/11111000000/math-coding-site/pages/builds -X POST
+</code></pre>
+<h3>Notes</h3>
+<p>only a redirect (not maintained here). canonical Pages host. math-coding's own gh-pages branch has a mdBook-based site before v1.0). Its gh-pages branch is the The math-coding-site repo exists for historical reasons (it had </p>
+<p>--- </p>
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>

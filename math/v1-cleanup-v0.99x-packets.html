@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>math-coding | v1-cleanup-v0.99x-packets</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">index</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1><span class="axiom">v1-cleanup-v0.99x-packets</span></h1>
+<dl class="facts">
+<dt>Status</dt><dd><span class="status-draft">draft</span></dd>
+<dt>Substrate</dt><dd><code>shell</code></dd>
+</dl>
+<section class="theorem"><h3>Proposition</h3>
+<p>v1.0 keeps only v1-native packets in math/; 17 v0.99x implementation-detail packets and 1 migration packet are removed.</p>
+</section>
+<section><h3 class="antithesis">Antithesis</h3>
+<p>v0.993 had 30+ packets documenting implementation details (shell scripts, AGENTS.md templates, migration steps). v1.0 keeps them around as 'history' but they obscure the v1.0 surface and waste reviewer attention.</p>
+</section>
+<section class="proof-block"><h3 class="synthesis">Synthesis</h3>
+<p>Removed 18 directories from math/: agent-mode-subagent-v0992, apply-commit-order-v0992, build-skill-install-improvements-v0992, build-skill-v0992, claude-skills-v0992, cursor-skills-v0992, cursor-temp-cleanup-v0992, doc-version-sync-v0991, epistemic-v0991, install-skill-gate-v0992, multi-agent-skills-v0992, shared-install-v0993, spec-consolidation-v0992, universal-agents-md-v0992, universal-build-pipeline-v0992, witness-external-v0992, v1-migration-from-v0993. 31 packets remain (7 axiom + 24 v1.0 decisions). Site index now lists 29 rows (31 packets minus 2 axiom in dedicated axioms.html).</p>
+</section>
+<section><h3>Body</h3>
+<h3>Intent</h3>
+<p>belong in v0.99x git history, not in v1.0's decision ledger. Reduce noise. v1.0 is a clean break; v0.99x implementation details </p>
+<h3>What this is NOT</h3>
+<p>  `git log --all -- math/agent-mode-subagent-v0992/` etc. - Not a replacement. v0.99x packets are still reachable via   unchanged. Only the math/ directory's contents are pruned. - Not a rewrite. The OCaml runtime, tests, and site renderer are </p>
+<h3>Run</h3>
+<p>./math-coding site     # dist/ with 31 packets ./math-coding probe    # 145 pass, 0 fail ./math-coding check    # 145 pass, 0 fail ```sh </p>
+<pre><code>
+## Notes
+
+The seven axiom packets (00-difference ... 06-self-application)
+stay — they're the v1.0 foundation, not implementation detail.
+All v1.0-native packets (v1-*, site-v1-*, math-coding-v0993, etc.)
+stay. Only v0.99x-implementation-detail packets and the explicit
+&quot;migration from v0.99x&quot; packet go.
+
+---
+</section>
+<footer class="site-foot">
+<p>math-coding v1.0 · Living Beings License · <a href="index.html">index</a></p>
+</footer>
+</body>
+</html>
