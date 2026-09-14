@@ -11,10 +11,24 @@
 <nav class="site-nav">  <a href="index.html" aria-current="page">overview</a>  <a href="about.html">about</a>  <a href="guide.html">guide</a>  <a href="substrates.html">substrates</a>  <a href="axioms.html">axioms</a>  <a href="installing.html">installing</a>  <a href="packets.html">packets</a></nav>
 <section class="hero">
 <h1>math-coding</h1>
-<p>A convention for documenting decisions in code.</p>
+<p>A convention for documenting decisions in code. Each non-trivial choice becomes a <em>packet</em>: a short proposition, the strongest objection, and how it resolves.</p>
 <p class="formula">decisions = packet &times; git &times; one binary</p>
 </section>
 <p>Currently <strong>21 packets</strong> (7 axiom + 14 v1.0 design). Lifecycle is observed, not assigned.</p>
+<h2>Install</h2>
+<p>One command. Auto-detects your agent (claude-code, opencode, cursor, continue) and your OS.</p>
+<pre class="code"><code>curl -fsSL https://raw.githubusercontent.com/11111000000/math-coding/main/skills/install.sh | sh</code></pre>
+<p>Binary lands in <code>~/.local/bin/math-coding</code>. The skill lands in your agent's skills directory. The snippet lands in <code>~/.config/math-coding/AGENTS.md</code>.</p>
+<p>Pre-built binaries are published for: <b>linux-x86_64</b>, <b>linux-aarch64</b>, <b>darwin-x86_64</b> (Intel Mac), <b>darwin-aarch64</b> (Apple Silicon), and <b>windows-x86_64</b>. See the <a href="https://github.com/11111000000/math-coding/releases">GitHub releases page</a>.</p>
+<h2>Use</h2>
+<p>After install, the binary is on your <code>PATH</code>:</p>
+<pre class="code"><code>math-coding packet create cache-ttl \
+  --proposition="Cache entries expire after 60 seconds" \
+  --antithesis="Manual invalidation forces users to wait" \
+  --synthesis="TTL is fixed; manual invalidate is /admin/cache"
+git add math/cache-ttl
+git commit -m "cache-ttl: 60s TTL"
+math-coding check</code></pre>
 <h2>What you get</h2>
 <ul>
 <li><b>Disciplined commits.</b> Every decision is a packet with a proposition, antithesis, and synthesis.</li>
@@ -22,6 +36,14 @@
 <li><b>Epistemic honesty.</b> A <code>proven</code> marker means the evidence command re-runs and matches its recorded exit code.</li>
 <li><b>Plain text.</b> No database, no CMS, no SaaS. The convention is a directory and a binary.</li>
 </ul>
+<h2>How math-coding differs from related things</h2>
+<p>People sometimes ask: &ldquo;isn't this just an ADR? or a fancy README? or TODO.md with rules?&rdquo; Short answer: no.</p>
+<ul>
+<li><b>vs ADRs.</b> ADRs are for architecture, written rarely, reviewed as documents. math-coding is for <em>every</em> decision, written with the code, with a lifecycle the runtime computes from git. ADRs decay silently; packets can't.</li>
+<li><b>vs comments / TODO.md / <code>*</code>.</b> Comments drift. TODO is a backlog. math-coding is a separate, lifecycle-tracked artefact: <em>why</em> a decision was made, not just <em>what</em>.</li>
+<li><b>vs wiki / Confluence / Notion.</b> Wikis drift and live behind a login. math-coding is a directory in the same repository as the code; grep-able and diff-able in the same pull request.</li>
+<li><b>vs typed language (TypeScript, F*, TLA+).</b> math-coding is for the layer above. The eight <a href="substrates.html">substrates</a> include <code>tla+</code>, <code>coq</code>, <code>alloy</code> so formal methods layer on top when warranted.</li>
+</ul><p>For the longer story, see the <a href="about.html">about page</a>.</p>
 <h2>Packet index</h2>
 <table class="index">
 <tr><th>packet</th><th>category</th><th>proposition</th></tr>
@@ -47,7 +69,7 @@
 <tr><td><a href="math/theory-formal-statements.html">theory-formal-statements</a></td><td>Each of the eight theories has a **formal statement** and a **proof sketch** ...</td></tr>
 <tr><td><a href="math/v1-parser-yaml-list.html">v1-parser-yaml-list</a></td><td>Parser recognises YAML inline-list notation [a, b, c] for `files:` and `axiom...</td></tr>
 </table>
-<footer class="site-foot">
+<p>Or browse the <a href="packets.html">full packet listing</a> by category.</p>
 <footer class="site-foot"><p>math-coding v1.0 · Living Beings License · <a href="index.html">overview</a> · <a href="about.html">about</a> · <a href="guide.html">guide</a> · <a href="substrates.html">substrates</a> · <a href="axioms.html">axioms</a> · <a href="installing.html">installing</a> · <a href="packets.html">packets</a></p></footer>
 </body>
 </html>
