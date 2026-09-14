@@ -4,33 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>math-coding v1.0</title>
+<title>math-coding — math-coding v1.0</title>
 <link rel="stylesheet" href="assets/tokens.css">
 </head>
 <body>
-<nav class="site-nav">
-  <a href="index.html">overview</a>
-  <a href="axioms.html">axioms</a>
-  <a href="installing.html">installing</a>
-</nav>
-<h1>math-coding v1.0</h1>
-<p>A convention for documenting decisions in code. Each
-non-trivial choice becomes a packet: a short proposition,
-the strongest objection, and how it resolves. Packets live
-as plain-text files under <code>math/</code>, the runtime
-verifies them, and a single OCaml binary drives check, probe,
-and site generation.</p>
-<p>Currently <strong>21 packets</strong> (7 axiom + 14 design).</p>
+<nav class="site-nav">  <a href="index.html" aria-current="page">overview</a>  <a href="about.html">about</a>  <a href="guide.html">guide</a>  <a href="substrates.html">substrates</a>  <a href="axioms.html">axioms</a>  <a href="installing.html">installing</a>  <a href="packets.html">packets</a></nav>
+<section class="hero">
+<h1>math-coding</h1>
+<p>A convention for documenting decisions in code.</p>
+<p class="formula">decisions = packet &times; git &times; one binary</p>
+</section>
+<p>Currently <strong>21 packets</strong> (7 axiom + 14 v1.0 design). Lifecycle is observed, not assigned.</p>
 <h2>What you get</h2>
 <ul>
 <li><b>Disciplined commits.</b> Every decision is a packet with a proposition, antithesis, and synthesis.</li>
 <li><b>Self-checking.</b> <code>math-coding check</code> validates structure and lifecycle. <code>math-coding probe</code> proves the convention applies to itself.</li>
-<li><b>Epistemic honesty.</b> <code>proven</code> means the evidence command re-runs and matches its recorded exit code.</li>
+<li><b>Epistemic honesty.</b> A <code>proven</code> marker means the evidence command re-runs and matches its recorded exit code.</li>
 <li><b>Plain text.</b> No database, no CMS, no SaaS. The convention is a directory and a binary.</li>
 </ul>
 <h2>Packet index</h2>
 <table class="index">
-<tr><th>packet</th><th>proposition</th></tr>
+<tr><th>packet</th><th>category</th><th>proposition</th></tr>
 <tr><td><a href="math/v1-eight-substrates.html">v1-eight-substrates</a></td><td>Eight substrates (none, shell, pbt, tla+, coq, alloy, bpmn, pbt-prism) descri...</td></tr>
 <tr><td><a href="math/v1-proven-reproduces.html">v1-proven-reproduces</a></td><td>`proven` epistemic marker requires reproducible evidence — verify re-runs t...</td></tr>
 <tr><td><a href="math/epistemic-markers-in-theory.html">epistemic-markers-in-theory</a></td><td>The five epistemic markers (fact, hypothesis, judgment, unknown, proven) appe...</td></tr>
@@ -54,7 +48,6 @@ and site generation.</p>
 <tr><td><a href="math/v1-parser-yaml-list.html">v1-parser-yaml-list</a></td><td>Parser recognises YAML inline-list notation [a, b, c] for `files:` and `axiom...</td></tr>
 </table>
 <footer class="site-foot">
-<p>Living Beings License · <a href="axioms.html">axioms</a> · <a href="installing.html">installing</a></p>
-</footer>
+<footer class="site-foot"><p>math-coding v1.0 · Living Beings License · <a href="index.html">overview</a> · <a href="about.html">about</a> · <a href="guide.html">guide</a> · <a href="substrates.html">substrates</a> · <a href="axioms.html">axioms</a> · <a href="installing.html">installing</a> · <a href="packets.html">packets</a></p></footer>
 </body>
 </html>
