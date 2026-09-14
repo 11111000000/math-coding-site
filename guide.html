@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>guide — math-coding</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">overview</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>guide</h1>
+<h2>Install</h2>
+<pre><code>nix develop
+sh scripts/install.sh</code></pre>
+<p>Builds the OCaml binary, installs to
+<code>$XDG_DATA_HOME/math-coding/current/math-coding</code>,
+drops a wrapper at the project root.</p>
+<h2>Create your first packet</h2>
+<pre><code>./math-coding packet create cache-ttl \
+  --proposition="Cache entries expire after 60 seconds" \
+  --antithesis="Manual invalidation forces users to wait" \
+  --synthesis="TTL is fixed; manual invalidate is /admin/cache"</code></pre>
+<h2>Daily workflow</h2>
+<ol>
+<li>Make code change. <code>git commit -m "..."</code></li>
+<li><code>./math-coding check</code> verifies structure.</li>
+<li><code>./math-coding probe</code> proves the convention applies to itself.</li>
+</ol>
+<h2>Five commands you need</h2>
+<pre><code>./math-coding check      # structure + lifecycle of every packet
+./math-coding probe      # every axiom packet is sound
+./math-coding site       # render dist/ from math/
+./math-coding packet show NAME
+./math-coding packet edit NAME --antithesis="..."</code></pre>
+<footer class="site-foot">
+<p>Living Beings License · <a href="index.html">overview</a></p>
+</footer>
+</body>
+</html>

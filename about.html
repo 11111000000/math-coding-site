@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>about — math-coding</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">overview</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>about</h1>
+<p>math-coding is a convention for documenting decisions in code.
+Code reviews fail because reviewers see only the diff. The decision
+that produced the diff — what was tried, what was rejected, why this
+option — is gone. Six months later, nobody can tell whether a line is
+load-bearing or accidental.</p>
+<p>math-coding fixes this by treating every decision as a first-class
+artefact: a <em>packet</em>.</p>
+<h2>The seven axioms</h2>
+<dl class="axioms">
+<dt><span class="axiom">A0</span> Difference</dt><dd>A proposition differs from its implementation.</dd>
+<dt><span class="axiom">A1</span> Care</dt><dd>A developer cares whether the code does what it claims.</dd>
+<dt><span class="axiom">A2</span> Curry-Howard</dt><dd>A packet is a spec; the code is the impl; the witness closes the gap.</dd>
+<dt><span class="axiom">A3</span> Material Basis</dt><dd>Plain text for content, git for state, single binary for tools.</dd>
+<dt><span class="axiom">A4</span> Process</dt><dd>Lifecycle is computed from git history.</dd>
+<dt><span class="axiom">A5</span> Accounting</dt><dd>Marked knowledge is reproducible when proven.</dd>
+<dt><span class="axiom">A6</span> Self-Application</dt><dd>Each axiom is realised as a packet; the runtime proves itself.</dd>
+</dl>
+<h2>When to use</h2>
+<ul>
+<li>Public APIs, architecture choices, configuration defaults, trade-offs.</li>
+<li>Decisions that are obvious don't need packets — use a regular commit.</li>
+</ul>
+<footer class="site-foot">
+<p>Living Beings License · <a href="index.html">overview</a></p>
+</footer>
+</body>
+</html>

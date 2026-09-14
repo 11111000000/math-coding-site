@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>substrates — math-coding</title>
+<link rel="stylesheet" href="assets/tokens.css">
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">overview</a>
+  <a href="axioms.html">axioms</a>
+  <a href="installing.html">installing</a>
+</nav>
+<h1>eight substrates</h1>
+<p>The substrate is how strongly the proposition is verified.
+Pick the simplest one that gives you the right confidence.</p>
+<table class="index">
+<tr><th>substrate</th><th>verifies</th><th>use when</th></tr>
+<tr><td><code>none</code></td><td>nothing</td><td>cosmetic changes, name choices</td></tr>
+<tr><td><code>shell</code></td><td>exit code of a shell command</td><td>one executable check</td></tr>
+<tr><td><code>pbt</code></td><td>property-based tests</td><td>&quot;for all X, P(X)&quot; with generators</td></tr>
+<tr><td><code>tla+</code></td><td>TLA+ state-machine spec via TLC</td><td>state, concurrency, ordering</td></tr>
+<tr><td><code>coq</code></td><td>Coq proof via coqc</td><td>critical invariant</td></tr>
+<tr><td><code>alloy</code></td><td>Alloy relational constraint</td><td>structural shape, reachability</td></tr>
+<tr><td><code>bpmn</code></td><td>XML well-formedness</td><td>business workflow</td></tr>
+<tr><td><code>pbt-prism</code></td><td>probabilistic model checking via Prism</td><td>probabilities, randomised systems</td></tr>
+</table>
+<h2>Decision tree</h2>
+<pre><code>Is the proposition about a single executable fact?
+  -> yes: shell
+  -> no: Is it "for all X, P(X)" with many cases?
+    -> yes: pbt
+    -> no: state, concurrency?
+      -> yes: tla+
+      -> no: critical invariant?
+        -> yes: coq
+        -> no: structural shape?
+          -> yes: alloy
+          -> no: workflow?
+            -> yes: bpmn
+            -> no: probabilities?
+              -> yes: pbt-prism
+              -> no: none</code></pre>
+<footer class="site-foot">
+<p>Living Beings License · <a href="index.html">overview</a></p>
+</footer>
+</body>
+</html>
